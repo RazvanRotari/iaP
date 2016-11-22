@@ -1,0 +1,57 @@
+swagger: "2.0"
+basePath: /openAPI
+info:
+  version: 1.0.0
+  title: API Specs
+  description: description
+schemes:
+  - https
+host: iap.api
+paths:
+  /test:
+    get:
+      summary: Get tests
+      description: Get tests.
+      parameters:
+       - name: pageSize
+         in: query
+         description: Number of fields returned
+         type: integer
+      responses:
+        200:
+          description: A list of tests.
+          schema:
+            type: array
+            items:
+              required:
+                - requiredField
+              properties:
+                requiredField:
+                  type: string
+                  
+  /test/{testId}:
+    get:
+      summary: Gets a test
+      description: Returns a single test for its id
+      parameters:
+        - name: testId
+          in: path
+          required: true
+          description: The test's id
+          type: string
+      responses:
+        200:
+          description: A test
+          schema:
+            required:
+              - testId
+            properties:
+              testId:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+        404:
+          description: The test does not exists.
+                
