@@ -1,0 +1,101 @@
+swagger: "2.0"
+info:
+    version: 1.0.0
+    title: Resourse Aggregator API
+    description: The entry point into the media bus
+schemes:
+    - http
+host: wade.razvanrotari.me
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  User:
+    type: object
+    description: Informations about the creator of an item.
+    properties:
+      username:
+        type: string
+      real_name:
+        type: string
+      description:
+        type: string
+      location:
+        type: string
+      followers:
+        type: number
+        format: int
+      external_id:
+        type: string
+        description: The id used by the provider
+      profile_url:
+        type: string
+        format: url
+      profile_image_url:
+        type: string
+        format: url
+      
+  AudioUrl:
+    type: object
+    properties:
+      url:
+        type: string
+        format: url
+      name:
+        type: string
+        description: The name of the quality i.e High, Low, Poor
+  AudioItem:
+    type: object
+    properties:
+      provider:
+        type: string
+        description: The base url for the provider
+      external_id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      duration:
+        type: number
+        format: float
+        description: In seconds
+      uploaded_at:
+        type: string
+        format: date
+      recorded_at:
+        type: string
+        format: date
+      supports_comments:
+        type: boolean
+      external_category_id:
+        type: string
+        description: If the provider does not use id's for categories use category name
+      tags:
+        type: array
+        items: 
+          type: string
+      audio_links:
+        type: array
+        items:
+            $ref: "#/definitions/AudioUrl"
+      creator:
+        $ref: "#/definitions/User"
+        
+paths:
+    /media/audio:
+        put:
+            summary: Create a recored for an audio element 
+            parameters:
+              - name: info
+                in: body
+                description: The id used by the provider  
+                schema:
+                  $ref: '#/definitions/AudioItem'
+            responses:
+              204:
+                description: No data
+                
+
+
