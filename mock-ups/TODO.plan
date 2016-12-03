@@ -1,6 +1,9 @@
 account dashboard
 categories selection
 miscellaneous pages:
-    * about the project (a short description)
-    * team members page
-    * static content blog?
+    1. about the project (a short description)
+    2. team members page
+    3. static content blog?
+
+Notes:
+   Maybe merge 1 and 2
