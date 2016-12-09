@@ -35,7 +35,23 @@ definitions:
       profile_image_url:
         type: string
         format: url
-      
+  Popularity:
+    type: object
+    description: Informations refarding the popularity of an item. Likes, views, downvotes
+    properties:
+      up_votes:
+        type: number
+        format: int
+      down_votes:
+        type: number
+        format: int
+      views:
+        type: number
+        format: int
+      comment_count:
+        type: number
+        format: int
+          
   AudioUrl:
     type: object
     properties:
@@ -82,7 +98,96 @@ definitions:
             $ref: "#/definitions/AudioUrl"
       creator:
         $ref: "#/definitions/User"
-        
+  #https://newsapi.org/
+  NewsItem:
+    type: object
+    properties:
+      provider:
+        type: string
+        description: The base url for the provider
+      author:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      url:
+        type: string
+      image_url:
+        type: string
+      published_at:
+        type: string
+        format: date
+  
+  #https://api.imgur.com/models/gallery_image
+  ImageItem:
+    type: object
+    properties:
+      external_id:
+        type: string
+        description: The ID for the image
+      title:
+        type: string
+        description: The title of the image.
+      description:
+        type: string
+        description: Description of the image.
+      datetime:
+        type: integer
+        description: Time inserted into the gallery, epoch time
+      mime_type:
+        type: string
+        description: Image MIME type.
+      animated:
+        type: boolean
+        description: is the image animated
+      width:
+        type: integer
+        description: The width of the image in pixels
+      height:
+        type: integer
+        description: The height of the image in pixels
+      size:
+        type: integer
+        description: The size of the image in bytes
+      views:
+        type: integer
+        description: The number of image views
+      link:
+        type: string
+        description: The direct link to the the image. (Note: if fetching an animated GIF that was over 20MB in original size, a .gif thumbnail will be returned)
+      gifv:
+        type: string
+        description: The .gifv link. Only available if the image is animated and type is 'image/gif'.
+      mp4:
+        type: string
+        description: The direct link to the .mp4. Only available if the image is animated and type is 'image/gif'.
+      mp4_size:
+        type: integer
+        description: The Content-Length of the .mp4. Only available if the image is animated and type is 'image/gif'. Note that a zero value (0) is possible if the video has not yet been generated
+      vote:
+        type: string
+        description: The current user's vote on the album. null if not signed in or if the user hasn't voted on it.
+      nsfw:
+        type: boolean
+        description: Indicates if the image has been marked as nsfw or not. Defaults to null if information is not available.
+      comment_count:
+        type: int
+        description: Number of comments on the gallery image.
+      topic:
+        type: string
+        description: Topic of the gallery image.
+      external_topic_id:
+        type: integer
+        description: Topic ID of the gallery image.
+      section:
+        type: string
+        description: If the image has been categorized by our backend then this will contain the section the image belongs in. (funny, cats, adviceanimals, wtf, etc)
+      creator:
+        $ref: "#/definitions/User"
+      popularity:
+        $ref: "#/definitions/Popularity"
+
 paths:
     /media/audio:
         put:
@@ -90,12 +195,32 @@ paths:
             parameters:
               - name: info
                 in: body
-                description: The id used by the provider  
                 schema:
                   $ref: '#/definitions/AudioItem'
             responses:
               204:
                 description: No data
-                
+    /media/news:
+        put:
+            summary: Create a recored for a news element 
+            parameters:
+              - name: info
+                in: body
+                schema:
+                  $ref: '#/definitions/NewsItem'
+            responses:
+              204:
+                description: No data
+    /media/image:
+        put:
+            summary: Create a recored for a news element 
+            parameters:
+              - name: info
+                in: body
+                schema:
+                  $ref: '#/definitions/ImageItem'
+            responses:
+              204:
+                description: No data
 
 
