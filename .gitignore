@@ -1,5 +1,18 @@
-# Byte-compiled / optimized / DLL files
+
+# Created by https://www.gitignore.io/api/django,python
+
+### Django ###
+*.log
+*.pot
+*.pyc
 __pycache__/
+local_settings.py
+db.sqlite3
+media
+
+
+### Python ###
+# Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
 
@@ -47,11 +60,8 @@ coverage.xml
 
 # Translations
 *.mo
-*.pot
 
 # Django stuff:
-*.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -66,7 +76,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# IPython Notebook
+# Jupyter Notebook
 .ipynb_checkpoints
 
 # pyenv
@@ -79,6 +89,7 @@ celerybeat-schedule
 .env
 
 # virtualenv
+.venv/
 venv/
 ENV/
 
