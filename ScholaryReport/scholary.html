@@ -99,15 +99,13 @@
 			</figure>
         </p>
       </section>
-      <section typeof="sa:Motivation" id="motivation">
-        <h2>Motivation of our design</h2>
-        <p>
-        </p>
-      </section>
       <section typeof="sa:Arhitecture" id="arhitecture">
         <h2>Architecture</h2>
         <p>
-         <img src="#" width="880" height="655">
+			<figure typeof="sa:image">
+				<img src="https://github.com/RazvanRotari/iaP/blob/3fc37ab2f4f515986da897212de404c466fe5dca/Arhitecture.jpg?raw=true" >
+				<figcaption> Project arhitecture </figcaption>
+			</figure>
         </p>
         <p>
           Descriere arhitectura
@@ -119,11 +117,22 @@
          <img src="#" width="880" height="655">
         </p>
       </section>
+	  <section typeof="sa:Motivation" id="motivation">
+        <h2>Recommander system</h2>
+        <p>
+			For the recommender system, the score for a document is calculated based on:
+			<ul>
+				<li>the published date of the document;</li>
+				<li>cardinal of the intersection of the document’s categories and the user’s query;</li>
+				<li>the author’s relevance\trustworthiness (provenance metadata).</li>
+			</ul>
+        </p>
+      </section> 
       <section typeof="sa:Instructions" id="instructions">
         <h2>Instructions</h2>
-        <p>
-          How to use our app?
-        </p>
+        <p>Our application can be used through a web interface or using our API.</p>
+		<p>In order to use the application using UI you will need to register into our database using the register form. You will be also asked about a couple of categories of articles you would like to see. After registration you will be able to login using credentials that matches the one in the database. Then you will be able to make queries about specific articles and using different kinds of filters.</>
+		<p>If you want to use our application as a service for a bigger software or maybe you just want to change the UI, you can use our application through the external api provided.</p>
       </section>
       <section typeof="sa:InstructionsToMake" id="InstructionsToMake">
         <h2>How it will be made?</h2>

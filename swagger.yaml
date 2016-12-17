@@ -72,9 +72,9 @@ paths:
         - in: body
           name: body
           description: Article object that needs to be updated in the database
-          required: false
+          required: true
           schema:
-            $ref: "#/definitions/Article"
+            $ref: "#/definitions/UpdateArticle"
       responses:
         "200":
           description: A list of articles.
@@ -83,7 +83,7 @@ paths:
         "404":
           description: Article not found
         "400":
-          description: Invalid ID supplied
+          description: Invalid body supplied
   
   /articles/{articleId}:
     get:
@@ -108,8 +108,6 @@ paths:
           description: successful get operation
           schema:
             $ref: "#/definitions/Article"
-        "400":
-          description: Invalid ID supplied
       
   /categories:
     get:
@@ -125,7 +123,22 @@ paths:
           description: successful get operation
           schema:
             $ref: "#/definitions/Category"
-  
+    post:
+      tags:
+        - category
+      summary: Create category
+      description: Create category
+      operationId: createCategories
+      produces:
+        - application/json
+      responses:
+        "201":
+          description: successful post operation
+          schema:
+            $ref: "#/definitions/Category"
+        "400":
+          description: Invalid body
+    
   /users:
     get:
       tags:
@@ -160,6 +173,8 @@ paths:
           description: successful create operation
           schema:
             $ref: "#/definitions/User"
+        "400":
+          description: Invalid body
   /users/login:
     get:
       tags:
@@ -240,9 +255,9 @@ paths:
         - in: body
           name: body
           description: Updated user object
-          required: false
+          required: true
           schema:
-            $ref: "#/definitions/User"
+            $ref: "#/definitions/UpdateUser"
       responses:
         "200":
           description: Successful update operation
@@ -254,7 +269,6 @@ paths:
           description: Not authentificated
         "404":
           description: User not found
-
     delete:
       tags:
         - user
@@ -303,6 +317,20 @@ definitions:
         type: string
       password:
         type: string
+  UpdateUser:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      username:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
   Category:
     type: object
     properties:
@@ -316,6 +344,7 @@ definitions:
     required:
       - title
       - description
+      - externalURL
     properties:
       id:
         type: integer
@@ -337,5 +366,30 @@ definitions:
       date:
         type: string
         format: date-time
-
-        
+      externalURL:
+        type: string
+  UpdateArticle:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      category:
+        $ref: "#/definitions/Category"
+      title:
+        type: string
+        example: NewsTest
+      language:
+        type: string
+        example: romanian
+      description:
+        type: string
+        example: Short description of a story
+      image:
+        type: string
+        example: image url
+      date:
+        type: string
+        format: date-time
+      externalURL:
+        type: string
