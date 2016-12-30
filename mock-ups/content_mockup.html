@@ -60,11 +60,93 @@
   		      </a>
   		      <div class="media-body">
     		        <h4 class="media-heading">Media element title</h4>
-                <p class="text-right">Media element provenance</p>
+                <p class="text-right">Published by: $author</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</p>
                 <ul class="list-inline list-unstyled">
                   <li><span><i class="glyphicon glyphicon-calendar"></i> 20 Novenber 2016 </span></li>
+                  <li class="pull-right">
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="collapse" href="#content_1">
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>More...
+                    </button>
+                  </li>
+                  <li class="pull-right">
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Feedback
+                    </button>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Your feedback is appreciated</h4>
+                          </div>
+                          <div class="modal-body">
+                          <h4>Rate <a target="_blank" href="#">this document</a></h4>
+                            <div class="btn-group" data-toggle="buttons">
+                              <label class="btn btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Awful</span>
+                              </label>
+                              <label class="btn btn-warning">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Bad</span>
+                              </label>
+                              <label class="btn btn-default active">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Neutral</span>
+                              </label>
+                              <label class="btn btn-primary">
+                                <input type="radio" name="options" id="option1" autocomplete="off">
+                                <span class="glyphicon">Good</span>
+                              </label>
+                              <label class="btn btn-success">
+                                <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                                <span class="glyphicon">Great</span>
+                              </label>
+                            </div>
+                            <h4>Rate the <a target="_blank" href="#">author</a></h4>
+                            <div class="btn-group" data-toggle="buttons">
+                              <label class="btn btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Awful</span>
+                              </label>
+                              <label class="btn btn-warning">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Bad</span>
+                              </label>
+                              <label class="btn btn-default active">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Neutral</span>
+                              </label>
+                              <label class="btn btn-primary">
+                                <input type="radio" name="options" id="option1" autocomplete="off">
+                                <span class="glyphicon">Good</span>
+                              </label>
+                              <label class="btn btn-success">
+                                <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                                <span class="glyphicon">Great</span>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
                 </ul>
+                <div id="content_1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </div>
+                  <a href="#" class="btn btn-default btn-sm" data-toggle="collapse" href="#content_1">
+                    More by this author
+                  </a>
+                </div>
             </div>
         </div>
 
@@ -74,7 +156,7 @@
   		      </a>
   		      <div class="media-body">
     		        <h4 class="media-heading">Media element title</h4>
-                <p class="text-right">Media element provenance</p>
+                <p class="text-right">Published by: $author</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</p>
                 <ul class="list-inline list-unstyled">
                   <li><span><i class="glyphicon glyphicon-calendar"></i> 20 Novenber 2016 </span></li>
