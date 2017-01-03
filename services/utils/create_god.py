@@ -8,35 +8,35 @@ import pprint
 #GOD = General Object Description
 
 DEFAULT_URI = "http://razvanrotari.me/terms/"
+DEFAULT_URI_PREFIX = "rr"
 
 FUNCTION_TEMPLATE = """
+import json
+
 def create_insert(object_list):
+    prefix_text = ""
     insert = "INSERT DATA {\\n"
     for obj in object_list:
-        insert += obj.create_partial_insert() + "\\n"
+        d = obj.create_partial_insert()
+        insert += d[0]
+        prefix_text += d[1]
         
-    insert += "}"
+    insert += "\\n}"
+    insert = prefix_text  + insert
+    return insert 
 
 
-"""
+class Model:
+    def to_json(self):
+        return json.dumps({"data": self.data, "URI": self.URI, "class": self.__class__.__name__})
 
-INIT_TEMPLATE = """
-class {class_name}:
-    def __init__(self, URI):
-        self.URI = URI
-        self.data = {data_struct}
-"""
-#example
-"""
-class Object
-    def __init__(self, URI):
-        self.data = {"prop": {
-            "link":"http://razvanrotari.me/terms/prop"},
-            "value":None}
-        self.URI = URI
-            """
-
-BODY_TEMPLATE = """
+    @staticmethod
+    def from_json(input):
+        model = json.loads(input)
+        cls = globals()[model["class"]]
+        obj = cls(model["URI"])
+        obj.data = model["data"]
+        return obj
 
     def __getattribute__(self,name):
         data = object.__getattribute__(self, "data")
@@ -55,16 +55,42 @@ BODY_TEMPLATE = """
             raise NameError(name)
         data[name]["value"] = value
 
+    def __dir__(self):
+        return super().__dir__() + [str(x) for x in self.data.keys()]
+
     def create_partial_insert(self):
         insert = "<{URI}> ".format(URI=self.URI)
+        prefix_set = set()
         for prop in self.data.items():
             value = prop[1]["value"]
             if value is None:
                 continue
-            line = "<{link}> {value}\\n".format(link=prop[1]["link"], value=value)
+            line = "{link} \\"{value}\\" ;".format(link=prop[1]["link"][2] + ":" + prop[1]["link"][1], value=value)
+            prefix_set.add(tuple(prop[1]["link"]))
             insert += line
-        return insert
+        prefix = ""
+        for p in prefix_set:
+            prefix += "PREFIX {prefix}: <{base_url}>\\n".format(prefix=p[2], base_url=p[0])
+        insert = insert[::-1].replace(";", ".", 1)[::-1]
+        return (insert, prefix)
+
 """
+
+INIT_TEMPLATE = """
+class {class_name}(Model):
+    def __init__(self, URI):
+        self.URI = URI
+        self.data = {data_struct}
+"""
+#example
+"""
+class Object
+    def __init__(self, URI):
+        self.data = {"prop": {
+            "link":["http://razvanrotari.me/terms/","prop", "rr"},
+            "value":None}
+        self.URI = URI
+            """
 
 def create_class(definition):
     class_name = definition[0]
@@ -74,20 +100,25 @@ def create_class(definition):
     for prop in props.items():
         name = prop[0]
         attr = prop[1]
-        link = DEFAULT_URI + name
+        if name == "URI":
+            continue
+        link = [DEFAULT_URI, name, DEFAULT_URI_PREFIX]
         if "description" in attr:
             description = attr["description"]
             PATTERN = "^\[(.*?)\]"
             r = re.findall(PATTERN, description)
             if len(r) != 0:
                 link = r[0]
+                tmp = link.split(",")
+                print(tmp)
+                link = [tmp[0], tmp[1], tmp[2]]
         if "$ref" in attr:
 
             depend.append(attr["$ref"].split("/")[-1])
         data_dict[name] = {"link": link, "value": None}
         pp = pprint.PrettyPrinter(indent=4)
     text = INIT_TEMPLATE.format(class_name=class_name, data_struct=pp.pformat(data_dict))
-    text += "\n" + BODY_TEMPLATE 
+    # text += "\n" + BODY_TEMPLATE 
     return  {
             "name":class_name,
             "body": text,
