@@ -64,9 +64,11 @@ definitions:
   AudioItem:
     type: object
     properties:
+      URI:
+        type: string  
       provider:
         type: string
-        description: The base url for the provider
+        description: '[http://purl.org/dc/terms/,accrualPeriodicity,dc]The base url for the provider'
       external_id:
         type: string
       title:
@@ -155,7 +157,7 @@ definitions:
         description: The number of image views
       link:
         type: string
-        description: The direct link to the the image. (Note: if fetching an animated GIF that was over 20MB in original size, a .gif thumbnail will be returned)
+        description: 'The direct link to the the image. (Note: if fetching an animated GIF that was over 20MB in original size, a .gif thumbnail will be returned)'
       gifv:
         type: string
         description: The .gifv link. Only available if the image is animated and type is 'image/gif'.
@@ -164,16 +166,13 @@ definitions:
         description: The direct link to the .mp4. Only available if the image is animated and type is 'image/gif'.
       mp4_size:
         type: integer
-        description: The Content-Length of the .mp4. Only available if the image is animated and type is 'image/gif'. Note that a zero value (0) is possible if the video has not yet been generated
+        description: 'The Content-Length of the .mp4. Only available if the image is animated and type is image/gif. Note that a zero value (0) is possible if the video has not yet been generated'
       vote:
         type: string
         description: The current user's vote on the album. null if not signed in or if the user hasn't voted on it.
       nsfw:
         type: boolean
         description: Indicates if the image has been marked as nsfw or not. Defaults to null if information is not available.
-      comment_count:
-        type: int
-        description: Number of comments on the gallery image.
       topic:
         type: string
         description: Topic of the gallery image.
@@ -182,7 +181,7 @@ definitions:
         description: Topic ID of the gallery image.
       section:
         type: string
-        description: If the image has been categorized by our backend then this will contain the section the image belongs in. (funny, cats, adviceanimals, wtf, etc)
+        description: 'If the image has been categorized by our backend then this will contain the section the image belongs in. (funny, cats, adviceanimals, wtf, etc)'
       creator:
         $ref: "#/definitions/User"
       popularity:

@@ -1,0 +1,14 @@
+version: '2'
+services:
+    fusaki:
+        image: stain/jena-fuseki
+        ports:
+             - 3030:3030
+        expose:
+             - 3030
+        environment:
+             - ADMIN_PASSWORD=${FUSEKI_PASSWORD}
+    bus:
+        build: ./bus
+
+
