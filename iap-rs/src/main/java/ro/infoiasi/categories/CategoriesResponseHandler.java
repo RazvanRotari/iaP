@@ -1,16 +1,19 @@
-package ro.infoiasi;
+package ro.infoiasi.categories;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ro.infoiasi.ResponseHandler;
 import spark.Request;
 import spark.Response;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CategoriesResponseHandler {
+public class CategoriesResponseHandler implements ResponseHandler<List<String>> {
     private static final Logger logger = LoggerFactory.getLogger(CategoriesResponseHandler.class);
 
+    @Override
     public List<String> get(Request request, Response response) {
         logger.info("Getting categories...");
         return getMockCategories();
