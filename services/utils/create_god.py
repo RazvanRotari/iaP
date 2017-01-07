@@ -60,18 +60,21 @@ class Model:
 
     def create_partial_insert(self):
         insert = "<{URI}> ".format(URI=self.URI)
-        prefix_set = set()
+        prefix_set = {}
         for prop in self.data.items():
             value = prop[1]["value"]
             if value is None:
                 continue
             line = "{link} \\"{value}\\" ;".format(link=prop[1]["link"][2] + ":" + prop[1]["link"][1], value=value)
-            prefix_set.add(tuple(prop[1]["link"]))
+            prefix_list = prop[1]["link"]
+            prefix = prop[1]["link"][2]
+            prefix_set[prefix] = prefix_list[0]
             insert += line
         prefix = ""
-        for p in prefix_set:
-            prefix += "PREFIX {prefix}: <{base_url}>\\n".format(prefix=p[2], base_url=p[0])
+        for p in prefix_set.items():
+            prefix += "PREFIX {prefix}: <{base_url}>\\n".format(prefix=p[0], base_url=p[1])
         insert = insert[::-1].replace(";", ".", 1)[::-1]
+        
         return (insert, prefix)
 
 """
@@ -95,7 +98,7 @@ class Object
 def create_class(definition):
     class_name = definition[0]
     props = definition[1]["properties"]
-    data_dict = {}
+    data_dict = {"class_name": {"link":[DEFAULT_URI, "className", DEFAULT_URI_PREFIX], "value": class_name}}
     depend = []
     for prop in props.items():
         name = prop[0]

@@ -26,10 +26,9 @@ def submit_data(data):
     print(insert_cmd)
     r = requests.post(UPDATE_URL, data=insert_cmd)
     print(r.text)
-
     
 def main():
-    # while True:
+    while True:
         b = fetch_item()
         submit_data(b)
 
