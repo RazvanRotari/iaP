@@ -56,13 +56,13 @@
 
       <section typeof="sa:Abstract" id="abstract">
         <h2>Summary</h2>
-        <p>
-          The aim of the project is to create a platform able to model, query, visualize and recommend media resources (newspapers, podcasts, streams presentations, images, etc.) by making assessments about the quality, reliability and trustworthiness of the provenance meta-data. Metadata is used to represent properties of objects. Many of those properties have to do with provenance, so the two are often equated. Provenance refers to records that describe entities and processes involved in producing and delivering or otherwise influencing that resource. This provenance information is crucial to making assertions about whether information is trusted and how to give credit to originators when reusing information. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance.
+        <p>The aim of the project is to create a platform able to model, query, visualize and recommend media resources (newspapers, podcasts, streams presentations, images, etc.) by making assessments about the quality, reliability and trustworthiness of the provenance meta-data.</p>
+		<p>Metadata is used to represent properties of objects. Many of those properties have to do with provenance, so the two are often equated. Provenance refers to records that describe entities and processes involved in producing and delivering or otherwise influencing that resource.</p>
+		<p>This provenance information is crucial to making assertions about whether information is trusted and how to give credit to originators when reusing information. Provenance assertions are a form of contextual metadata and can themselves become important records with their own provenance.
         </p>
       </section>
       <section typeof="sa:Introduction" id="introduction">
         <h2>Introduction</h2>
-        <aside typeof="schema:WPSideBar">
           <p>
             Compared to traditional ways of accessing data of interest, such as RSS aggregators, that provide to the user all the content of the sources they have subscribed to our application aims to offer a more powerful way to review content of interest:
 			<ul>
@@ -72,7 +72,6 @@
 				<li>articles written in English or Romanian</li>
 				<li>images posted by Romanian photographers or taken in Romania</li>
           </p>
-        </aside>
       </section>
       <section typeof="sa:Mockups" id="mockups">
         <h2>Mockups</h2>
@@ -107,6 +106,26 @@
 				<figcaption> Project arhitecture </figcaption>
 			</figure>
         </p>
+		<p>
+			<h5>The big and great data bus.</h5>
+			<p>The whole media retriever module is architecured around microservices. Similar to the way Unix pipes work we have processes\services that extract the data from different online services like imgur, new york times or soundcloud, then publish it to the BUS unsing a standard format for the assets. The bus then finds the first free slave and passes the data to him for post processing.</p>
+			
+			<p>Based on this design the number of providers can be increased without great difficulty because the only of a media retriever is to fetch and retrieve the data from a specific provider and converted to the standard format that the bus and slaves know.</p>
+			
+			<p>The bus exports REST api for communicating with retrievers and slaves. Data from the retrievers is sent to the BUS via a POST request; next the bus cheduels the item and then sends it to the first availible slave.</p>
+			<p>If needed the bus can spawn as many slaves are they are neeeded in order to saturate the bus.</p>
+
+			<p>Based on the data, the salves can do post processing like:
+				<ul>
+					<li>normalizing popularity</li>
+					<li>calculating relevance score for each item</li>
+					<li>normalizing catrgories using algorithms like Word2Vec or Glove because every provider uses it's own category names that are similar to others (other providers). For instance: a provider offers a category named hip-hop and another one named rap theese categories will be merged togeather by the slave to increase the search space</li>
+				</ul>
+			</p>
+			<p> The slaves are also in charge of populating the SPARQL database and publishing new categories to the RDBMS. When an user registers into the application then he will be presented a list of categories extracted from the RDBMS.</p>
+			
+			<p>The WebApp offers the public API that will be used by the users (both human and machines). Also, it contains the reccomender system module that will rank the articles for the logged users based on their preferences.</p>
+		</p>
       </section>
       <section typeof="sa:Database" id="database">
         <h2>Database Scheme</h2>
@@ -116,7 +135,8 @@
 				<figcaption> ORM Diagram </figcaption>
 			</figure>
         </p>
-		<p> We will need to keep in a database user’s information and name of categories. For each user we will need to save its favorite categories. We will querry this database using SPARQL. </p>
+		<p> We will need to keep in a database user’s information and name of categories. For each user we will need to save its favorite categories. </p>
+		
       </section>
 	  <section typeof="sa:Motivation" id="motivation">
         <h2>Recommander system</h2>
@@ -136,13 +156,15 @@
 			</figure>
 		<h2>Instructions</h2>
         <p>Our application can be used through a web interface or using our API.</p>
-		<p>In order to use the application using UI you will need to register into our database using the register form. You will be also asked about a couple of categories of articles you would like to see. After registration you will be able to login using credentials that matches the one in the database. Then you will be able to make queries about specific articles and using different kinds of filters. The content will be returned on the form of a list of articles that contains the title of the article, a small summary, an image, a date of publication and an external url to the website that first published that story.</p>
+		<p>In order to use the application using UI you will need to register into our database using the register form. You will be also asked about a couple of categories of articles you would like to see. </p>
+		<p>After registration you will be able to login using credentials that matches the one in the database. Then you will be able to make queries about specific articles and using different kinds of filters. The content will be returned on the form of a list of articles that contains the title of the article, a small summary, an image, a date of publication and an external url to the website that first published that story.</p>
 		<p>If you want to use our application as a service for a bigger software or maybe you just want to change the UI, you can use our application through the external api provided.</p>
       </section>
 	  <section typeof="sa:OpenAPISpecs" id="openApiSpecs">
         <h2>OpenAPI specifications</h2>
         <p><a href="http://petstore.swagger.io/?url=https://raw.githubusercontent.com/RazvanRotari/iaP/master/swagger.yaml#/">Link to external API specifications</a></p>
 		<p>Entities discovered required for our applications are <b>Articles</b>, <b>Users</b> and <b>Categories</b>. For each entity you can list all entries or a specific number of them by making a get request to /entity. You can create new entries by making post requests to /entity and providing a proper request body. You can update existing entries by making a put request to /entity/{entityId}. Depending on the error that can appear a proper message with a specific status code will be returned.</p>
+		<p>In order to filter the types of articles returned by a Get request to /articles you can provide a <i>where</i> clause with a predicate that will be parsed in the background.</p>
       </section>
       
       </section>
