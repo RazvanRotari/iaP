@@ -2,17 +2,29 @@
 
 import requests
 import model
+import sys
+import os
+from importlib import import_module
 
-HOSTNAME = "http://razvanrotari.me:3030/"
+fusakienv = os.getenv("FUSAKI_URL")
+if fusakienv:
+    HOSTNAME = fusakienv
+else:
+    HOSTNAME = "http://razvanrotari.me:3030/"
+
 UPDATE_URL = HOSTNAME + "Persistent_Dataset/update" 
 
-BUS = "http://localhost:8080/media"
+sysbus = os.getenv("BUS_URL")
+if sysbus:
+    BUS = sysbus
+else:
+    BUS = "http://localhost:8080/media"
 
 def fetch_item_debug():
     a = model.AudioItem("test.com/4554")
     a.title = "cal"
     j = a.to_json()
-    print(j)
+    # print(j)
     b = model.Model.from_json(j)
     return b
 
@@ -23,16 +35,29 @@ def fetch_item():
 
 def submit_data(data):
     insert_cmd = model.create_insert([data])
-    print(insert_cmd)
+    # print(insert_cmd)
     r = requests.post(UPDATE_URL, data=insert_cmd)
-    print(r.text)
-    
+    # print(r.text)
+
+def load_plugins():
+    curr_path = os.path.realpath(__file__)
+    curr_path = os.path.dirname(curr_path)
+    plugin_path = os.path.join(curr_path, "plugins")
+    plugin_files =  [os.path.splitext(f)[0] for f in os.listdir(plugin_path) if os.path.isfile(os.path.join(plugin_path, f)) and f != "__init__.py"]
+    print(plugin_files)
+    plugins = []
+    for plugin_file in plugin_files:
+        plugins.append(import_module("plugins." + plugin_file))
+    return plugins
+
 def main():
+    plugins = load_plugins()
     while True:
         b = fetch_item()
+        for plugin in plugins:
+            if getattr(plugin, "should_process")(b):
+                b = plugin.process(b)
         submit_data(b)
-
-
 
 if __name__ == "__main__":
     main()
