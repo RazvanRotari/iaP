@@ -12,7 +12,7 @@ if fusakienv:
 else:
     HOSTNAME = "http://razvanrotari.me:3030/"
 
-UPDATE_URL = HOSTNAME + "Persistent_Dataset/update" 
+UPDATE_URL = HOSTNAME + "default/update" 
 
 sysbus = os.getenv("BUS_URL")
 if sysbus:
@@ -41,7 +41,7 @@ def fetch_item():
 def submit_data(data):
     insert_cmd = model.create_insert([data])
     print(insert_cmd)
-    r = requests.post(UPDATE_URL, data=insert_cmd)
+    r = requests.post(UPDATE_URL, data=insert_cmd.encode("utf-8"))
     # print(r.text)
 
 def load_plugins():
