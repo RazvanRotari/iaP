@@ -19,6 +19,8 @@ def should_process(item):
 #Do the processing here. Needs to return an item
 def process(item):
     title = item.title
+    if not title:
+        return item
     tokens = tokenize(title)
     item.categories = normalize_tokens(tokens)
     return item
