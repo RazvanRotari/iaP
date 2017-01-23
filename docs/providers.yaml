@@ -35,6 +35,9 @@ definitions:
       profile_image_url:
         type: string
         format: url
+      popularity:
+        $ref: "#/definitions/Popularity"
+
   Popularity:
     type: object
     description: Informations refarding the popularity of an item. Likes, views, downvotes

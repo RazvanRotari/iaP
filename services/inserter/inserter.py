@@ -21,10 +21,15 @@ else:
     BUS = "http://localhost:8080/media"
 
 def fetch_item_debug():
+    popularity = model.Popularity("test.com/pop/1234")
+    popularity.views = 300
+    user = model.User("test.com/user/5484")
+    user.username = "Vasile Test"
+    user.popularity = popularity
     a = model.AudioItem("test.com/4554")
     a.title = "cal"
+    a.creator = user
     j = a.to_json()
-    # print(j)
     b = model.Model.from_json(j)
     return b
 
@@ -35,7 +40,7 @@ def fetch_item():
 
 def submit_data(data):
     insert_cmd = model.create_insert([data])
-    # print(insert_cmd)
+    print(insert_cmd)
     r = requests.post(UPDATE_URL, data=insert_cmd)
     # print(r.text)
 
@@ -58,6 +63,7 @@ def main():
             if getattr(plugin, "should_process")(b):
                 b = plugin.process(b)
         submit_data(b)
+        # break
 
 if __name__ == "__main__":
     main()
