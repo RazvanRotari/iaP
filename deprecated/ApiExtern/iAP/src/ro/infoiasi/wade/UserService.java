@@ -1,4 +1,4 @@
-package iAP;
+package ro.infoiasi.wade;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_8" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+	</contentEntry>
+	<levels>
+		<level name="Maven: asm:asm:3.3.1" value="project"/>
+		<level name="Maven: com.sun.jersey:jersey-bundle:1.19" value="project"/>
+		<level name="Maven: javax.ws.rs:jsr311-api:1.1.1" value="project"/>
+		<level name="Maven: org.json:json:20140107" value="project"/>
+		<level name="Maven: com.sun.jersey:jersey-server:1.19" value="project"/>
+		<level name="Maven: com.sun.jersey:jersey-core:1.19" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.core:jackson-databind:2.6.3" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.3" value="project"/>
+		<level name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.6.3" value="project"/>
+		<level name="Maven: javax.servlet:javax.servlet-api:3.1.0" value="project"/>
+	</levels>
+</component>

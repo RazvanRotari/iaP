@@ -1,4 +1,4 @@
-package iAP;
+package ro.infoiasi.wade;
 
 import java.util.ArrayList;
 import java.util.List;

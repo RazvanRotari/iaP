@@ -1,4 +1,4 @@
-package iAP;
+package ro.infoiasi.wade;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
