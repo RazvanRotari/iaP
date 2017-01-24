@@ -1,25 +1,25 @@
-package ro.infoiasi.categories;
+package ro.infoiasi.routes.categories;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ro.infoiasi.ResponseHandler;
 import spark.Request;
 import spark.Response;
+import spark.Route;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CategoriesResponseHandler implements ResponseHandler<List<String>> {
+public class CategoriesResponseHandler implements Route {
     private static final Logger logger = LoggerFactory.getLogger(CategoriesResponseHandler.class);
-
-    @Override
-    public List<String> get(Request request, Response response) {
-        logger.info("Getting categories...");
-        return getMockCategories();
-    }
 
     private List<String> getMockCategories() {
         return Arrays.asList("Category1", "Category2", "Category3");
+    }
+
+    @Override
+    public Object handle(Request request, Response response) throws Exception {
+        logger.info("Getting categories...");
+        return getMockCategories();
     }
 }
