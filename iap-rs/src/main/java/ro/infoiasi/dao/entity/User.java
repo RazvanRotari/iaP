@@ -69,7 +69,7 @@ public class User implements Entity {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserModel{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", name='" + name + '\'' +

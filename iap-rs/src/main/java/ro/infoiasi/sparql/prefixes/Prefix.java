@@ -1,7 +1,8 @@
 package ro.infoiasi.sparql.prefixes;
 
 public enum Prefix {
-    FOAF("foaf","http://xmlns.com/foaf/0.1/");
+    FOAF("foaf","http://xmlns.com/foaf/0.1/"),
+    RR("", "");
 
     public String prefix;
     public String url;

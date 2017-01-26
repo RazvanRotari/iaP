@@ -8,6 +8,7 @@ public class SearchRoute implements Route {
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
+        String query = request.attribute("q");
         return null;
     }
 }

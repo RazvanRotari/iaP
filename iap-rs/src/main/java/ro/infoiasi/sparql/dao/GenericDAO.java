@@ -1,4 +1,4 @@
-package ro.infoiasi.dao;
+package ro.infoiasi.sparql.dao;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
@@ -8,9 +8,13 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.shared.NotFoundException;
 import org.apache.jena.sparql.modify.UpdateProcessRemote;
+import org.apache.jena.sparql.modify.request.UpdateDeleteInsert;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
+import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.Entity;
+import ro.infoiasi.sparql.filter.Filter;
+import ro.infoiasi.sparql.filter.NullFilter;
 import ro.infoiasi.sparql.prefixes.Property;
 
 import java.lang.reflect.Field;
@@ -20,16 +24,58 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class GenericDAO<T extends Entity> {
+public abstract class GenericDAO<T extends Entity> implements DAO<T> {
 
-    private static final boolean DEBUG = true;
+    public static final String HTTP_ENDPOINT = "http://razvanrotari.me:3030/default";
+    protected static final boolean DEBUG = true;
+
     private final Class<T> clazz;
 
     public GenericDAO(Class<T> clazz) {
         this.clazz = clazz;
     }
 
-    public static final String HTTP_ENDPOINT = "http://razvanrotari.me:3030/default";
+    public void create(T entity) throws Exception {
+        String queryString = buildInsertQuery(entity);
+        if(DEBUG) {
+            System.out.println(queryString);
+        }
+        UpdateRequest request = UpdateFactory.create(queryString);
+        UpdateProcessRemote remote = new UpdateProcessRemote(request, HTTP_ENDPOINT, null);
+        remote.execute();
+    }
+
+    public void update(T entity) throws Exception {
+        delete(entity);
+        create(entity);
+    }
+
+    public T find(Filter filter) throws Exception {
+        String findQuery = buildFindQuery(filter);
+        if(DEBUG) {
+            System.out.println(findQuery);
+        }
+        ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, findQuery).execSelect();
+        if(resultSet.hasNext()) {
+            QuerySolution solution = resultSet.next();
+            return toEntity(solution);
+        }
+        throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + filter);
+    }
+
+    @Override
+    public void delete(T entity) throws Exception {
+        String deleteQuery = buildDeleteQuery(entity);
+        UpdateRequest request = UpdateFactory.create(deleteQuery);
+        UpdateProcessRemote remote = new UpdateProcessRemote(request, HTTP_ENDPOINT, null);
+        remote.execute();
+    }
+
+    @Override
+    public void delete(Filter filter) throws Exception {
+        T entity = find(filter);
+        delete(entity);
+    }
 
     protected Map<String, String> getDependencies() {
         Map<String, String> map = new HashMap<>();
@@ -88,39 +134,6 @@ public abstract class GenericDAO<T extends Entity> {
         return result;
     }
 
-    public void create(T entity) throws Exception {
-        String queryString = buildInsertQuery(entity);
-        if(DEBUG) {
-            System.out.println(queryString);
-        }
-        UpdateRequest request = UpdateFactory.create(queryString);
-        UpdateProcessRemote remote = new UpdateProcessRemote(request, HTTP_ENDPOINT, null);
-        remote.execute();
-    }
-
-    public void update(T entity) throws Exception {
-        String queryString = buildUpdateQuery(entity);
-        if(DEBUG) {
-            System.out.println(queryString);
-        }
-        UpdateRequest request = UpdateFactory.create(queryString);
-        UpdateProcessRemote remote = new UpdateProcessRemote(request, HTTP_ENDPOINT, null);
-        remote.execute();
-    }
-
-    public T find(String variable, String value) throws Exception {
-        String findQuery = buildFindQuery(variable, value);
-        if(DEBUG) {
-            System.out.println(findQuery);
-        }
-        ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, findQuery).execSelect();
-        if(resultSet.hasNext()) {
-            QuerySolution solution = resultSet.next();
-            return toEntity(solution);
-        }
-        throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + variable );
-    }
-
     protected abstract T toEntity(QuerySolution solution);
 
     protected String buildInsertQuery(T entity) throws Exception {
@@ -141,7 +154,7 @@ public abstract class GenericDAO<T extends Entity> {
         return stringBuilder.toString();
     }
 
-    protected String buildUpdateQuery(T entity) throws Exception {
+    protected String buildDeleteQuery(T entity) throws Exception {
         Map<String, String> dependencies = getDependencies();
         StringBuilder stringBuilder = new StringBuilder();
         for (String key : dependencies.keySet()) {
@@ -149,7 +162,7 @@ public abstract class GenericDAO<T extends Entity> {
                     .append(" <").append(dependencies.get(key)).append(">");
         }
         stringBuilder.append("\r\n")
-                .append("INSERT DATA {").append("\r\n");
+                .append("DELETE {").append("\r\n");
         List<Triple<String, String, String>> fields = getTriples(entity);
         fields.forEach(triple -> {
             stringBuilder.append("<").append(triple.getLeft()).append("> ").append(triple.getMiddle()).append(" ").append(triple.getRight()).append(".\r\n");
@@ -159,7 +172,7 @@ public abstract class GenericDAO<T extends Entity> {
         return stringBuilder.toString();
     }
 
-    protected String buildFindQuery(String variable, String value) throws Exception {
+    protected String buildFindQuery(Filter filter) throws Exception {
         Map<String, String> dependencies = getDependencies();
         StringBuilder stringBuilder = new StringBuilder();
         for (String key : dependencies.keySet()) {
@@ -172,7 +185,7 @@ public abstract class GenericDAO<T extends Entity> {
         fields.forEach(triple -> {
             stringBuilder.append("?").append(triple.getLeft()).append(" ").append(triple.getMiddle()).append(" ").append("?" + triple.getRight()).append(".\r\n");
         });
-        stringBuilder.append("FILTER(str(?").append(variable).append("Value").append(") = \"").append(value).append("\")").append("\r\n");
+        stringBuilder.append(filter.construct()).append("\r\n");
         stringBuilder.append("}");
         return stringBuilder.toString();
     }
