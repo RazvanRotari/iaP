@@ -8,21 +8,16 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.shared.NotFoundException;
 import org.apache.jena.sparql.modify.UpdateProcessRemote;
-import org.apache.jena.sparql.modify.request.UpdateDeleteInsert;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
 import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.Entity;
 import ro.infoiasi.sparql.filter.Filter;
-import ro.infoiasi.sparql.filter.NullFilter;
 import ro.infoiasi.sparql.prefixes.Property;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class GenericDAO<T extends Entity> implements DAO<T> {
 
@@ -37,7 +32,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
 
     public void create(T entity) throws Exception {
         String queryString = buildInsertQuery(entity);
-        if(DEBUG) {
+        if (DEBUG) {
             System.out.println(queryString);
         }
         UpdateRequest request = UpdateFactory.create(queryString);
@@ -52,11 +47,11 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
 
     public T find(Filter filter) throws Exception {
         String findQuery = buildFindQuery(filter);
-        if(DEBUG) {
+        if (DEBUG) {
             System.out.println(findQuery);
         }
         ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, findQuery).execSelect();
-        if(resultSet.hasNext()) {
+        if (resultSet.hasNext()) {
             QuerySolution solution = resultSet.next();
             return toEntity(solution);
         }
@@ -77,22 +72,24 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         delete(entity);
     }
 
-    protected Map<String, String> getDependencies() {
-        Map<String, String> map = new HashMap<>();
+
+    protected Set<String> getPrefixes() {
+        Set<String> dependencies = new TreeSet<>();
         Field[] fields = clazz.getDeclaredFields();
-        for(Field field: fields) {
-            if(field.isAnnotationPresent(Property.class)) {
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(Property.class)) {
                 Property property = field.getAnnotation(Property.class);
                 String prefix = property.prefix().prefix;
                 String url = property.prefix().url;
-                map.put(prefix, url);
+                String dependency = "PREFIX " + prefix + ": <" + url + ">";
+                dependencies.add(dependency);
             }
         }
-        return map;
+        return dependencies;
     }
 
     /**
-     * TODO: cleanup
+     *
      * @param entity
      * @return
      * @throws Exception
@@ -100,8 +97,8 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     protected List<Triple<String, String, String>> getTriples(T entity) throws Exception {
         List<Triple<String, String, String>> result = new ArrayList<>();
         Field[] fields = entity.getClass().getDeclaredFields();
-        for(Field field: fields) {
-            if(field.isAnnotationPresent(Property.class)) {
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(Property.class)) {
                 Property prop = field.getAnnotation(Property.class);
                 String subject = entity.getUniqueIdentifier();
                 String property = prop.prefix().prefix + ":" + prop.field();
@@ -120,12 +117,12 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     protected List<Triple<String, String, String>> getFindTriples() throws Exception {
         List<Triple<String, String, String>> result = new ArrayList<>();
         Field[] fields = clazz.getDeclaredFields();
-        for(Field field: fields) {
-            if(field.isAnnotationPresent(Property.class)) {
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(Property.class)) {
                 Property prop = field.getAnnotation(Property.class);
                 String subject = prop.variable();
                 String property = prop.prefix().prefix + ":" + prop.field();
-                String value = prop.variable()+"Value";
+                String value = prop.variable() + "Value";
                 Triple<String, String, String> triple =
                         new ImmutableTriple<>(subject, property, value);
                 result.add(triple);
@@ -137,14 +134,12 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     protected abstract T toEntity(QuerySolution solution);
 
     protected String buildInsertQuery(T entity) throws Exception {
-        Map<String, String> dependencies = getDependencies();
         StringBuilder stringBuilder = new StringBuilder();
-        for (String key : dependencies.keySet()) {
-            stringBuilder.append("PREFIX ").append(key).append(":")
-                    .append(" <").append(dependencies.get(key)).append(">");
+        Set<String> prefixes = getPrefixes();
+        for(String prefix: prefixes) {
+            stringBuilder.append(prefix).append("\r\n");
         }
-        stringBuilder.append("\r\n")
-                .append("INSERT DATA {").append("\r\n");
+        stringBuilder.append("INSERT DATA {").append("\r\n");
         List<Triple<String, String, String>> fields = getTriples(entity);
         fields.forEach(triple -> {
             stringBuilder.append("<").append(triple.getLeft()).append("> ").append(triple.getMiddle()).append(" ").append(triple.getRight()).append(".\r\n");
@@ -155,14 +150,12 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     }
 
     protected String buildDeleteQuery(T entity) throws Exception {
-        Map<String, String> dependencies = getDependencies();
         StringBuilder stringBuilder = new StringBuilder();
-        for (String key : dependencies.keySet()) {
-            stringBuilder.append("PREFIX ").append(key).append(":")
-                    .append(" <").append(dependencies.get(key)).append(">");
+        Set<String> prefixes = getPrefixes();
+        for(String prefix: prefixes) {
+            stringBuilder.append(prefix).append("\r\n");
         }
-        stringBuilder.append("\r\n")
-                .append("DELETE {").append("\r\n");
+        stringBuilder.append("DELETE {").append("\r\n");
         List<Triple<String, String, String>> fields = getTriples(entity);
         fields.forEach(triple -> {
             stringBuilder.append("<").append(triple.getLeft()).append("> ").append(triple.getMiddle()).append(" ").append(triple.getRight()).append(".\r\n");
@@ -173,14 +166,12 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     }
 
     protected String buildFindQuery(Filter filter) throws Exception {
-        Map<String, String> dependencies = getDependencies();
         StringBuilder stringBuilder = new StringBuilder();
-        for (String key : dependencies.keySet()) {
-            stringBuilder.append("PREFIX ").append(key).append(":")
-                    .append(" <").append(dependencies.get(key)).append(">");
+        Set<String> prefixes = getPrefixes();
+        for(String prefix: prefixes) {
+            stringBuilder.append(prefix).append("\r\n");
         }
-        stringBuilder.append("\r\n")
-                .append("SELECT * WHERE {").append("\r\n");
+        stringBuilder.append("SELECT * WHERE {").append("\r\n");
         List<Triple<String, String, String>> fields = getFindTriples();
         fields.forEach(triple -> {
             stringBuilder.append("?").append(triple.getLeft()).append(" ").append(triple.getMiddle()).append(" ").append("?" + triple.getRight()).append(".\r\n");
