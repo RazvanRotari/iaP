@@ -1,5 +1,6 @@
 package ro.infoiasi;
 
+import ro.infoiasi.dao.entity.metamodel.UserMetaModel;
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.routes.user.*;
 import ro.infoiasi.routes.categories.CategoriesResponseHandler;
@@ -32,7 +33,7 @@ public class Main {
         user.setEmail("jondoe@test.com");
 
         UserDAO userDAO = new UserDAO(User.class);
-        user = userDAO.find(new SingleFilter(new Equals(User.class, "name", Transformer.STR), "John Doe"));
+        user = userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.NAME, Transformer.STR), "John Doe"));
         System.out.println(user);
 
     }

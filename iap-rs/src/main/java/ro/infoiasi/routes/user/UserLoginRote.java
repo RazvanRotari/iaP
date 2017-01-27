@@ -5,6 +5,7 @@ import com.google.gson.JsonSyntaxException;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ro.infoiasi.dao.entity.metamodel.UserMetaModel;
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.model.Credentials;
@@ -33,7 +34,7 @@ public class UserLoginRote implements Route {
             halt(HttpStatus.SC_BAD_REQUEST, "No credentials found");
             return null;
         }
-        Equals stringEqualsPredicate = new Equals(User.class, "username", Transformer.STR);
+        Equals stringEqualsPredicate = new Equals(User.class, UserMetaModel.USERNAME, Transformer.STR);
         User user = userDAO.find(new SingleFilter(stringEqualsPredicate, credentials.getUsername()));
         if(user.getPassword().equals(credentials.getPassword())) {
             return user.getId();
