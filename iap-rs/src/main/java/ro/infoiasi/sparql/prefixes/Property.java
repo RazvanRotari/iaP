@@ -12,5 +12,5 @@ public @interface Property {
     Prefix prefix();
     String field();
     String variable();
-
+    String variableName();
 }

@@ -122,7 +122,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
                 Property prop = field.getAnnotation(Property.class);
                 String subject = prop.variable();
                 String property = prop.prefix().prefix + ":" + prop.field();
-                String value = prop.variable() + "Value";
+                String value = prop.variableName();
                 Triple<String, String, String> triple =
                         new ImmutableTriple<>(subject, property, value);
                 result.add(triple);

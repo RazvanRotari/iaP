@@ -33,7 +33,7 @@ public class UserLoginRote implements Route {
             halt(HttpStatus.SC_BAD_REQUEST, "No credentials found");
             return null;
         }
-        Equals stringEqualsPredicate = new Equals("usernameValue", Transformer.STR);
+        Equals stringEqualsPredicate = new Equals(User.class, "username", Transformer.STR);
         User user = userDAO.find(new SingleFilter(stringEqualsPredicate, credentials.getUsername()));
         if(user.getPassword().equals(credentials.getPassword())) {
             return user.getId();

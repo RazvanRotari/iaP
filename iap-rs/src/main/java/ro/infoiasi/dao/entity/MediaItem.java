@@ -10,17 +10,17 @@ import ro.infoiasi.sparql.prefixes.RR_Fields;
 public class MediaItem implements Entity {
 
     private String url;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "url")
+    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "url", variableName = "urlValue")
     private String title;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "title")
+    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "title", variableName = "itemTitle")
     private String author;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "provider")
+    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "provider", variableName = "providerName")
     private String provider;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "description")
+    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "description", variableName = "itemDescription")
     private String description;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "timestamp")
+    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "timestamp", variableName = "timestampValue")
     private long timestamp;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "class")
+    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "class", variableName = "classType")
     private String className;
 
     @Override

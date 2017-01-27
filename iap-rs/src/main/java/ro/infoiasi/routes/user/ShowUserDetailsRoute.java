@@ -16,7 +16,7 @@ public class ShowUserDetailsRoute implements Route{
     @Override
     public Object handle(Request request, Response response) throws Exception {
         String name = request.params(":name");
-        User user = userDAO.find(new SingleFilter(new Equals("usernameValue", Transformer.STR), name));
+        User user = userDAO.find(new SingleFilter(new Equals(User.class, "username", Transformer.STR), name));
         return toUsUserModel(user);
     }
 

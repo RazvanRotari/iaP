@@ -8,15 +8,15 @@ import static ro.infoiasi.sparql.prefixes.Prefix.FOAF;
 
 public class User implements Entity {
 
-    @Property(prefix= FOAF, field = FOAF_Fields.OPEN_ID, variable = "id")
+    @Property(prefix= FOAF, field = FOAF_Fields.OPEN_ID, variable = "id", variableName = "idValue")
     private long id;
-    @Property(prefix= FOAF, field = FOAF_Fields.ACCOUNT_NAME, variable = "username")
+    @Property(prefix= FOAF, field = FOAF_Fields.ACCOUNT_NAME, variable = "username", variableName = "usernameValue")
     private String userName;
-    @Property(prefix= FOAF, field = FOAF_Fields.NAME, variable = "name")
+    @Property(prefix= FOAF, field = FOAF_Fields.NAME, variable = "name", variableName = "nameValue")
     private String name;
-    @Property(prefix= FOAF, field = FOAF_Fields.SHA_1, variable = "hash")
+    @Property(prefix= FOAF, field = FOAF_Fields.SHA_1, variable = "hash", variableName = "hashValue")
     private String password;
-    @Property(prefix= FOAF, field = FOAF_Fields.ONLINE_ACCOUNT, variable = "email")
+    @Property(prefix= FOAF, field = FOAF_Fields.ONLINE_ACCOUNT, variable = "email", variableName = "emailValue")
     private String email;
 
     public User() {
