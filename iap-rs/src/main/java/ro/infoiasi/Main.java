@@ -33,7 +33,7 @@ public class Main {
         user.setUserName("johnDoe");
         user.setEmail("jondoe@test.com");
 
-        UserDAO userDAO = new UserDAO(User.class);
+        UserDAO userDAO = new UserDAO();
         //user = userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.NAME, Transformer.STR), "John Doe"));
         System.out.println(userDAO.getNextId());
         System.out.println(user);
