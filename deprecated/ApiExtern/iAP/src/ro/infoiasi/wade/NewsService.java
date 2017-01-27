@@ -1,5 +1,4 @@
 package ro.infoiasi.wade;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,37 +20,37 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/users")
-public class UserService {
+@Path("/news")
+public class NewsService {
 
-	static UserDao userDao = new UserDao();
-
+	static NewsDao newsDao = new NewsDao();
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<User> getUsers() {
-		return userDao.getAllUsers();
+	public List<News> getNews() {
+		return newsDao.getAllNews();
 	}
-
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createUser(InputStream incomingData) {
+	public Response createNews(InputStream incomingData){
 		ObjectMapper mapper = new ObjectMapper();
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
 			String line = null;
-			while ((line = in.readLine()) != null) {
+			while((line = in.readLine())!=null) {
 				stringBuilder.append(line);
 			}
 		} catch (Exception e) {
 			System.out.println("Error Parsing: - ");
 		}
 		System.out.println("Data Received: " + stringBuilder.toString());
-		User user;
+		News news;
 		try {
-			user = mapper.readValue(stringBuilder.toString(), User.class);
-			if (!Integer.valueOf(user.getId()).equals(0)) {
+			news = mapper.readValue(stringBuilder.toString(), News.class);
+			if (!Integer.valueOf(news.getId()).equals(0)) {
 				ApiError error = new ApiError(400, "Bad argument");
 				return Response.status(400).entity(error).build();
 			}
@@ -65,56 +64,68 @@ public class UserService {
 			ApiError error = new ApiError(400, "IOException");
 			return Response.status(400).entity(error).build();
 		}
-		user.setId(userDao.userList.size() + 1);
-		if (user.getUsername() == null) {
-			return Response.status(400).entity("Please provide username!!").build();
+		news.setId(newsDao.newsList.size() + 1);
+		if (news.getCateg() == null) {
+			return Response.status(400).entity("Please provide category!!").build();
 		}
-		if (user.getPassword() == null) {
-			return Response.status(400).entity("Please provide password!!").build();
+		if (news.getTitle() == null) {
+			return Response.status(400).entity("Please provide title!!").build();
 		}
-
-		if (!isUsernameUnique(user.getUsername())) {
-			ApiError error = new ApiError(409, "Account already exists");
+		if (news.getDescription() == null) {
+			return Response.status(400).entity("Please provide description!!").build();
+		}
+		if (news.getLanguage() == null) {
+			return Response.status(400).entity("Please provide language!!").build();
+		}
+		if (news.getDate() == null) {
+			return Response.status(400).entity("Please provide date!!").build();
+		}
+		if (news.getExternalURL() == null) {
+			return Response.status(400).entity("Please provide externalURL!!").build();
+		}
+		
+		if (!isNewsTitleUnique(news.getTitle())) {
+			ApiError error = new ApiError(409, "News already exists");
 			return Response.status(409).entity(error).build();
 		}
-		userDao.userList.add(user);
-		return Response.status(201).entity(user).build();
+		newsDao.newsList.add(news);
+		return Response.status(201).entity(news).build();
 	}
-
-	private boolean isUsernameUnique(String username) {
-		for (User u : userDao.userList) {
-			if (u.getUsername().equals(username))
+	
+	private boolean isNewsTitleUnique(String title) {
+		for(News n : newsDao.newsList) {
+			if(n.getTitle().equals(title)) {
 				return false;
+			}
 		}
 		return true;
 	}
-
-	@Path("{username}")
+	
+	@Path("{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUser(@PathParam("username") String username) {
+	public Response getUser(@PathParam("id") int id) {
 		boolean found = false;
-		for (User u : userDao.userList) {
-			if (u.getUsername().toLowerCase().equals(username.toLowerCase())) {
+		for (News n : newsDao.newsList) {
+			if (Integer.valueOf(n.getId()).equals(id)) {
 				found = true;
-				return Response.status(Response.Status.OK).entity(u).build();
+				return Response.status(Response.Status.OK).entity(n).build();
 			}
 		}
 		if (found == false) {
-			ApiError error = new ApiError(404, "User " + username + " not found");
+			ApiError error = new ApiError(404, "News " + id + " not found");
 			return Response.status(Response.Status.NOT_FOUND).entity(error).build();
 		} else {
 			ApiError error = new ApiError(500, "Internal Server Error");
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
 		}
-
 	}
 	
 	@PUT
-	@Path("{username}")
+	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateUser(@PathParam("username") String username, InputStream incomingData) {
+	public Response updateNews(@PathParam("id") int id, InputStream incomingData) {
 		ObjectMapper mapper = new ObjectMapper();
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
@@ -129,20 +140,24 @@ public class UserService {
 		System.out.println("Data Received: " + stringBuilder.toString());
 		 
 		try {
-			User updateUser = mapper.readValue(stringBuilder.toString(), User.class);
-			for (User u : userDao.userList) {
-				if (u.getUsername().equals(username)) {
-					if (updateUser.getName() != null)
-						u.setName(updateUser.getName());
-					if (updateUser.getPassword() != null)
-						u.setPassword(updateUser.getPassword());
-					if (updateUser.getEmail() != null)
-						u.setEmail(updateUser.getEmail());
-					return Response.status(Response.Status.OK).entity(u).build();
+			News updateNews = mapper.readValue(stringBuilder.toString(), News.class);
+			for (News n : newsDao.newsList) {
+				if (Integer.valueOf(n.getId()).equals(id)) {
+					if (updateNews.getTitle() != null)
+						n.setTitle(updateNews.getTitle());
+					if (updateNews.getDescription() != null)
+						n.setDescription(updateNews.getDescription());
+					if (updateNews.getLanguage() != null)
+						n.setLanguage(updateNews.getLanguage());
+					if (updateNews.getDate() != null)
+						n.setLanguage(updateNews.getDate());
+					if (updateNews.getExternalURL() != null)
+						n.setLanguage(updateNews.getExternalURL());
+					return Response.status(Response.Status.OK).entity(n).build();
 				}
 	
 			}
-			ApiError error = new ApiError(404, "Username " + username + " not found!");
+			ApiError error = new ApiError(404, "Id " + id + " not found!");
 			return Response.status(Response.Status.NOT_FOUND).entity(error).build();
 			
 		} catch (IOException e) {
@@ -154,15 +169,14 @@ public class UserService {
 	}
 
 	@DELETE
-	@Path("{username}")
+	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteUser(@PathParam("username") String username) {
-		int result = userDao.deleteUser(username);
+	public Response deleteNews(@PathParam("id") int id) {
+		int result = newsDao.deleteNews(id);
 		if (result == 1) {
 			return Response.status(Response.Status.NO_CONTENT).build();
 		}
-		ApiError error = new ApiError(404, "Username " + username + " not found!");
+		ApiError error = new ApiError(404, "Id " + id + " not found!");
 		return Response.status(Response.Status.NOT_FOUND).entity(error).build();
 	}
-
 }

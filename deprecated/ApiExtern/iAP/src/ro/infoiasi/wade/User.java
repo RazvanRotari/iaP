@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement(name = "users")
 public class User {
-    @JsonProperty(value = "id")
+    
+	@JsonProperty(value = "id")
     private int id;
     @JsonProperty(value = "username", required = true)
     private String username;
@@ -66,5 +67,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    @Override
+    public String toString() {
+    	return "User: {id: "+getId()
+    		+", username: "+getUsername()
+    		+", name: "+getName()
+    		+", password: "+getPassword()
+    		+", email: "+getEmail();
     }
 }
