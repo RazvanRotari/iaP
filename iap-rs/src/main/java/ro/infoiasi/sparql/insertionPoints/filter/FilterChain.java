@@ -1,4 +1,4 @@
-package ro.infoiasi.sparql.filter;
+package ro.infoiasi.sparql.insertionPoints.filter;
 
 public class FilterChain implements Filter{
 

@@ -12,7 +12,8 @@ import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
 import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.Entity;
-import ro.infoiasi.sparql.filter.Filter;
+import ro.infoiasi.sparql.insertionPoints.QueryInsertionPoint;
+import ro.infoiasi.sparql.insertionPoints.filter.Filter;
 import ro.infoiasi.sparql.prefixes.Property;
 
 import java.lang.reflect.Field;
@@ -24,7 +25,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     public static final String HTTP_ENDPOINT = "http://razvanrotari.me:3030/default";
     protected static final boolean DEBUG = true;
 
-    private final Class<T> clazz;
+    protected final Class<T> clazz;
 
     public GenericDAO(Class<T> clazz) {
         this.clazz = clazz;
@@ -45,8 +46,8 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         create(entity);
     }
 
-    public T find(Filter filter) throws Exception {
-        String findQuery = buildFindQuery(filter);
+    public T find(QueryInsertionPoint... queryInsertionPoints) throws Exception {
+        String findQuery = buildFindQuery(queryInsertionPoints);
         if (DEBUG) {
             System.out.println(findQuery);
         }
@@ -55,7 +56,12 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
             QuerySolution solution = resultSet.next();
             return toEntity(solution);
         }
-        throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + filter);
+        throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + queryInsertionPoints);
+    }
+
+    @Override
+    public List<T> findAll(QueryInsertionPoint... filter) throws Exception {
+        return null;
     }
 
     @Override
@@ -67,11 +73,12 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     }
 
     @Override
-    public void delete(Filter filter) throws Exception {
+    public void delete(QueryInsertionPoint filter) throws Exception {
         T entity = find(filter);
         delete(entity);
     }
 
+    protected abstract T toEntity(QuerySolution solution);
 
     protected Set<String> getPrefixes() {
         Set<String> dependencies = new TreeSet<>();
@@ -131,8 +138,6 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         return result;
     }
 
-    protected abstract T toEntity(QuerySolution solution);
-
     protected String buildInsertQuery(T entity) throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
         Set<String> prefixes = getPrefixes();
@@ -165,7 +170,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         return stringBuilder.toString();
     }
 
-    protected String buildFindQuery(Filter filter) throws Exception {
+    protected String buildFindQuery(QueryInsertionPoint... queryInsertionPoints) throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
         Set<String> prefixes = getPrefixes();
         for(String prefix: prefixes) {
@@ -176,7 +181,9 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         fields.forEach(triple -> {
             stringBuilder.append("?").append(triple.getLeft()).append(" ").append(triple.getMiddle()).append(" ").append("?" + triple.getRight()).append(".\r\n");
         });
-        stringBuilder.append(filter.construct()).append("\r\n");
+        for(QueryInsertionPoint queryInsertionPoint: queryInsertionPoints) {
+            stringBuilder.append(queryInsertionPoint.construct()).append("\r\n");
+        }
         stringBuilder.append("}");
         return stringBuilder.toString();
     }

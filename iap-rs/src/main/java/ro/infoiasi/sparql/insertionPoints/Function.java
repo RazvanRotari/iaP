@@ -1,30 +1,28 @@
-package ro.infoiasi.sparql.predicate;
-
+package ro.infoiasi.sparql.insertionPoints;
 
 import ro.infoiasi.sparql.prefixes.Property;
 
 import java.lang.reflect.Field;
 
-public enum Transformer {
-    STR("str");
+public interface Function {
 
-    private final String fn;
+    String getFunction();
 
-    Transformer(String fn) {
-        this.fn = fn;
+    default String transform(Class clazz, String variable) {
+        return getFunction() + "(?" + variableName(clazz, variable) + ")";
     }
 
-    public String transform(Class clazz, String name) {
-        return fn + "(?" + variable(clazz, name) + ")";
+    default String variableName(Class clazz, String variable) {
+        return getFieldMetaData(clazz, variable).variableName();
     }
 
-    private String variable(Class clazz, String name) {
+    default Property getFieldMetaData(Class clazz, String name) {
         Field[] fields = clazz.getDeclaredFields();
         for(Field field: fields) {
             if(field.isAnnotationPresent(Property.class)) {
                 Property property = field.getAnnotation(Property.class);
                 if(property.variable().equals(name)) {
-                    return property.variableName();
+                    return property;
                 }
             }
         }

@@ -2,9 +2,9 @@ package ro.infoiasi.routes.user;
 
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.dao.entity.User;
-import ro.infoiasi.sparql.filter.SingleFilter;
-import ro.infoiasi.sparql.predicate.Equals;
-import ro.infoiasi.sparql.predicate.Transformer;
+import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
+import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
+import ro.infoiasi.sparql.insertionPoints.predicate.Transformer;
 import ro.infoiasi.views.UserViewModel;
 import spark.Request;
 import spark.Response;

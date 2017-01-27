@@ -1,4 +1,4 @@
-package ro.infoiasi.sparql.predicate;
+package ro.infoiasi.sparql.insertionPoints.predicate;
 
 
 public interface Predicate {

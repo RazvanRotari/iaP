@@ -1,14 +1,15 @@
 package ro.infoiasi;
 
+import org.apache.jena.base.Sys;
 import ro.infoiasi.dao.entity.metamodel.UserMetaModel;
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.routes.user.*;
 import ro.infoiasi.routes.categories.CategoriesResponseHandler;
 import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.routes.search.SearchRoute;
-import ro.infoiasi.sparql.filter.SingleFilter;
-import ro.infoiasi.sparql.predicate.Equals;
-import ro.infoiasi.sparql.predicate.Transformer;
+import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
+import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
+import ro.infoiasi.sparql.insertionPoints.predicate.Transformer;
 import ro.infoiasi.util.JsonTransformer;
 import spark.Route;
 
@@ -33,7 +34,8 @@ public class Main {
         user.setEmail("jondoe@test.com");
 
         UserDAO userDAO = new UserDAO(User.class);
-        user = userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.NAME, Transformer.STR), "John Doe"));
+        //user = userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.NAME, Transformer.STR), "John Doe"));
+        System.out.println(userDAO.getNextId());
         System.out.println(user);
 
     }

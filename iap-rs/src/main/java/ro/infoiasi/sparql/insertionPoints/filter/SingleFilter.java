@@ -1,6 +1,6 @@
-package ro.infoiasi.sparql.filter;
+package ro.infoiasi.sparql.insertionPoints.filter;
 
-import ro.infoiasi.sparql.predicate.Predicate;
+import ro.infoiasi.sparql.insertionPoints.predicate.Predicate;
 
 public class SingleFilter implements Filter{
 

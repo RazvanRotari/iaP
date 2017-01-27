@@ -1,4 +1,4 @@
-package ro.infoiasi.sparql.predicate;
+package ro.infoiasi.sparql.insertionPoints.predicate;
 
 public class Equals implements Predicate {
 
@@ -25,7 +25,7 @@ public class Equals implements Predicate {
     public String toString() {
         return "Equals{" +
                 "transformer=" + transformer +
-                ", variable='" + variable + '\'' +
+                ", variableName='" + variable + '\'' +
                 '}';
     }
 }
