@@ -1,19 +1,22 @@
 package ro.infoiasi;
 
-import org.apache.jena.base.Sys;
-import ro.infoiasi.dao.entity.metamodel.UserMetaModel;
-import ro.infoiasi.sparql.dao.UserDAO;
-import ro.infoiasi.routes.user.*;
-import ro.infoiasi.routes.categories.CategoriesResponseHandler;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.post;
+import static spark.Spark.put;
+
 import ro.infoiasi.dao.entity.User;
+import ro.infoiasi.routes.categories.CategoriesResponseHandler;
 import ro.infoiasi.routes.search.SearchRoute;
-import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
-import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.predicate.Transformer;
+import ro.infoiasi.routes.user.DeleteUserRoute;
+import ro.infoiasi.routes.user.ShowUserDetailsRoute;
+import ro.infoiasi.routes.user.UpdateUserRoute;
+import ro.infoiasi.routes.user.UserLoginRote;
+import ro.infoiasi.routes.user.UserLogountRoute;
+import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.util.JsonTransformer;
 import spark.Route;
-
-import static spark.Spark.*;
 
 public class Main {
 

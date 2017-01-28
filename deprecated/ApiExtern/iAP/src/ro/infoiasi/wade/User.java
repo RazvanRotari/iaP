@@ -1,7 +1,6 @@
 package ro.infoiasi.wade;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement(name = "users")

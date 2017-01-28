@@ -10,30 +10,30 @@ basePath: /v1
 schemes:
   - http
 paths:
-  /news:
+  /media:
     get:
       tags:
-        - news
-      summary: Get news
-      description: Get a list of all news
-      operationId: getNews
+        - media
+      summary: Get Media
+      description: Get a list of all medias
+      operationId: getMedia
       responses:
         "200":
-          description: A list of news.
+          description: A list of medias.
           schema:
-            $ref: "#/definitions/NewsList"
+            $ref: "#/definitions/Medias"
     post:
       tags:
-        - news
-      summary: Create news
-      description: Create a news.
-      operationId: createNews
+        - media
+      summary: Create media
+      description: Create a media.
+      operationId: createMedia
       produces:
         - application/json
       parameters:
         - in: body
           name: body
-          description: Created news object
+          description: Created media object
           required: true
           schema:
             type: object
@@ -44,99 +44,103 @@ paths:
                 type: string
               description:
                 type: string
+              url:
+                type: string
               language:
                 type: string
               date:
                 type: string
               externalURL:
                 type: string
+              rating:
+                type: integer
       responses:
         "201":
           description: Successful create operation
           schema:
-            $ref: "#/definitions/News"
+            $ref: "#/definitions/Media"
         "400":
           description: Invalid body
           schema: 
             $ref: "#/definitions/Error"
         "409":
-          description: News already exists
+          description: Media already exists
           schema: 
             $ref: "#/definitions/Error"
-  /news/{id}:
+  /media/{id}:
     get:
       tags:
-        - news
-      summary: Find news by ID
-      description: Returns news with the id mentioned in url.
-      operationId: getNewsById
+        - media
+      summary: Find media by ID
+      description: Returns media with the id mentioned in url.
+      operationId: getNews
       produces:
         - application/json
       parameters:
         - in: path
           name: id
-          description: Id of the news
+          description: Id of the media
           required: true
           type: integer
       responses:
         "404":
-          description: News not found
+          description: Media not found
         "200":
           description: successful get operation
           schema:
-            $ref: "#/definitions/News"
+            $ref: "#/definitions/Media"
     put:
       tags:
-        - news
-      summary: Update news
-      description: Update a news object.
-      operationId: updateNews
+        - media
+      summary: Update media
+      description: Update a media object.
+      operationId: updateMedia
       produces:
         - application/json
       parameters:
         - in: path
           name: id
-          description: The id of the news to be updated
+          description: The id of the media to be updated
           required: true
           type: string
         - in: body
           name: body
-          description: Updated news object
+          description: Updated media object
           required: true
           schema:
-            $ref: "#/definitions/UpdateNews"
+            $ref: "#/definitions/UpdateMedia"
       responses:
         "200":
           description: Successful update operation
           schema:
-            $ref: "#/definitions/News"
+            $ref: "#/definitions/Media"
         "400":
           description: Bad argument
           schema: 
             $ref: "#/definitions/Error"
         "404":
-          description: News not found
+          description: Media not found
           schema: 
             $ref: "#/definitions/Error"
     delete:
       tags:
-        - news
-      summary: Delete news
-      description: Delete a news.
-      operationId: deleteNews
+        - media
+      summary: Delete Media
+      description: Delete a Media.
+      operationId: deleteMedia
       produces:
         - application/json
       parameters:
         - in: path
           name: id
-          description: The id of the news to be deleted
+          description: The id of the media to be deleted
           required: true
           type: string
       responses:
         "204":
           description: Successful delete operation
         "404":
-          description: User not found
+          description: Media not found
           schema: 
             $ref: "#/definitions/Error"
       
@@ -215,7 +219,7 @@ paths:
       tags:
         - user
       summary: Create user
-      description: Create a user.
+      description: Create an user.
       operationId: createUser
       produces:
         - application/json
@@ -254,7 +258,7 @@ paths:
         - user
       summary: Get user by user name
       description: ""
-      operationId: getUserByName
+      operationId: getUser
       produces:
         - application/json
       parameters:
@@ -276,7 +280,7 @@ paths:
       tags:
         - user
       summary: Update user
-      description: This can only be done by the logged in user.
+      description: Update user info.
       operationId: updateUser
       produces:
         - application/json
@@ -309,7 +313,7 @@ paths:
       tags:
         - user
       summary: Delete user
-      description: Delete a user.
+      description: Delete an user.
       operationId: deleteUser
       produces:
         - application/json
@@ -326,13 +330,158 @@ paths:
           description: User not found
           schema: 
             $ref: "#/definitions/Error"
+  /authors:
+    get:
+      tags:
+        - author
+      summary: Get list of authors
+      description: Get list of authors.
+      operationId: getAuthors
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful get operation
+          schema:
+            $ref: "#/definitions/Authors"
+    post:
+      tags:
+        - author
+      summary: Create author
+      description: Create an author.
+      operationId: createAuthor
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Created author object
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              rating:
+                type: integer
+      responses:
+        "201":
+          description: Successful create operation
+          schema:
+            $ref: "#/definitions/Author"
+        "400":
+          description: Invalid body
+          schema: 
+            $ref: "#/definitions/Error"
+        "409":
+          description: Author already exists
+          schema: 
+            $ref: "#/definitions/Error"
+  /authors/{name}:
+    get:
+      tags:
+        - author
+      summary: Get author by name
+      description: ""
+      operationId: getAuthor
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: name
+          description: The name that needs to be fetched.
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successful get operation
+          schema:
+            $ref: "#/definitions/Author"
+        "404":
+          description: Author not found
+          schema: 
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - author
+      summary: Update author
+      description: Update author rating
+      operationId: updateAuthor
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: name
+          description: name that need to be updated
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated author object
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateAuthor"
+      responses:
+        "200":
+          description: Successful update operation
+          schema:
+            $ref: "#/definitions/Author"
+        "400":
+          description: Bad argument
+          schema: 
+            $ref: "#/definitions/Error"
+        "404":
+          description: Author not found
+          schema: 
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+        - author
+      summary: Delete author
+      description: Delete an author.
+      operationId: deleteAuthor
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: name
+          description: The name that needs to be deleted
+          required: true
+          type: string
+      responses:
+        "204":
+          description: Successful delete operation
+        "404":
+          description: Author not found
+          schema: 
+            $ref: "#/definitions/Error"
 definitions:
+  Author:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: integer
+  Authors:
+    type: object
+    properties:
+      authors:
+        type: array
+        items:
+          $ref: "#/definitions/Author"
+  UpdateAuthor:
+    type: object
+    properties:
+      rating:
+        type: integer
   User:
     type: object
     properties:
       id:
         type: integer
-        format: int64
       username:
         type: string
       name:
@@ -351,9 +500,6 @@ definitions:
   UpdateUser:
     type: object
     properties:
-      id:
-        type: integer
-        format: int64
       username:
         type: string
       name:
@@ -372,68 +518,57 @@ definitions:
   Category:
     type: object
     properties:
-      id:
-        type: integer
-        format: int64
       name:
         type: string
-  News:
+  Media:
     type: object
     properties:
       id:
         type: integer
-        format: int64
       category:
         $ref: "#/definitions/Category"
       title:
         type: string
-        example: NewsTest
       language:
         type: string
-        example: romanian
       description:
         type: string
-        example: Short description of a story
-      image:
+      url:
         type: string
-        example: image url
       date:
         type: string
-        format: date-time
       externalURL:
         type: string
-  NewsList:
+      rating:
+        type: integer
+  Medias:
     type: object
     properties:
-      news:
+      media:
         type: array
         items:
-          $ref: "#/definitions/News"
-  UpdateNews:
+          $ref: "#/definitions/Media"
+  UpdateMedia:
     type: object
     properties:
       id:
         type: integer
-        format: int64
       category:
         $ref: "#/definitions/Category"
       title:
         type: string
-        example: NewsTest
       language:
         type: string
-        example: romanian
       description:
         type: string
-        example: Short description of a story
-      image:
+      url:
         type: string
-        example: image url
       date:
         type: string
-        format: date-time
       externalURL:
         type: string
+      rating:
+        type: integer
   Error:
     type: object
     properties:

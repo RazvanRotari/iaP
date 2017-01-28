@@ -8,8 +8,8 @@ public class CategoryDao {
 	public List<Category> categoryList = new ArrayList<Category>();
 
 	public CategoryDao() {
-		Category cat = new Category(1, "Kittens");
-		Category cat2 = new Category(2, "Sports");
+		Category cat = new Category("Kittens");
+		Category cat2 = new Category("Sports");
 		categoryList.add(cat);
 		categoryList.add(cat2);
 	}
@@ -18,9 +18,9 @@ public class CategoryDao {
 		return categoryList;
 	}
 
-	public Category getCategory(int i) {
+	public Category getCategory(String name) {
 		for (Category c : categoryList) {
-			if (c.getId() == i) {
+			if (c.getName().equals(name)) {
 				return c;
 			}
 		}

@@ -3,8 +3,8 @@ package ro.infoiasi.wade;
 import javax.xml.bind.annotation.XmlRootElement;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlRootElement(name = "news")
-public class News {
+@XmlRootElement(name = "media")
+public class Media {
 
 	@JsonProperty(value = "id")
 	private int id;
@@ -16,23 +16,29 @@ public class News {
 	private String language;
 	@JsonProperty(value = "description")
 	private String description;
+	@JsonProperty(value = "url")
+	private String url;
 	@JsonProperty(value = "date")
 	private String date;
 	@JsonProperty(value = "externalURL")
 	private String externalURL;
+	@JsonProperty(value = "rating")
+	private int rating;
 	
-	public News() {
+	public Media() {
 		
 	}
 	
-	public News(int id, Category categ, String title, String language, String description, String date, String externalURL) {
+	public Media(int id, Category categ, String title, String language, String description, String url, String date, String externalURL, int rating) {
 		this.id=id;
 		this.category=categ;
 		this.title=title;
 		this.language=language;
 		this.description=description;
+		this.url=url;
 		this.date=date;
 		this.externalURL=externalURL;
+		this.rating=rating;
 	}
 	
 	public int getId() {
@@ -75,6 +81,14 @@ public class News {
 		this.description = description;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	public String getDate() {
 		return date;
 	}
@@ -91,14 +105,24 @@ public class News {
 		this.externalURL = externalURL;
 	}
 	
+	public int getRating() {
+		return rating;
+	}
+	
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
 	@Override
     public String toString() {
-    	return "News: {id: "+getId()
+    	return "Media: {id: "+getId()
     		+", categoryName: "+getCateg().getName()
     		+", title: "+getTitle()
     		+", description: "+getDescription()
+    		+", url: "+getUrl()
     		+", language: "+getLanguage()
     		+", date: "+getDate()
-    		+", externalURL: "+getExternalURL();
+    		+", externalURL: "+getExternalURL()
+    		+", rating: "+getRating()+"}";
     }
 }
