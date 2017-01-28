@@ -115,14 +115,14 @@ public class Media {
 	
 	@Override
     public String toString() {
-    	return "Media: {id: "+getId()
-    		+", categoryName: "+getCateg().getName()
-    		+", title: "+getTitle()
-    		+", description: "+getDescription()
-    		+", url: "+getUrl()
-    		+", language: "+getLanguage()
-    		+", date: "+getDate()
-    		+", externalURL: "+getExternalURL()
-    		+", rating: "+getRating()+"}";
+    	return "{\"id\": \""+getId()
+    		+"\", \"categoryName\": \""+getCateg().getName()
+    		+"\", \"title\": \""+getTitle()
+    		+"\", \"description\": \""+getDescription()
+    		+"\", \"url\": \""+getUrl()
+    		+"\", \"language\": \""+getLanguage()
+    		+"\", \"date\": \""+getDate()
+    		+"\", \"externalURL\": \""+getExternalURL()
+    		+"\", \"rating\": \""+getRating()+"\"}";
     }
 }

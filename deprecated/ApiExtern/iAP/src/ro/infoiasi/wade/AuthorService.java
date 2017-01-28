@@ -28,6 +28,7 @@ public class AuthorService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Author> getAuthors() {
+		
 		return authorDao.getAllAuthors();
 	}
 

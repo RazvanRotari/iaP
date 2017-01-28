@@ -28,6 +28,6 @@ public class Category {
 	
 	@Override
     public String toString() {
-    	return "Category: { name: "+getName();
+    	return "Category: { name: "+getName()+"}";
     }
 }
