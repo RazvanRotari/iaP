@@ -24,7 +24,7 @@ public class UserLoginRote implements Route {
     private UserDAO userDAO;
 
     public UserLoginRote() {
-        userDAO = new UserDAO(User.class);
+        userDAO = new UserDAO();
     }
 
     @Override

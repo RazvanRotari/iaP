@@ -50,10 +50,6 @@ public class CategoryService {
 		Category cat;
 		try {
 			cat = mapper.readValue(stringBuilder.toString(), Category.class);
-			if (!Integer.valueOf(cat.getId()).equals(0)) {
-				ApiError error = new ApiError(400, "Bad argument");
-				return Response.status(400).entity(error).build();
-			}
 		} catch (JsonParseException e) {
 			ApiError error = new ApiError(400, "Bad argument");
 			return Response.status(400).entity(error).build();
@@ -64,13 +60,12 @@ public class CategoryService {
 			ApiError error = new ApiError(400, "IOException");
 			return Response.status(400).entity(error).build();
 		}
-		cat.setId(catDao.categoryList.size() + 1);
 		if (cat.getName() == null) {
 			return Response.status(400).entity("Please provide name!!").build();
 		}
 
 		if (!isCategoryNameUnique(cat.getName())) {
-			ApiError error = new ApiError(409, "Account already exists");
+			ApiError error = new ApiError(409, "Category already exists");
 			return Response.status(409).entity(error).build();
 		}
 		catDao.categoryList.add(cat);

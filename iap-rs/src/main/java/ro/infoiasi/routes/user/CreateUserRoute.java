@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import static spark.Spark.halt;
 
 public class CreateUserRoute implements Route {
-    private UserDAO userDAO = new UserDAO(User.class);
+    private UserDAO userDAO = new UserDAO();
     private static final Logger logger = LoggerFactory.getLogger(UserLoginRote.class);
     private Gson gson = new Gson();
 

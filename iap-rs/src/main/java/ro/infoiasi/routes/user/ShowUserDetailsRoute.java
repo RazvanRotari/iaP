@@ -11,7 +11,7 @@ import spark.Response;
 import spark.Route;
 
 public class ShowUserDetailsRoute implements Route{
-    private UserDAO userDAO = new UserDAO(User.class);
+    private UserDAO userDAO = new UserDAO();
 
     @Override
     public Object handle(Request request, Response response) throws Exception {

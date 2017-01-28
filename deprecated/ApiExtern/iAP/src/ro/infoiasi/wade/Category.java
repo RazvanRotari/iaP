@@ -7,26 +7,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlRootElement(name = "categories")
 public class Category {
 	
-	@JsonProperty(value = "id")
-	private int id;
 	@JsonProperty(value = "name")
 	private String name;
 
 	public Category() {
 	}
 	
-	public Category(int id, String name) {
-		this.id = id;
+	public Category(String name) {
 		this.name = name;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	public String getName() {
 		return name;
@@ -38,7 +28,6 @@ public class Category {
 	
 	@Override
     public String toString() {
-    	return "Category: {id: "+getId()
-    		+", name: "+getName();
+    	return "Category: { name: "+getName();
     }
 }
