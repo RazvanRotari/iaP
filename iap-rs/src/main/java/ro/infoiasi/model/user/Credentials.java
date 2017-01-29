@@ -1,4 +1,4 @@
-package ro.infoiasi.model;
+package ro.infoiasi.model.user;
 
 
 public class Credentials {

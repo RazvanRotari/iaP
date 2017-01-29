@@ -1,13 +1,13 @@
 package ro.infoiasi.sparql.insertionPoints.subqueries;
 
-import ro.infoiasi.sparql.insertionPoints.Function;
+import ro.infoiasi.sparql.insertionPoints.function.PropertyFunction;
 
-public enum AggregateFunction implements Function {
+public enum AggregatePropertyFunction implements PropertyFunction {
     COUNT("COUNT"), SUM("SUM"), AVG("AVG"), MIN("MIN"), MAX("MAX"), CONCAT("CONCAT");
 
     private String fn;
 
-    AggregateFunction(String fn) {
+    AggregatePropertyFunction(String fn) {
         this.fn = fn;
     }
 

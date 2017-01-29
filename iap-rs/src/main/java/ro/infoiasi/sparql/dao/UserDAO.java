@@ -6,7 +6,7 @@ import org.apache.jena.query.ResultSet;
 import org.apache.jena.shared.NotFoundException;
 import ro.infoiasi.dao.entity.User;
 import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.*;
-import ro.infoiasi.sparql.insertionPoints.subqueries.AggregateFunction;
+import ro.infoiasi.sparql.insertionPoints.subqueries.AggregatePropertyFunction;
 import ro.infoiasi.sparql.insertionPoints.subqueries.AggregateSubQuery;
 
 public class UserDAO extends GenericDAO<User> {
@@ -28,7 +28,7 @@ public class UserDAO extends GenericDAO<User> {
 
     public long getNextId() {
         String mapping = "next";
-        String query = new AggregateSubQuery(clazz, AggregateFunction.MAX, ID, mapping).construct();
+        String query = new AggregateSubQuery(clazz, AggregatePropertyFunction.MAX, ID, mapping).construct();
         if (DEBUG) {
             System.out.println(query);
         }

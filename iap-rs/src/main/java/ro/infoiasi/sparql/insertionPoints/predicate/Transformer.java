@@ -1,19 +1,10 @@
 package ro.infoiasi.sparql.insertionPoints.predicate;
 
 
-import ro.infoiasi.sparql.insertionPoints.Function;
+import ro.infoiasi.sparql.insertionPoints.function.Function;
 
-public enum Transformer implements Function{
-    STR("str");
+public interface Transformer extends Function {
 
-    private final String fn;
+    String transform(Class clazz, String variable);
 
-    Transformer(String fn) {
-        this.fn = fn;
-    }
-
-    @Override
-    public String getFunction() {
-        return fn;
-    }
 }

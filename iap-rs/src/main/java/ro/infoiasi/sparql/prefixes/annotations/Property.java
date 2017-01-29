@@ -1,4 +1,6 @@
-package ro.infoiasi.sparql.prefixes;
+package ro.infoiasi.sparql.prefixes.annotations;
+
+import ro.infoiasi.sparql.prefixes.Prefix;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

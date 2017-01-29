@@ -1,15 +1,18 @@
 package ro.infoiasi.dao.entity;
 
 
-import ro.infoiasi.sparql.prefixes.FOAF_Fields;
-import ro.infoiasi.sparql.prefixes.Property;
+import ro.infoiasi.Main;
+import ro.infoiasi.sparql.prefixes.fields.FOAF_Fields;
+import ro.infoiasi.sparql.prefixes.annotations.Property;
+import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 
 import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.*;
 import static ro.infoiasi.sparql.prefixes.Prefix.FOAF;
+import static ro.infoiasi.sparql.prefixes.Prefix.RR;
 
 public class User implements Entity {
 
-    @Property(prefix= FOAF, field = FOAF_Fields.OPEN_ID, variable = ID, variableName = ID_VALUE)
+    @Property(prefix= RR, field = RR_Fields.ID, variable = ID, variableName = ID_VALUE)
     private long id;
     @Property(prefix= FOAF, field = FOAF_Fields.ACCOUNT_NAME, variable = USERNAME, variableName = USERNAME_VALUE)
     private String userName;
@@ -65,7 +68,7 @@ public class User implements Entity {
 
     @Override
     public String getUniqueIdentifier() {
-        return "http://wade.razvanrotari.me/user/" + id;
+        return Main.BASE_URL + "/user/" + id;
     }
 
     @Override

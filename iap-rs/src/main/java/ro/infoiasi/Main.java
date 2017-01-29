@@ -6,54 +6,57 @@ import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import ro.infoiasi.dao.entity.User;
+import ro.infoiasi.routes.author.*;
 import ro.infoiasi.routes.categories.CategoriesResponseHandler;
+import ro.infoiasi.routes.categories.CategoryCreatorRoute;
+import ro.infoiasi.routes.categories.DeleteCategoryRoute;
+import ro.infoiasi.routes.media.*;
 import ro.infoiasi.routes.search.SearchRoute;
 import ro.infoiasi.routes.user.DeleteUserRoute;
 import ro.infoiasi.routes.user.ShowUserDetailsRoute;
 import ro.infoiasi.routes.user.UpdateUserRoute;
 import ro.infoiasi.routes.user.UserLoginRote;
 import ro.infoiasi.routes.user.UserLogountRoute;
-import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.util.JsonTransformer;
 import spark.Route;
 
 public class Main {
 
+    public static final String BASE_URL = "http://wade.razvanrotari.me";
     public static final JsonTransformer TRANSFORMER = new JsonTransformer();
     public static final String APPLICATION_JSON = "application/json";
 
     public static void main(String[] args) throws Exception {
-        //startServer();
-        playground();
-    }
-
-    private static void playground() throws Exception {
-        User user = new User();
-        user.setId(1);
-        user.setName("John Doe");
-        user.setPassword("password");
-        user.setUserName("johnDoe");
-        user.setEmail("jondoe@test.com");
-
-        UserDAO userDAO = new UserDAO();
-        //user = userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.NAME, Transformer.STR), "John Doe"));
-        System.out.println(userDAO.getNextId());
-        System.out.println(user);
-
+        startServer();
     }
 
     public static void startServer() {
         port(8080);
-        get("/", "text/plain", (request, response) -> "Hello");
-        json_get("/users/:user", new ShowUserDetailsRoute());
-        json_post("/users/login", new UserLoginRote());
-        json_post("/users/logout", new UserLogountRoute());
-        json_put("/users/:user", new UpdateUserRoute());
-        json_delete("/users/:user", new DeleteUserRoute());
+        json_get("/api/v1/users/:user", new ShowUserDetailsRoute());
+        json_post("/api/v1/users/login", new UserLoginRote());
+        json_post("/api/v1/users/logout", new UserLogountRoute());
+        json_put("/api/v1/users/:user", new UpdateUserRoute());
+        json_delete("/api/v1/users/:user", new DeleteUserRoute());
 
-        json_get("/categories", new CategoriesResponseHandler());
-        json_get("/search", new SearchRoute());
+        json_get("/api/v1/media", new AllMediaRoute());
+        json_post("/api/v1/media", new CreateMediaRoute());
+
+        json_delete("/api/v1/media/:id", new DeleteMediaRoute());
+        json_get("/api/v1/media/:id", new GetMediaItemRoute());
+        json_put("/api/v1/media/:id", new UpdateMediaRoute());
+
+        json_get("/api/v1/categories", new CategoriesResponseHandler());
+        json_post("/api/v1/categories", new CategoryCreatorRoute());
+        json_post("/api/v1/categories/:name", new DeleteCategoryRoute());
+
+        json_get("/api/v1/authors", new ListAuthorsRoute());
+        json_post("/api/v1/authors", new CreateAuthorRoute());
+
+        json_delete("/api/v1/authors/:name", new DeleteAuthorDetailsRoute());
+        json_get("/api/v1/authors/:name", new GetAuthorDetailsRoute());
+        json_put("/api/v1/authors/:name", new UpdateAuthorRoute());
+
+        json_post("/api/v1/search", new SearchRoute());
     }
 
     private static void json_delete(String path, Route route) {

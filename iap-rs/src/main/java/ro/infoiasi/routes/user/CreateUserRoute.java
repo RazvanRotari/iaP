@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.dao.entity.User;
-import ro.infoiasi.model.UserModel;
+import ro.infoiasi.model.user.UserModel;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -42,7 +42,7 @@ public class CreateUserRoute implements Route {
         try {
             User user = new User();
             user.setName(userModel.getName());
-            user.setUserName(userModel.getUserName());
+            user.setUserName(userModel.getUsername());
             user.setEmail(userModel.getEmail());
             user.setPassword(hash(userModel.getPassword()));
             user.setId(userDAO.getNextId());

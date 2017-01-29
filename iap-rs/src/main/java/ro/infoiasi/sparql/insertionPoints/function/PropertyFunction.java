@@ -1,12 +1,12 @@
-package ro.infoiasi.sparql.insertionPoints;
+package ro.infoiasi.sparql.insertionPoints.function;
 
-import ro.infoiasi.sparql.prefixes.Property;
+import ro.infoiasi.sparql.insertionPoints.predicate.Transformer;
+import ro.infoiasi.sparql.prefixes.annotations.OneToOne;
+import ro.infoiasi.sparql.prefixes.annotations.Property;
 
 import java.lang.reflect.Field;
 
-public interface Function {
-
-    String getFunction();
+public interface PropertyFunction extends Transformer {
 
     default String transform(Class clazz, String variable) {
         return getFunction() + "(?" + variableName(clazz, variable) + ")";

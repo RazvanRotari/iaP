@@ -10,6 +10,12 @@ public class MediaItemDAO extends GenericDAO<MediaItem>{
 
     @Override
     protected MediaItem toEntity(QuerySolution solution) {
-        return null;
+        MediaItem mediaItem = new MediaItem();
+        mediaItem.setClassName(solution.getLiteral("classType").toString());
+        mediaItem.setDescription(solution.getLiteral("itemDescription").toString());
+        mediaItem.setTimestamp(solution.getLiteral("itemTimestamp").getLong());
+        mediaItem.setTitle(solution.getLiteral("itemTitle").toString());
+        mediaItem.setUrl(solution.getLiteral("itemUrl").toString());
+        return mediaItem;
     }
 }
