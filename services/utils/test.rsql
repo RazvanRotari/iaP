@@ -1,0 +1,6 @@
+SELECT ?nameX ?nameY ?nickY
+WHERE
+  { ?x {{AudioItem.creator}} ?y ;
+       {{AudioItem.duration}} ?nameX .
+    ?y {{AudioItem.tags}} ?nameY .
+  }

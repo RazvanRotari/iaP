@@ -10,6 +10,35 @@ basePath: /v1
 schemes:
   - http
 paths:
+  /search:
+    post:
+      tags:
+        - search
+      summary: Filter for medias
+      description: You can search through the list of medias using this endpoint. You will have to make a post request with an array of querry objects. These query objects contain the name of the field from media object, the type of query (EQ = equal, LS = less, GR = greater) and the value. 
+      operationId: search
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: filter
+          description: list of query objects
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Query"
+      responses:
+        "200":
+          description: A list of medias that respect the conditions from request body
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Media"
+        "400":
+          description: Invalid body / type should be EQ, LS or GR !
+          schema: 
+            $ref: "#/definitions/Error"
   /media:
     get:
       tags:
@@ -50,9 +79,12 @@ paths:
                 type: string
               date:
                 type: string
+                format: date-time
               externalURL:
                 type: string
-              rating:
+              authorRating:
+                type: integer
+              mediaRating:
                 type: integer
       responses:
         "201":
@@ -455,7 +487,18 @@ paths:
           description: Author not found
           schema: 
             $ref: "#/definitions/Error"
+            
 definitions:
+
+  Query:
+    type: object
+    properties:
+      field:
+        type: string
+      type:
+        type: string
+      value:
+        type: string
   Author:
     type: object
     properties:
@@ -537,9 +580,12 @@ definitions:
         type: string
       date:
         type: string
+        format: date-time
       externalURL:
         type: string
-      rating:
+      authorRating:
+        type: integer
+      mediaRating:
         type: integer
   Medias:
     type: object
@@ -565,9 +611,12 @@ definitions:
         type: string
       date:
         type: string
+        format: date-time
       externalURL:
         type: string
-      rating:
+      authorRating:
+        type: integer
+      mediaRating:
         type: integer
   Error:
     type: object

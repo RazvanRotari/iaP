@@ -8,8 +8,8 @@ public class MediaDao {
 	public List<Media> mediaList = new ArrayList<Media>();
 	
 	public MediaDao() {
-		Media media1 = new Media(1, new Category("Economics"),"Stockmarket going up", "Stockmarket is going up for the first time in a couple of years now","http://img1","English","1-02-2017","http://news.xyz",2);
-		Media media2 = new Media(2, new Category("Hollywood"),"No more Brangelina", "Angelina Joulie and Brad Pit are breaking up!!","http://img1","English","1-02-2017","http://hollywood.xyz",3);
+		Media media1 = new Media(1, new Category("Economics"),"Stockmarket going up", "Stockmarket is going up for the first time in a couple of years now","http://img1","English","1-02-2017","http://news.xyz",2,3);
+		Media media2 = new Media(2, new Category("Hollywood"),"No more Brangelina", "Angelina Joulie and Brad Pit are breaking up!!","http://img1","English","1-02-2017","http://hollywood.xyz",3,2);
 		mediaList.add(media1);
 		mediaList.add(media2);
 	}

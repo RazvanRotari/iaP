@@ -7,11 +7,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,21 +17,15 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/api/v1/categories")
-public class CategoryService {
-
-	static CategoryDao catDao = new CategoryDao();
-
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Category> getCategories() {
-		return catDao.getAllCategories();
-	}
-
+@Path("/api/v1/search")
+public class SearchService {
+	
+	public SearchDao queries = new SearchDao();
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createCategory(InputStream incomingData) {
+	public Response search(InputStream incomingData) {
 		ObjectMapper mapper = new ObjectMapper();
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
@@ -47,9 +38,19 @@ public class CategoryService {
 			System.out.println("Error Parsing: - ");
 		}
 		System.out.println("Data Received: " + stringBuilder.toString());
-		Category cat;
+		List<Search> queries;
+		MediaList response;
 		try {
-			cat = mapper.readValue(stringBuilder.toString(), Category.class);
+			queries = mapper.readValue(stringBuilder.toString(), mapper.getTypeFactory().constructCollectionType(List.class, Search.class));
+			for(Search s:queries) {
+				if(!s.getType().toUpperCase().matches("EQ|GR|LS")) {
+					ApiError error = new ApiError(400, "Type should be EQ, GR or LS!");
+					return Response.status(400).entity(error).build();
+				}
+			}
+			response = new MediaList(queries);
+			response.search();
+			
 		} catch (JsonParseException e) {
 			ApiError error = new ApiError(400, "Bad argument");
 			return Response.status(400).entity(error).build();
@@ -60,36 +61,6 @@ public class CategoryService {
 			ApiError error = new ApiError(400, "IOException");
 			return Response.status(400).entity(error).build();
 		}
-		if (cat.getName() == null) {
-			return Response.status(400).entity("Please provide name!!").build();
-		}
-
-		if (!isCategoryNameUnique(cat.getName())) {
-			ApiError error = new ApiError(409, "Category already exists");
-			return Response.status(409).entity(error).build();
-		}
-		catDao.categoryList.add(cat);
-		return Response.status(201).entity(cat).build();
+		return Response.status(200).entity(response.toString()).build();
 	}
-
-	private boolean isCategoryNameUnique(String name) {
-		for (Category c : catDao.categoryList) {
-			if (c.getName().toLowerCase().equals(name.toLowerCase()))
-				return false;
-		}
-		return true;
-	}
-
-	@DELETE
-	@Path("{name}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteCategory(@PathParam("name") String name) {
-		int result = catDao.deleteCategory(name);
-		if (result == 1) {
-			return Response.status(Response.Status.NO_CONTENT).build();
-		}
-		ApiError error = new ApiError(404, "Category " + name + " not found!");
-		return Response.status(Response.Status.NOT_FOUND).entity(error).build();
-	}
-
 }

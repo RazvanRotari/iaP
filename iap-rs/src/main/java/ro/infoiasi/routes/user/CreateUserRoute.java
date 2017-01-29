@@ -35,7 +35,7 @@ public class CreateUserRoute implements Route {
             return null;
         }
         userDAO.create(user);
-        return 200;
+        return 201;
     }
 
     private User toUser(UserModel userModel) {

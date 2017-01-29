@@ -21,13 +21,14 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/authors")
+@Path("/api/v1/authors")
 public class AuthorService {
 	static AuthorDao authorDao = new AuthorDao();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Author> getAuthors() {
+		
 		return authorDao.getAllAuthors();
 	}
 

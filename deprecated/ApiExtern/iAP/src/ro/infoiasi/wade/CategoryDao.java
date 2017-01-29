@@ -6,7 +6,7 @@ import java.util.List;
 public class CategoryDao {
 	
 	public List<Category> categoryList = new ArrayList<Category>();
-
+	
 	public CategoryDao() {
 		Category cat = new Category("Kittens");
 		Category cat2 = new Category("Sports");
