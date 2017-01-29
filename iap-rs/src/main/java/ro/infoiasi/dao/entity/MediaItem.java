@@ -8,7 +8,7 @@ import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 
 
 
-public class MediaItem implements Entity {
+public class MediaItem extends Entity {
 
     @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable = "url", variableName = "uid")
     private long id;

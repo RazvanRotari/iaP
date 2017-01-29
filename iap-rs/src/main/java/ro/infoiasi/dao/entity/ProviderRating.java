@@ -7,7 +7,7 @@ import ro.infoiasi.sparql.prefixes.fields.DC_Fields;
 import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 import ro.infoiasi.sparql.prefixes.fields.SKOS_Field;
 
-public class ProviderRating implements Entity {
+public class ProviderRating extends Entity {
 
     @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable= "id", variableName = "uid")
     private long id;

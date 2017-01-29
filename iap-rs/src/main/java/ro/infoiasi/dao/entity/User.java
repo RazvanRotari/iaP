@@ -10,7 +10,7 @@ import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.*;
 import static ro.infoiasi.sparql.prefixes.Prefix.FOAF;
 import static ro.infoiasi.sparql.prefixes.Prefix.RR;
 
-public class User implements Entity {
+public class User extends Entity {
 
     @Property(prefix= RR, field = RR_Fields.ID, variable = ID, variableName = ID_VALUE)
     private long id;

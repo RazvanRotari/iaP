@@ -8,7 +8,7 @@ import ro.infoiasi.sparql.prefixes.fields.SKOS_Field;
 import static ro.infoiasi.sparql.prefixes.Prefix.RR;
 import static ro.infoiasi.sparql.prefixes.Prefix.SKOS;
 
-public class ApiKey implements Entity{
+public class ApiKey extends Entity {
     @Property(prefix = RR, field = RR_Fields.KEY, variable = "apiKey", variableName = "keyValue")
     private String key;
     @OneToOne(prefix = SKOS, field = SKOS_Field.MEMBER, variable = "member", variableName = "memberId")

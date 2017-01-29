@@ -7,7 +7,7 @@ import ro.infoiasi.sparql.prefixes.annotations.Property;
 import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 import ro.infoiasi.sparql.prefixes.fields.SKOS_Field;
 
-public class MediaItemRating implements Entity {
+public class MediaItemRating extends Entity {
 
     @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable= "id", variableName = "uid")
     private long id;

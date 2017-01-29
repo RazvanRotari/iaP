@@ -7,7 +7,7 @@ import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 
 import static ro.infoiasi.Main.BASE_URL;
 
-public class Provider implements Entity{
+public class Provider extends Entity {
 
     @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable = "id", variableName = "providerID")
     private long id;

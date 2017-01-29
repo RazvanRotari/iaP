@@ -16,6 +16,8 @@ public class MediaItemDAO extends GenericDAO<MediaItem>{
         mediaItem.setTimestamp(solution.getLiteral("itemTimestamp").getLong());
         mediaItem.setTitle(solution.getLiteral("itemTitle").toString());
         mediaItem.setUrl(solution.getLiteral("itemUrl").toString());
+
+        
         return mediaItem;
     }
 }
