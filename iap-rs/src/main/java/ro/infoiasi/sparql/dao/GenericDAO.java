@@ -10,8 +10,11 @@ import org.apache.jena.shared.NotFoundException;
 import org.apache.jena.sparql.modify.UpdateProcessRemote;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.Entity;
+import ro.infoiasi.routes.user.UserLoginRote;
 import ro.infoiasi.sparql.insertionPoints.*;
 import ro.infoiasi.sparql.insertionPoints.Optional;
 import ro.infoiasi.sparql.insertionPoints.subqueries.SubQuery;
@@ -24,6 +27,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public abstract class GenericDAO<T extends Entity> implements DAO<T> {
+    protected static final Logger logger = LoggerFactory.getLogger(GenericDAO.class);
     private int NA = -1;
     public static final String HTTP_ENDPOINT = "http://razvanrotari.me:3030/default";
     protected static final boolean DEBUG = true;
@@ -38,7 +42,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     public void create(T entity) throws Exception {
         String queryString = buildInsertQuery(entity);
         if (DEBUG) {
-            System.out.println(queryString);
+            logger.info(queryString);
         }
         UpdateRequest request = UpdateFactory.create(queryString);
         UpdateProcessRemote remote = new UpdateProcessRemote(request, HTTP_ENDPOINT, null);
@@ -53,7 +57,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     public T find(QueryInsertionPoint... queryInsertionPoints) throws Exception {
         String findQuery = buildFindQuery(NA, queryInsertionPoints);
         if (DEBUG) {
-            System.out.println(findQuery);
+            logger.info(findQuery);
         }
         ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, findQuery).execSelect();
         if (resultSet.hasNext()) {
@@ -62,7 +66,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
             addExtraProperties(solution, entity);
             return entity;
         }
-        throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + Arrays.toString(queryInsertionPoints));
+        throw new Exception("Cannot find entity of type" + clazz + " with field: " + Arrays.toString(queryInsertionPoints));
     }
 
     private T addExtraProperties(QuerySolution solution, T entity) {
@@ -89,7 +93,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     public List<T> findAll(int limit, QueryInsertionPoint... queryInsertionPoints) throws Exception {
         String findQuery = buildFindQuery(limit, queryInsertionPoints);
         if (DEBUG) {
-            System.out.println(findQuery);
+            logger.info(findQuery);
         }
         ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, findQuery).execSelect();
         List<T> results = new ArrayList<T>();

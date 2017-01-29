@@ -1,5 +1,5 @@
 package ro.infoiasi.sparql.insertionPoints;
 
 public interface QueryInsertionPoint {
-    String construct();
+    String construct() throws Exception;
 }

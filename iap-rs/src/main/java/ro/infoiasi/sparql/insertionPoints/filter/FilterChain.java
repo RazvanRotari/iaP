@@ -11,7 +11,7 @@ public class FilterChain implements Filter{
     }
 
     @Override
-    public String construct() {
+    public String construct() throws Exception {
         return filter.construct() + ".\r\n" + filterChain.construct();
     }
 

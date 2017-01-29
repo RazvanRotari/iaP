@@ -19,13 +19,13 @@ public abstract class SubQuery implements QueryInsertionPoint {
         this.clazz = clazz;
     }
 
-    public abstract String construct(Filter filter);
+    public abstract String construct(Filter filter) throws Exception;
 
     public void excludePrefixes() {
         includePrefixes = false;
     }
 
-    protected Property getFieldMetaData(String variable) {
+    protected Property getFieldMetaData(String variable) throws Exception {
         Field[] fields = clazz.getDeclaredFields();
         for(Field field: fields) {
             if(field.isAnnotationPresent(Property.class)) {
@@ -35,7 +35,7 @@ public abstract class SubQuery implements QueryInsertionPoint {
                 }
             }
         }
-        throw new NotFoundException("Cannot find " + variable + " in " + clazz);
+        throw new Exception("Cannot find " + variable + " in " + clazz);
     }
 
     public Set<String> getPrefixes() {

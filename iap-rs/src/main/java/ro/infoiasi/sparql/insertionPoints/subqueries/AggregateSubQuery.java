@@ -27,12 +27,12 @@ public class AggregateSubQuery extends SubQuery {
     }
 
     @Override
-    public String construct() {
+    public String construct() throws Exception {
         return construct(new NullFilter());
     }
 
     @Override
-    public String construct(Filter filter) {
+    public String construct(Filter filter) throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
         if(includePrefixes) {
             Set<String> prefixes = getPrefixes();

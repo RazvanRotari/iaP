@@ -1,5 +1,9 @@
 package ro.infoiasi.routes.user;
 
+import org.apache.commons.codec.binary.Hex;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.CharSet;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +15,7 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -22,22 +27,26 @@ public class CreateUserRoute implements Route {
 
 
     @Override
-    public Object handle(Request request, Response response) throws Exception {
-        UserModel uModel= new RequestBodyParser().parse(request.body(), UserModel.class);
-        if(uModel== null) {
-            halt(HttpStatus.SC_BAD_REQUEST, "Invalid body");
-            return null;
+    public Object handle(Request request, Response response) {
+        try {
+            UserModel uModel = new RequestBodyParser().parse(request.body(), UserModel.class);
+            if (uModel == null) {
+                halt(HttpStatus.SC_BAD_REQUEST, "Invalid body");
+                return null;
+            }
+            User user = toUser(uModel);
+            if (user == null) {
+                halt(HttpStatus.SC_NOT_IMPLEMENTED, "Problems with creating the user");
+                return null;
+            }
+            userDAO.create(user);
+        } catch (Exception ex) {
+            logger.error("Could not create user", ex);
         }
-        User user = toUser(uModel);
-        if(user == null) {
-            halt(HttpStatus.SC_NOT_IMPLEMENTED, "Problems with creating the user");
-            return null;
-        }
-        userDAO.create(user);
         return HttpStatus.SC_CREATED;
     }
 
-    private User toUser(UserModel userModel) {
+    private User toUser(UserModel userModel) throws Exception {
         try {
             User user = new User();
             user.setName(userModel.getName());
@@ -51,10 +60,7 @@ public class CreateUserRoute implements Route {
         }
     }
 
-
-
     private String hash(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
-        return new String(md.digest(password.getBytes()));
+        return DigestUtils.sha1Hex(password);
     }
 }

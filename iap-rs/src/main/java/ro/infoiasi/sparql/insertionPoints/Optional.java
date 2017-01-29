@@ -11,7 +11,7 @@ public class Optional implements QueryInsertionPoint{
         return insertionPoint;
     }
 
-    public String construct() {
+    public String construct() throws Exception {
         return "optional { \r\n" +
         insertionPoint.construct() + "\r\n" + "}";
     }

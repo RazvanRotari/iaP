@@ -50,11 +50,11 @@ public class Main {
         port(8080);
         json_get("/", (req, resp) -> "Hello");
         json_post("/api/v1/users/", new CreateUserRoute());
-        json_get("/api/v1/users/:user", new ShowUserDetailsRoute());
+        json_get("/api/v1/users/:id", new ShowUserDetailsRoute());
         json_post("/api/v1/users/login", new UserLoginRote());
         json_post("/api/v1/users/logout", new UserLogountRoute());
-        json_put("/api/v1/users/:user", new UpdateUserRoute());
-        json_delete("/api/v1/users/:user", new DeleteUserRoute());
+        json_put("/api/v1/users/:id", new UpdateUserRoute());
+        json_delete("/api/v1/users/:id", new DeleteUserRoute());
 
         json_get("/api/v1/media", new AllMediaRoute());
         json_post("/api/v1/media", new CreateMediaRoute());
