@@ -53,8 +53,9 @@ def upload_image(session, image, title):
         img_model.title = img_data["title"]
     if not img_model.title:
         img_model.title = title
-    img_model.description = img_data["description"]
-    img_model.datetime = img_data["datetime"]
+    if "description" in img_data:
+        img_model.description = img_data["description"]
+    img_model.timestamp = img_data["datetime"]
     img_model.mime_type = img_data["type"]
     img_model.animated = img_data["animated"]
     img_model.width = img_data["width"]

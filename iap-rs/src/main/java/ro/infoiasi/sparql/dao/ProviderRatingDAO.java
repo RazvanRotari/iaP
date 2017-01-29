@@ -27,9 +27,9 @@ public class ProviderRatingDAO extends GenericDAO<ProviderRating>{
         ProviderRating rating = new ProviderRating();
         rating.setScore(solution.getLiteral(PROVIDER_SCORE).getDouble());
         String id = solution.getLiteral(MEMBER_ID).getString();
-        rating.setUser(userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.ID_VALUE, Transformer.STR), id)));
+        rating.setUser(userDAO.find(new SingleFilter(new Equals(User.class, "resourceId", Transformer.STR), id)));
         String mid = solution.getLiteral(PROVIDER_ID).getString();
-        rating.setProvider(providerDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.ID_VALUE, Transformer.STR), mid)));
+        rating.setProvider(providerDAO.find(new SingleFilter(new Equals(User.class, "resourceId", Transformer.STR), mid)));
         rating.setId(solution.getLiteral(UID).getLong());
         return rating;
     }

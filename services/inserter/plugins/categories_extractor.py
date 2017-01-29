@@ -14,7 +14,14 @@ def normalize_tokens(tokens):
    return [wnl.lemmatize(word) for word in tokens]
 
 def should_process(item):
-    return len(item.categories)
+<<<<<<< HEAD
+    if item.categories:
+        return len(item.categories) == 0
+    else:
+        return True
+=======
+    return len(item.categories) == 0
+>>>>>>> 59d396b6571e17f7fda201e23c4481cde3f83914
 
 #Do the processing here. Needs to return an item
 def process(item):

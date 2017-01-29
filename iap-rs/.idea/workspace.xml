@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7721d43c-cc0a-4231-b658-699e4c7d5436" name="Default" comment="" />
+    <list default="true" id="7721d43c-cc0a-4231-b658-699e4c7d5436" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../misc/notes.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../misc/try.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../misc/user identification" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java" afterPath="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java" afterPath="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../services/inserter/plugins/categories_extractor.py" afterPath="$PROJECT_DIR$/../services/inserter/plugins/categories_extractor.py" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,65 +31,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="66" column="38" lean-forward="true" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3347#3348#0" expanded="true" />
-                <element signature="e#3410#3411#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdateUserRoute.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/UpdateUserRoute.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
-              <folding>
-                <element signature="e#1358#1359#0" expanded="true" />
-                <element signature="e#1413#1414#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AggregateSubQuery.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/subqueries/AggregateSubQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FilterChain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/filter/FilterChain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Optional.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/Optional.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiKey.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/ApiKey.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="11" column="72" lean-forward="false" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="72" />
+            <state relative-caret-position="15">
+              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,21 +40,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserLoginRote.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/UserLoginRote.java">
+      <file leaf-file-name="ProviderRatingDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="43" column="109" lean-forward="true" selection-start-line="43" selection-start-column="109" selection-end-line="43" selection-end-column="109" />
+            <state relative-caret-position="255">
+              <caret line="31" column="96" lean-forward="false" selection-start-line="31" selection-start-column="96" selection-end-line="31" selection-end-column="96" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateUserRoute.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/CreateUserRoute.java">
+      <file leaf-file-name="categories_extractor.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../services/inserter/plugins/categories_extractor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="-45">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProviderRating.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/ProviderRating.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MediaItemRating.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/MediaItemRating.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="11" column="80" lean-forward="false" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -111,24 +82,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/User.java">
+      <file leaf-file-name="MediaItemRatingDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="16" column="68" lean-forward="true" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
-              <folding>
-                <element signature="e#1546#1547#0" expanded="true" />
-                <element signature="e#1586#1587#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="229">
+              <caret line="26" column="89" lean-forward="false" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserMetaModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/metamodel/UserMetaModel.java">
+      <file leaf-file-name="CreateMediaRoute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/CreateMediaRoute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeleteMediaRoute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/DeleteMediaRoute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetMediaItemRoute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/GetMediaItemRoute.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="50" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="50" />
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateMediaRoute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/UpdateMediaRoute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -171,11 +169,16 @@
       <find>DEBUG</find>
       <find>logger.debug</find>
       <find>logger.de</find>
+      <find>mediaItem</find>
     </findStrings>
     <replaceStrings>
       <replace>SearchResult</replace>
       <replace>logger.info</replace>
+      <replace>media</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -185,12 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/model/search/SearchQuery.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/model/categories/Categories.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/model/user/UserModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/RequestBodyParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/predicate/transformer/Transformer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/ReferenceTransformer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/predicate/Predicate.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/predicate/LessThan.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/predicate/GreaterThan.java" />
@@ -207,7 +204,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/ReferenceFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/PropertyFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/PropertyTransformer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/UserLoginRote.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ApiKeyDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/ShowUserDetailsRoute.java" />
@@ -218,7 +214,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/predicate/Contains.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/ApiKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/MediaItemRating.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/model/categories/Category.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/MediaItem.java" />
@@ -231,11 +226,19 @@
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/GenericDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/CreateUserRoute.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/UpdateUserRoute.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/subqueries/AggregateSubQuery.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/filter/FilterChain.java" />
         <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/Optional.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/media/AllMediaRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/media/CreateMediaRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/media/DeleteMediaRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/media/GetMediaItemRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/media/UpdateMediaRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/GetMediaItemRoute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java" />
       </list>
     </option>
   </component>
@@ -252,6 +255,7 @@
     <option name="width" value="1368" />
     <option name="height" value="743" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -267,7 +271,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -366,278 +369,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insertionPoints" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insertionPoints" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="transformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insertionPoints" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="predicate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="insertionPoints" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="function" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sparql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -672,71 +403,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="search" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iap-rs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infoiasi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
+              <option name="myItemId" value="mediaItem" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -806,6 +473,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -813,6 +481,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="SearchEverywhereHistoryKey" value="Plugins&#9;ACTION&#9;WelcomeScreen.Plugins" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -1085,30 +754,36 @@
       <option name="presentableId" value="Default" />
       <updated>1483640254149</updated>
     </task>
+    <task id="LOCAL-00001" summary="Change package name">
+      <created>1485713029504</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1485713029504</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="26" width="1368" height="743" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32376397" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54472846" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32854864" sideWeight="0.5090634" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32854864" sideWeight="0.49093655" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45773524" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26283988" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258786" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27039275" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32535884" sideWeight="0.49697885" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1118,6 +793,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32376397" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1154,6 +831,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Change package name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change package name" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -1189,62 +870,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/QueryInsertionPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.5.4/spark-core-2.5.4.jar!/spark/Spark.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="328" column="23" lean-forward="false" selection-start-line="328" selection-start-column="23" selection-end-line="328" selection-end-column="23" />
-          <folding>
-            <element signature="e#11098#11099#0" expanded="true" />
-            <element signature="e#11134#11135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/default/jre/lib/rt.jar!/java/util/Arrays.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="50" column="13" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/prefixes/fields/DC_Fields.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/prefixes/fields/RR_Fields.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/DAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
           <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1252,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1260,66 +888,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/ReferenceFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/PropertyFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/ReferenceFunction.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/PropertyFunction.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/function/Function.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/IdentityTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/PropertyTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/ReferenceTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="31" column="119" lean-forward="false" selection-start-line="31" selection-start-column="119" selection-end-line="31" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/IdentityTransformer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/PropertyTransformer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/transformer/ReferenceTransformer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ApiKeyDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
@@ -1332,7 +915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1340,10 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#479#480#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1351,7 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
           <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1359,7 +936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1367,10 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="32" />
-          <folding>
-            <element signature="e#357#358#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1378,9 +950,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1388,7 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="24" column="31" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1396,12 +964,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="e#216#217#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1410,32 +972,6 @@
         <state relative-caret-position="90">
           <caret line="11" column="82" lean-forward="false" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="82" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/ProviderRating.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="75" lean-forward="false" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="21" column="44" lean-forward="true" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/MediaItemRating.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="80" lean-forward="false" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1451,9 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="e#459#460#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1461,10 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
-          <folding>
-            <element signature="e#1155#1156#0" expanded="true" />
-            <element signature="e#1181#1182#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1472,7 +1001,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1480,9 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="43" column="0" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1492,49 +1017,49 @@
           <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-            <element signature="e#527#528#0" expanded="true" />
-            <element signature="e#555#556#0" expanded="true" />
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#689#690#0" expanded="true" />
-            <element signature="e#733#734#0" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#835#836#0" expanded="true" />
-            <element signature="e#869#870#0" expanded="true" />
-            <element signature="e#904#905#0" expanded="true" />
-            <element signature="e#935#936#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1023#1024#0" expanded="true" />
-            <element signature="e#1061#1062#0" expanded="true" />
-            <element signature="e#1095#1096#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-            <element signature="e#1195#1196#0" expanded="true" />
-            <element signature="e#1225#1226#0" expanded="true" />
-            <element signature="e#1251#1252#0" expanded="true" />
-            <element signature="e#1289#1290#0" expanded="true" />
-            <element signature="e#1319#1320#0" expanded="true" />
-            <element signature="e#1348#1349#0" expanded="true" />
-            <element signature="e#1375#1376#0" expanded="true" />
-            <element signature="e#1413#1414#0" expanded="true" />
-            <element signature="e#1445#1446#0" expanded="true" />
-            <element signature="e#1483#1484#0" expanded="true" />
-            <element signature="e#1517#1518#0" expanded="true" />
-            <element signature="e#1571#1572#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1654#1655#0" expanded="true" />
-            <element signature="e#1689#1690#0" expanded="true" />
-            <element signature="e#1743#1744#0" expanded="true" />
-            <element signature="e#1791#1792#0" expanded="true" />
-            <element signature="e#1827#1828#0" expanded="true" />
-            <element signature="e#1861#1862#0" expanded="true" />
-            <element signature="e#1913#1914#0" expanded="true" />
-            <element signature="e#1959#1960#0" expanded="true" />
-            <element signature="e#1991#1992#0" expanded="true" />
-            <element signature="e#2019#2020#0" expanded="true" />
-            <element signature="e#2061#2062#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="false" />
+            <element signature="e#527#528#0" expanded="false" />
+            <element signature="e#555#556#0" expanded="false" />
+            <element signature="e#598#599#0" expanded="false" />
+            <element signature="e#631#632#0" expanded="false" />
+            <element signature="e#689#690#0" expanded="false" />
+            <element signature="e#733#734#0" expanded="false" />
+            <element signature="e#765#766#0" expanded="false" />
+            <element signature="e#793#794#0" expanded="false" />
+            <element signature="e#835#836#0" expanded="false" />
+            <element signature="e#869#870#0" expanded="false" />
+            <element signature="e#904#905#0" expanded="false" />
+            <element signature="e#935#936#0" expanded="false" />
+            <element signature="e#983#984#0" expanded="false" />
+            <element signature="e#1023#1024#0" expanded="false" />
+            <element signature="e#1061#1062#0" expanded="false" />
+            <element signature="e#1095#1096#0" expanded="false" />
+            <element signature="e#1149#1150#0" expanded="false" />
+            <element signature="e#1195#1196#0" expanded="false" />
+            <element signature="e#1225#1226#0" expanded="false" />
+            <element signature="e#1251#1252#0" expanded="false" />
+            <element signature="e#1289#1290#0" expanded="false" />
+            <element signature="e#1319#1320#0" expanded="false" />
+            <element signature="e#1348#1349#0" expanded="false" />
+            <element signature="e#1375#1376#0" expanded="false" />
+            <element signature="e#1413#1414#0" expanded="false" />
+            <element signature="e#1445#1446#0" expanded="false" />
+            <element signature="e#1483#1484#0" expanded="false" />
+            <element signature="e#1517#1518#0" expanded="false" />
+            <element signature="e#1571#1572#0" expanded="false" />
+            <element signature="e#1617#1618#0" expanded="false" />
+            <element signature="e#1654#1655#0" expanded="false" />
+            <element signature="e#1689#1690#0" expanded="false" />
+            <element signature="e#1743#1744#0" expanded="false" />
+            <element signature="e#1791#1792#0" expanded="false" />
+            <element signature="e#1827#1828#0" expanded="false" />
+            <element signature="e#1861#1862#0" expanded="false" />
+            <element signature="e#1913#1914#0" expanded="false" />
+            <element signature="e#1959#1960#0" expanded="false" />
+            <element signature="e#1991#1992#0" expanded="false" />
+            <element signature="e#2019#2020#0" expanded="false" />
+            <element signature="e#2061#2062#0" expanded="false" />
+            <element signature="e#2095#2096#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1551,7 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1559,7 +1083,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1567,11 +1090,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="80" column="18" lean-forward="false" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1588,29 +1106,17 @@
         <state relative-caret-position="186">
           <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/CreateUserRoute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state relative-caret-position="915">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="66" column="38" lean-forward="true" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3347#3348#0" expanded="true" />
-            <element signature="e#3410#3411#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1618,11 +1124,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="16" column="68" lean-forward="true" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
-          <folding>
-            <element signature="e#1546#1547#0" expanded="true" />
-            <element signature="e#1586#1587#0" expanded="true" />
-          </folding>
+          <caret line="16" column="68" lean-forward="false" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
         </state>
       </provider>
     </entry>
@@ -1636,25 +1138,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/UserLoginRote.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="43" column="109" lean-forward="true" selection-start-line="43" selection-start-column="109" selection-end-line="43" selection-end-column="109" />
-          <folding />
+        <state relative-caret-position="330">
+          <caret line="43" column="109" lean-forward="false" selection-start-line="43" selection-start-column="109" selection-end-line="43" selection-end-column="109" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/ApiKey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
+        <state relative-caret-position="75">
           <caret line="11" column="72" lean-forward="false" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/user/UpdateUserRoute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="360">
           <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
           <folding>
             <element signature="e#1358#1359#0" expanded="true" />
@@ -1665,7 +1163,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/insertionPoints/subqueries/AggregateSubQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
+        <state relative-caret-position="330">
           <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding />
         </state>
@@ -1683,6 +1181,98 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/AllMediaRoute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/CreateMediaRoute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/DeleteMediaRoute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/UpdateMediaRoute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/routes/mediaItem/GetMediaItemRoute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/MediaItemRating.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="80" lean-forward="false" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/MediaItemRatingDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="26" column="89" lean-forward="false" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/dao/entity/ProviderRating.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ro/infoiasi/sparql/dao/ProviderRatingDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="31" column="96" lean-forward="false" selection-start-line="31" selection-start-column="96" selection-end-line="31" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../services/inserter/plugins/categories_extractor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

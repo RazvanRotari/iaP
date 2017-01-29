@@ -6,6 +6,7 @@ import sys
 import re
 import pprint
 import sys
+import datetime
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
@@ -15,113 +16,13 @@ def eprint(*args, **kwargs):
 DEFAULT_URI = "http://razvanrotari.me/terms/"
 DEFAULT_URI_PREFIX = "rr"
 
-FUNCTION_TEMPLATE = """
-import json
-
-class ModelEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, Model):
-            return {"data": obj.data, "URI": obj.URI, "class": obj.__class__.__name__}
-            
-        # Let the base class default method raise the TypeError
-        return json.JSONEncoder.default(self, obj)
-
-def create_insert(object_list):
-    prefix_text = ""
-    insert = "INSERT DATA {\\n"
-    for obj in object_list:
-        d = obj.create_partial_insert()
-        insert += d[0]
-        prefix_text += d[1]
-        
-    insert += "\\n}"
-    insert = prefix_text  + insert
-    return insert 
-
-
-class Model:
-    def to_json(self):
-        return json.dumps(self, cls=ModelEncoder)
-
-    @staticmethod
-    def from_json(input):
-        model = json.loads(input)
-        return Model.from_dict(model)
-
-    @staticmethod
-    def from_dict(model):
-        cls = globals()[model["class"]]
-        obj = cls(model["URI"])
-        obj.data = model["data"]
-        #recreate inner objects
-        for prop in obj.data.items():
-            val = prop[1]
-            if "ref" in val and val["ref"] and val["value"]:
-                #We have a valid inner object. Let's go recursive
-                inner_obj = Model.from_dict(val["value"])
-                setattr(obj, prop[0], inner_obj)
-        return obj
-
-    def __getattribute__(self,name):
-        data = object.__getattribute__(self, "data")
-        if name == "data":
-            return data
-        if name not in data:
-            return object.__getattribute__(self, name)
-        return data[name]["value"]
-
-    def __setattr__(self, name, value):
-        if name in ["data", "URI"]:
-            object.__setattr__(self, name, value)
-            return
-        data = object.__getattribute__(self, "data")
-        if name not in data:
-            raise NameError(name)
-        data[name]["value"] = value
-
-    def __dir__(self):
-        return super().__dir__() + [str(x) for x in self.data.keys()]
-
-    def create_partial_insert(self):
-        child_prefix = []
-        child_objects = []
-        insert = "<{URI}> ".format(URI=self.URI)
-        prefix_set = {}
-        for prop in self.data.items():
-            if "ref" in prop[1] and prop[1]["ref"]:
-                if prop[1]["value"]:
-                    value = prop[1]["value"].URI
-                    (tmp_insert, tmp_prefix) = prop[1]["value"].create_partial_insert()
-                    child_prefix.extend(tmp_prefix)
-                    child_objects.append(tmp_insert)
-                else:
-                    value = None
-            else:
-                value = prop[1]["value"]
-            if value is None:
-                continue
-            line = "{link} \\"{value}\\" ;".format(link=prop[1]["link"][2] + ":" + prop[1]["link"][1], value=value)
-            prefix_list = prop[1]["link"]
-            prefix = prop[1]["link"][2]
-            prefix_set[prefix] = prefix_list[0]
-            insert += line
-        prefix = ""
-        for p in prefix_set.items():
-            prefix += "PREFIX {prefix}: <{base_url}>\\n".format(prefix=p[0], base_url=p[1])
-        for p in child_prefix:
-            prefix += p
-        insert = insert[::-1].replace(";", ".", 1)[::-1]
-        for insert_obj in child_objects:
-            insert += insert_obj
-        return (insert, prefix)
-
-"""
 
 INIT_TEMPLATE = """
 class {class_name}(Model):
     def __init__(self, URI):
         self.URI = URI
         self.data = {data_struct}
+base_model.{class_name} = {class_name}
 """
 #example
 """
@@ -129,9 +30,43 @@ class Object
     def __init__(self, URI):
         self.data = {"prop": {
             "link":["http://razvanrotari.me/terms/","prop", "rr"},
-            "value":None}
+            "value":None,
+            "type":Datetime}
         self.URI = URI
 """
+
+
+def parse_type(attr):
+    """
+    We need to pass all attr to identify the type. 
+    There is a big mismatch between sparql and swagger
+    Returs a class of a type
+    """
+    print(attr)
+    if "$ref" in attr:
+        ref = attr["$ref"].split("/")[-1]
+        return attr["$ref"].split("/")[-1]
+    if "type" not in attr:
+        return "str"
+
+    ty = attr["type"]
+    format = None
+    if "format" in attr:
+        format = attr["format"]
+    if ty == "boolean":
+        return "bool"
+    if ty == "number":
+        if format:
+            if "int" == format:
+                return "int"
+            if "float" == format:
+                return "float"
+        return "int"
+    if ty == "string":
+        if "date" == format:
+            return "datetime"
+        return "str"
+    return "str"
 
 def create_class(definition):
     class_name = definition[0]
@@ -158,7 +93,7 @@ def create_class(definition):
         if "$ref" in attr:
             ref = attr["$ref"].split("/")[-1]
             depend.append(attr["$ref"].split("/")[-1])
-        data_dict[name] = {"link": link, "value": None, "ref": ref}
+        data_dict[name] = {"link": link, "value": None, "ref": ref, "type":parse_type(attr)}
         pp = pprint.PrettyPrinter(indent=4)
     text = INIT_TEMPLATE.format(class_name=class_name, data_struct=pp.pformat(data_dict))
     # text += "\n" + BODY_TEMPLATE 
@@ -169,6 +104,10 @@ def create_class(definition):
 
 
 
+FUNCTION_TEMPLATE = """import base_model
+from base_model import Model
+create_insert = base_model.create_insert
+"""
 def main():
     if len(sys.argv) < 2:
         print("Usage: create_god.py <swagger_file>")

@@ -22,9 +22,9 @@ public class MediaItemRatingDAO extends GenericDAO<MediaItemRating> {
         MediaItemRating rating = new MediaItemRating();
         rating.setScore(solution.getLiteral("score").getDouble());
         String id = solution.getLiteral("userId").getString();
-        rating.setUser(userDAO.find(new SingleFilter(new Equals(User.class, UserMetaModel.ID_VALUE, Transformer.STR), id)));
+        rating.setUser(userDAO.find(new SingleFilter(new Equals(User.class, "resourceId", Transformer.STR), id)));
         String mid = solution.getLiteral("itemId").getString();
-        rating.setItem(mediaDao.find(new SingleFilter(new Equals(User.class, UserMetaModel.ID_VALUE, Transformer.STR), mid)));
+        rating.setItem(mediaDao.find(new SingleFilter(new Equals(User.class, "resourceId", Transformer.STR), mid)));
         rating.setId(solution.getLiteral("uid").getLong());
         return rating;
     }
