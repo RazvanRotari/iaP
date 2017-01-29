@@ -79,6 +79,7 @@ paths:
                 type: string
               date:
                 type: string
+                format: date-time
               externalURL:
                 type: string
               authorRating:
@@ -579,6 +580,7 @@ definitions:
         type: string
       date:
         type: string
+        format: date-time
       externalURL:
         type: string
       authorRating:
@@ -609,6 +611,7 @@ definitions:
         type: string
       date:
         type: string
+        format: date-time
       externalURL:
         type: string
       authorRating:

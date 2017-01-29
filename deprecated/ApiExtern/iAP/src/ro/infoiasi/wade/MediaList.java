@@ -1,7 +1,10 @@
 package ro.infoiasi.wade;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -132,6 +135,32 @@ public class MediaList {
 				} else if(s.getType().toLowerCase().equals("ls")) {
 					for(Media m:allMedia) {
 						if(m.getMediaRating()<Integer.valueOf(s.getValue())) {
+							responses.add(m);
+						}
+					}
+				}
+			}
+			if(s.getField().toLowerCase().equals("date")) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
+				LocalDate dateToBeSearched = LocalDate.parse(s.getValue(), formatter);
+				if(s.getType().toLowerCase().equals("eq")) {
+					for(Media m:allMedia) {
+						LocalDate dateToBeCompared = LocalDate.parse(m.getDate(), formatter);
+						if(dateToBeSearched==dateToBeCompared) {
+							responses.add(m);
+						}
+					}
+				} else if(s.getType().toLowerCase().equals("gr")) {
+					for(Media m:allMedia) {
+						LocalDate dateToBeCompared = LocalDate.parse(m.getDate(), formatter);
+						if(dateToBeSearched.isAfter(dateToBeCompared)) {
+							responses.add(m);
+						}
+					}
+				} else if(s.getType().toLowerCase().equals("ls")) {
+					for(Media m:allMedia) {
+						LocalDate dateToBeCompared = LocalDate.parse(m.getDate(), formatter);
+						if(dateToBeSearched.isBefore(dateToBeCompared)) {
 							responses.add(m);
 						}
 					}
