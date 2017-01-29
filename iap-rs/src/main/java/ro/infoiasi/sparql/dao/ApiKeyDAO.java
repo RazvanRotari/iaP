@@ -8,13 +8,17 @@ import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
 import ro.infoiasi.sparql.insertionPoints.transformer.IdentityTransformer;
 import ro.infoiasi.sparql.insertionPoints.transformer.PropertyTransformer;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 public class ApiKeyDAO extends GenericDAO<ApiKey>{
-    private UserDAO userDAO = new UserDAO();
+    public static final String MEMBER_ID = "memberId";
+    public static final String EXPIRES_AT = "expiresAt";
+    public static final String KEY_VALUE = "keyValue";
+    private static final List<String> mappedItems = new ArrayList<>(
+            Arrays.asList(MEMBER_ID, EXPIRES_AT, KEY_VALUE));
 
+
+    private UserDAO userDAO = new UserDAO();
     public ApiKeyDAO() {
         super(ApiKey.class);
     }
@@ -22,11 +26,16 @@ public class ApiKeyDAO extends GenericDAO<ApiKey>{
     @Override
     protected ApiKey toEntity(QuerySolution solution) throws Exception {
         ApiKey apiKey = new ApiKey();
-        String id = solution.getLiteral("memberId").getString();
+        String id = solution.getLiteral(MEMBER_ID).getString();
         apiKey.setUser(userDAO.find(new SingleFilter(new Equals(User.class, "id", IdentityTransformer.STR), id)));
-        apiKey.setExpires(solution.getLiteral("expiresAt").getLong());
-        apiKey.setKey(solution.getLiteral("keyValue").getString());
+        apiKey.setExpires(solution.getLiteral(EXPIRES_AT).getLong());
+        apiKey.setKey(solution.getLiteral(KEY_VALUE).getString());
         return apiKey;
+    }
+
+    @Override
+    public List<String> getMappedItems() {
+        return mappedItems;
     }
 
     public ApiKey findByUser(User user) throws Exception {

@@ -27,6 +27,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     protected static final boolean DEBUG = true;
 
     protected final Class<T> clazz;
+    private String mappedItems;
 
     public GenericDAO(Class<T> clazz) {
         this.clazz = clazz;
@@ -55,9 +56,21 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, findQuery).execSelect();
         if (resultSet.hasNext()) {
             QuerySolution solution = resultSet.next();
-            return toEntity(solution);
+            T entity = toEntity(solution);
+            if (addExtraProperties(solution, entity)) return entity;
         }
         throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + Arrays.toString(queryInsertionPoints));
+    }
+
+    private boolean addExtraProperties(QuerySolution solution, T entity) {
+        for (Iterator<String> it = solution.varNames(); it.hasNext(); ) {
+            String varname = it.next();
+            if (!getMappedItems().contains(varname)) {
+                entity.put(varname, solution.getLiteral(varname).getString());
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -220,4 +233,6 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         stringBuilder.append("}");
         return stringBuilder.toString();
     }
+
+    public abstract List<String> getMappedItems();
 }
