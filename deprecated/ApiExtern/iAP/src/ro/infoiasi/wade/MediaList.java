@@ -95,27 +95,48 @@ public class MediaList {
 					}
 				}
 			}
-			if(s.getField().toLowerCase().equals("rating")) {
+			if(s.getField().toLowerCase().equals("authorRating")) {
 				if(s.getType().toLowerCase().equals("eq")) {
 					for(Media m:allMedia) {
-						if(m.getRating()==Integer.valueOf(s.getValue())) {
+						if(m.getAuthorRating()==Integer.valueOf(s.getValue())) {
 							responses.add(m);
 						}
 					}
 				} else if(s.getType().toLowerCase().equals("gr")) {
 					for(Media m:allMedia) {
-						if(m.getRating()>Integer.valueOf(s.getValue())) {
+						if(m.getAuthorRating()>Integer.valueOf(s.getValue())) {
 							responses.add(m);
 						}
 					}
 				} else if(s.getType().toLowerCase().equals("ls")) {
 					for(Media m:allMedia) {
-						if(m.getRating()<Integer.valueOf(s.getValue())) {
+						if(m.getAuthorRating()<Integer.valueOf(s.getValue())) {
 							responses.add(m);
 						}
 					}
 				}
-			}		
+			}
+			if(s.getField().toLowerCase().equals("mediaRating")) {
+				if(s.getType().toLowerCase().equals("eq")) {
+					for(Media m:allMedia) {
+						if(m.getMediaRating()==Integer.valueOf(s.getValue())) {
+							responses.add(m);
+						}
+					}
+				} else if(s.getType().toLowerCase().equals("gr")) {
+					for(Media m:allMedia) {
+						if(m.getMediaRating()>Integer.valueOf(s.getValue())) {
+							responses.add(m);
+						}
+					}
+				} else if(s.getType().toLowerCase().equals("ls")) {
+					for(Media m:allMedia) {
+						if(m.getMediaRating()<Integer.valueOf(s.getValue())) {
+							responses.add(m);
+						}
+					}
+				}
+			}
 		}
 	}
 	

@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,16 +17,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/search")
+@Path("/api/v1/search")
 public class SearchService {
 	
 	public SearchDao queries = new SearchDao();
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Search> getUsers() {
-		return queries.getAllQueries();
-	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -57,7 +50,6 @@ public class SearchService {
 			}
 			response = new MediaList(queries);
 			response.search();
-			System.out.println(response.getResponses());
 			
 		} catch (JsonParseException e) {
 			ApiError error = new ApiError(400, "Bad argument");
@@ -69,6 +61,6 @@ public class SearchService {
 			ApiError error = new ApiError(400, "IOException");
 			return Response.status(400).entity(error).build();
 		}
-		return Response.status(201).entity(response.toString()).build();
+		return Response.status(200).entity(response.toString()).build();
 	}
 }

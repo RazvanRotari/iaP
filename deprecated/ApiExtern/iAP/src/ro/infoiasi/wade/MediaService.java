@@ -20,7 +20,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/media")
+@Path("/api/v1/media")
 public class MediaService {
 
 	static MediaDao mediaDao = new MediaDao();
@@ -82,9 +82,6 @@ public class MediaService {
 		}
 		if (media.getExternalURL() == null) {
 			return Response.status(400).entity("Please provide externalURL!!").build();
-		}
-		if (Integer.valueOf(media.getRating()).equals(0)) {
-			media.setRating(0);
 		}
 		
 		if (!isMediaTitleUnique(media.getTitle())) {

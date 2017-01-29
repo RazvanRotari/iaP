@@ -22,14 +22,16 @@ public class Media {
 	private String date;
 	@JsonProperty(value = "externalURL")
 	private String externalURL;
-	@JsonProperty(value = "rating")
-	private int rating;
+	@JsonProperty(value = "authorRating")
+	private int authorRating;
+	@JsonProperty(value = "mediaRating")
+	private int mediaRating;
 	
 	public Media() {
 		
 	}
 	
-	public Media(int id, Category categ, String title, String language, String description, String url, String date, String externalURL, int rating) {
+	public Media(int id, Category categ, String title, String language, String description, String url, String date, String externalURL, int authorRating, int mediaRating) {
 		this.id=id;
 		this.category=categ;
 		this.title=title;
@@ -38,7 +40,8 @@ public class Media {
 		this.url=url;
 		this.date=date;
 		this.externalURL=externalURL;
-		this.rating=rating;
+		this.authorRating=authorRating;
+		this.mediaRating=mediaRating;
 	}
 	
 	public int getId() {
@@ -105,12 +108,20 @@ public class Media {
 		this.externalURL = externalURL;
 	}
 	
-	public int getRating() {
-		return rating;
+	public int getAuthorRating() {
+		return authorRating;
 	}
 	
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setAuthorRating(int rating) {
+		this.authorRating = rating;
+	}
+	
+	public int getMediaRating() {
+		return mediaRating;
+	}
+	
+	public void setMediaRating(int mediaRating) {
+		this.mediaRating = mediaRating;
 	}
 	
 	@Override
@@ -123,6 +134,7 @@ public class Media {
     		+"\", \"language\": \""+getLanguage()
     		+"\", \"date\": \""+getDate()
     		+"\", \"externalURL\": \""+getExternalURL()
-    		+"\", \"rating\": \""+getRating()+"\"}";
+    		+"\", \"authorRating\": \""+getAuthorRating()
+    		+"\", \"mediaRating\":\""+getMediaRating()+"\"}";
     }
 }
