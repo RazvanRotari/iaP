@@ -1,10 +1,10 @@
-package ro.infoiasi.sparql.insertionPoints.predicate;
+package ro.infoiasi.sparql.insertionPoints.transformer;
 
 
 import ro.infoiasi.sparql.insertionPoints.function.PropertyFunction;
 
 public enum PropertyTransformer implements PropertyFunction {
-    STR("str");
+    STR("str"), NONE("");
 
     private final String fn;
 

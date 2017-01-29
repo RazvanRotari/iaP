@@ -1,16 +1,11 @@
 package ro.infoiasi.sparql.dao;
 
 import org.apache.jena.query.QuerySolution;
-import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.MediaItemRating;
-import ro.infoiasi.dao.entity.ProviderRating;
 import ro.infoiasi.dao.entity.User;
-import ro.infoiasi.sparql.insertionPoints.QueryInsertionPoint;
 import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
 import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.predicate.IdentityTransformer;
-
-import java.util.List;
+import ro.infoiasi.sparql.insertionPoints.transformer.IdentityTransformer;
 
 public class MediaItemRatingDAO extends GenericDAO<MediaItemRating> {
     private UserDAO userDAO = new UserDAO();

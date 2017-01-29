@@ -5,8 +5,8 @@ import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.dao.entity.ApiKey;
 import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
 import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.predicate.IdentityTransformer;
-import ro.infoiasi.sparql.insertionPoints.predicate.PropertyTransformer;
+import ro.infoiasi.sparql.insertionPoints.transformer.IdentityTransformer;
+import ro.infoiasi.sparql.insertionPoints.transformer.PropertyTransformer;
 
 import java.util.Calendar;
 import java.util.Date;

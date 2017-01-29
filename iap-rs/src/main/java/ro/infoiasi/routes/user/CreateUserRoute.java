@@ -1,10 +1,9 @@
 package ro.infoiasi.routes.user;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ro.infoiasi.routes.RequestBodyParser;
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.model.user.UserModel;
@@ -20,11 +19,11 @@ import static spark.Spark.halt;
 public class CreateUserRoute implements Route {
     private UserDAO userDAO = new UserDAO();
     private static final Logger logger = LoggerFactory.getLogger(UserLoginRote.class);
-    private Gson gson = new Gson();
+
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
-        UserModel uModel= getUserDetails(request.body());
+        UserModel uModel= new RequestBodyParser().parse(request.body(), UserModel.class);
         if(uModel== null) {
             halt(HttpStatus.SC_BAD_REQUEST, "Invalid body");
             return null;
@@ -35,7 +34,7 @@ public class CreateUserRoute implements Route {
             return null;
         }
         userDAO.create(user);
-        return 201;
+        return HttpStatus.SC_CREATED;
     }
 
     private User toUser(UserModel userModel) {
@@ -48,23 +47,14 @@ public class CreateUserRoute implements Route {
             user.setId(userDAO.getNextId());
             return user;
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private UserModel getUserDetails(String requestBody) {
-        try {
-            return gson.fromJson(requestBody, UserModel.class);
-        }catch (JsonSyntaxException jse) {
-            logger.error("Could not parse credentials", jse);
             return null;
         }
     }
 
+
+
     private String hash(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = null;
-        md = MessageDigest.getInstance("SHA-1");
+        MessageDigest md = MessageDigest.getInstance("SHA-1");
         return new String(md.digest(password.getBytes()));
     }
 }

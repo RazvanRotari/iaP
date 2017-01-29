@@ -1,4 +1,4 @@
-package ro.infoiasi.sparql.insertionPoints.predicate;
+package ro.infoiasi.sparql.insertionPoints.transformer;
 
 
 import ro.infoiasi.sparql.insertionPoints.function.PropertyFunction;

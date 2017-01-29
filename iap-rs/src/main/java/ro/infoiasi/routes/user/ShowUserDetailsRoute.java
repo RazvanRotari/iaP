@@ -4,7 +4,7 @@ import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
 import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.predicate.PropertyTransformer;
+import ro.infoiasi.sparql.insertionPoints.transformer.PropertyTransformer;
 import spark.Request;
 import spark.Response;
 import spark.Route;

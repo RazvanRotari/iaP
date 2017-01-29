@@ -5,8 +5,7 @@ import ro.infoiasi.dao.entity.ProviderRating;
 import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
 import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.predicate.IdentityTransformer;
-import ro.infoiasi.sparql.insertionPoints.predicate.PropertyTransformer;
+import ro.infoiasi.sparql.insertionPoints.transformer.IdentityTransformer;
 
 public class ProviderRatingDAO extends GenericDAO<ProviderRating>{
     private UserDAO userDAO = new UserDAO();

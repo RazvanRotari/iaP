@@ -1,7 +1,6 @@
 package ro.infoiasi.sparql.insertionPoints.function;
 
-import ro.infoiasi.sparql.insertionPoints.predicate.Transformer;
-import ro.infoiasi.sparql.prefixes.annotations.OneToOne;
+import ro.infoiasi.sparql.insertionPoints.transformer.Transformer;
 import ro.infoiasi.sparql.prefixes.annotations.Property;
 
 import java.lang.reflect.Field;

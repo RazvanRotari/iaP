@@ -2,15 +2,15 @@ package ro.infoiasi.sparql.insertionPoints.predicate;
 
 import ro.infoiasi.sparql.insertionPoints.transformer.Transformer;
 
-public class Equals extends Predicate {
+public class GreaterThan extends Predicate {
 
-    public Equals(Class clazz, String variable, Transformer propertyTransformer) {
+    public GreaterThan(Class clazz, String variable, Transformer propertyTransformer) {
         super(clazz, variable, propertyTransformer);
     }
 
     @Override
     public String construct(String value) {
-        return propertyTransformer.transform(clazz, variable) + " = " + quote(value);
+        return propertyTransformer.transform(clazz, variable) + " > " + quote(value);
     }
 
     private String quote(String value) {
@@ -28,8 +28,8 @@ public class Equals extends Predicate {
     public static class Builder extends Predicate.Builder {
 
         @Override
-        public Equals build() {
-            return new Equals(clazz, variable, propertyTransformer);
+        public GreaterThan build() {
+            return new GreaterThan(clazz, variable, propertyTransformer);
         }
     }
 }
