@@ -1,4 +1,4 @@
-package ro.infoiasi.routes.media;
+package ro.infoiasi.routes.mediaItem;
 
 import spark.Request;
 import spark.Response;

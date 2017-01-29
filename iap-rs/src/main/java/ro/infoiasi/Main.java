@@ -6,7 +6,6 @@ import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import org.apache.jena.base.Sys;
 import ro.infoiasi.engine.InterMod;
 import ro.infoiasi.engine.SearchEngine;
 import ro.infoiasi.model.search.SearchQuery;
@@ -14,12 +13,10 @@ import ro.infoiasi.routes.author.*;
 import ro.infoiasi.routes.categories.CategoriesResponseHandler;
 import ro.infoiasi.routes.categories.CategoryCreatorRoute;
 import ro.infoiasi.routes.categories.DeleteCategoryRoute;
-import ro.infoiasi.routes.media.*;
+import ro.infoiasi.routes.mediaItem.*;
 import ro.infoiasi.routes.search.SearchRoute;
 import ro.infoiasi.routes.user.*;
-import ro.infoiasi.sparql.dao.MediaItemDAO;
 import ro.infoiasi.util.JsonTransformer;
-import ro.infoiasi.views.SearchResult;
 import spark.Route;
 
 import java.util.Arrays;
