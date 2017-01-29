@@ -1,20 +1,27 @@
 package ro.infoiasi.sparql.dao;
 
+import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.EMAIL_VALUE;
+import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.HASH_VALUE;
+import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.ID_VALUE;
+import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.NAME_VALUE;
+import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.USERNAME_VALUE;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Literal;
-import org.apache.jena.shared.NotFoundException;
+
 import ro.infoiasi.dao.entity.User;
-import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.*;
 import ro.infoiasi.sparql.insertionPoints.subqueries.AggregatePropertyFunction;
 import ro.infoiasi.sparql.insertionPoints.subqueries.AggregateSubQuery;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class UserDAO extends GenericDAO<User> {
+	
+	public List<User> userList = new ArrayList<User>();
+	
     public UserDAO() {
         super(User.class);
     }
@@ -51,4 +58,43 @@ public class UserDAO extends GenericDAO<User> {
         }
         return literal.getLong();
     }
+    
+    public List<User> getAllUsers() {
+		return userList;
+	}
+    
+    public User getUser(int i) {
+		for (User u : userList) {
+			if (u.getId() == i) {
+				return u;
+			}
+		}
+		return null;
+	}
+
+    public int updateUser(User pUser) {
+		List<User> userList = getAllUsers();
+		for (User user : userList) {
+			if (user.getUserName().equals(pUser.getUserName())) {
+				int index = userList.indexOf(user);
+				userList.set(index, pUser);
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	public int deleteUser(String username) {
+		List<User> userList = getAllUsers();
+
+		for (User user : userList) {
+			if (user.getUserName().equals(username)) {
+				int index = userList.indexOf(user);
+				userList.remove(index);
+				return 1;
+			}
+		}
+		return 0;
+	}
+
 }

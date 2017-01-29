@@ -23,13 +23,13 @@ import java.util.Date;
 
 import static spark.Spark.halt;
 
-public class UserLoginRote implements Route {
-    private static final Logger logger = LoggerFactory.getLogger(UserLoginRote.class);
+public class UserLoginRoute implements Route {
+    private static final Logger logger = LoggerFactory.getLogger(UserLoginRoute.class);
     private Gson gson = new Gson();
     private UserDAO userDAO;
     private ApiKeyDAO apiKeyDAO;
 
-    public UserLoginRote() {
+    public UserLoginRoute() {
         userDAO = new UserDAO();
         apiKeyDAO = new ApiKeyDAO();
     }

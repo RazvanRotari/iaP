@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.Entity;
-import ro.infoiasi.routes.user.UserLoginRote;
+import ro.infoiasi.routes.user.UserLoginRoute;
 import ro.infoiasi.sparql.insertionPoints.*;
 import ro.infoiasi.sparql.insertionPoints.Optional;
 import ro.infoiasi.sparql.insertionPoints.subqueries.SubQuery;

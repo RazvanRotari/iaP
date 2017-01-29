@@ -1,29 +1,25 @@
 package ro.infoiasi.routes.user;
 
-import org.apache.commons.codec.binary.Hex;
+import static spark.Spark.halt;
+
+import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.CharSet;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ro.infoiasi.routes.RequestBodyParser;
-import ro.infoiasi.sparql.dao.UserDAO;
+
 import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.model.user.UserModel;
+import ro.infoiasi.routes.RequestBodyParser;
+import ro.infoiasi.sparql.dao.UserDAO;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import static spark.Spark.halt;
-
 public class CreateUserRoute implements Route {
     private UserDAO userDAO = new UserDAO();
-    private static final Logger logger = LoggerFactory.getLogger(UserLoginRote.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserLoginRoute.class);
 
 
     @Override
@@ -39,15 +35,39 @@ public class CreateUserRoute implements Route {
                 halt(HttpStatus.SC_NOT_IMPLEMENTED, "Problems with creating the user");
                 return null;
             }
+            if (user.getUserName() == null) {
+    			halt(HttpStatus.SC_BAD_REQUEST,"Please provide username!!");
+    			return null;
+    		}
+    		if (user.getPassword() == null) {
+    			halt(HttpStatus.SC_BAD_REQUEST,"Please provide password!!");
+    			return null;
+    		}
+    		if (!isUsernameUnique(user.getUserName())) {
+    			halt(HttpStatus.SC_CONFLICT, "Account already exists");
+    			return null;
+    		}
             userDAO.create(user);
         } catch (Exception ex) {
             logger.error("Could not create user", ex);
         }
         return HttpStatus.SC_CREATED;
     }
+    
+    private boolean isUsernameUnique(String username) {
+		for (User u : userDAO.userList) {
+			if (u.getUserName().equals(username))
+				return false;
+		}
+		return true;
+	}
 
     private User toUser(UserModel userModel) throws Exception {
         try {
+        	if(userModel.getId()!=0) {
+        		halt(HttpStatus.SC_BAD_REQUEST, "Id should not be in the request body!");
+        		return null;
+        	}
             User user = new User();
             user.setName(userModel.getName());
             user.setUserName(userModel.getUsername());

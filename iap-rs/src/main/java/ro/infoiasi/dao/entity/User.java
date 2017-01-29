@@ -6,8 +6,6 @@ import ro.infoiasi.sparql.prefixes.fields.FOAF_Fields;
 import ro.infoiasi.sparql.prefixes.annotations.Property;
 import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 
-import java.util.List;
-
 import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.*;
 import static ro.infoiasi.sparql.prefixes.Prefix.FOAF;
 import static ro.infoiasi.sparql.prefixes.Prefix.RR;

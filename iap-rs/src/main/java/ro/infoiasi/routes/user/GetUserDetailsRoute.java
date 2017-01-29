@@ -10,7 +10,7 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class ShowUserDetailsRoute implements Route{
+public class GetUserDetailsRoute implements Route{
     private UserDAO userDAO = new UserDAO();
 
     @Override

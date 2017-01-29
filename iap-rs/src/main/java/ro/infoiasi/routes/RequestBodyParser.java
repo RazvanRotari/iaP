@@ -4,13 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ro.infoiasi.routes.user.UserLoginRote;
+import ro.infoiasi.routes.user.UserLoginRoute;
 
 import java.lang.reflect.Type;
 
 public class RequestBodyParser {
     private Gson gson = new Gson();
-    private static final Logger logger = LoggerFactory.getLogger(UserLoginRote.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserLoginRoute.class);
 
     public<T> T parse(String requestBody, Class<T> clazz) {
         try {

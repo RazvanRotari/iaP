@@ -6,4 +6,5 @@ public class FOAF_Fields {
     public static final String NAME = "name";
     public static final String SHA_1 ="sha1";
     public static final String ONLINE_ACCOUNT = "OnlineAccount";
+    
 }

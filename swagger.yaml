@@ -15,7 +15,8 @@ paths:
       tags:
         - search
       summary: Filter for medias
-      description: You can search through the list of medias using this endpoint. You will have to make a post request with an array of querry objects. These query objects contain the name of the field from media object, the type of query (EQ = equal, LS = less, GR = greater) and the value. 
+      description: You can search through the list of medias using this endpoint. You will have to make a post request with an array of querry objects. These query objects contain the name of the field from media object, the type of query (EQ = equal, LS = less, GR = greater) and the value.
+        The format for date is "MMMM d, yyyy".
       operationId: search
       produces:
         - application/json
@@ -55,7 +56,7 @@ paths:
       tags:
         - media
       summary: Create media
-      description: Create a media.
+      description: Create a media. (The format for date is "MMMM d, yyyy".)
       operationId: createMedia
       produces:
         - application/json
@@ -125,7 +126,7 @@ paths:
       tags:
         - media
       summary: Update media
-      description: Update a media object.
+      description: Update a media object. (The format for date is "MMMM d, yyyy".)
       operationId: updateMedia
       produces:
         - application/json
