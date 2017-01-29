@@ -1,7 +1,0 @@
-user id:            http://xmlns.com/foaf/spec/#term_openid (e.g. http://www.ourawesoeapp.com/user/1296/ && 1296)
-mark it as an user: http://xmlns.com/foaf/spec/#term_Account
-user-name:          http://xmlns.com/foaf/spec/#term_accountName
-name:               http://xmlns.com/foaf/spec/#term_name
-password:           http://xmlns.com/foaf/spec/#term_sha1
-
-third party apps users: http://xmlns.com/foaf/spec/#term_OnlineAccount (https://imgur.com/r/nasa)

@@ -21,7 +21,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/users")
+@Path("/api/v1/users")
 public class UserService {
 
 	static UserDao userDao = new UserDao();

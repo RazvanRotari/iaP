@@ -20,7 +20,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/categories")
+@Path("/api/v1/categories")
 public class CategoryService {
 
 	static CategoryDao catDao = new CategoryDao();

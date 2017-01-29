@@ -1,26 +1,28 @@
 package ro.infoiasi.dao.entity;
 
 
+import ro.infoiasi.sparql.prefixes.fields.DC_Fields;
 import ro.infoiasi.sparql.prefixes.Prefix;
-import ro.infoiasi.sparql.prefixes.Property;
-import ro.infoiasi.sparql.prefixes.RR_Fields;
+import ro.infoiasi.sparql.prefixes.annotations.Property;
+import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 
 
 
-public class MediaItem implements Entity {
+public class MediaItem extends Entity {
+
+    public static final String CLASS_TYPE = "class";
+    public static final String ITEM_DESCRIPTION = "description";
+    public static final String ITEM_TIMESTAMP = "timestamp";
+    public static final String ITEM_TITLE = "title";
 
     private String url;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "url", variableName = "urlValue")
+    @Property(prefix = Prefix.DC, field = DC_Fields.TITLE, variableName = "title")
     private String title;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "title", variableName = "itemTitle")
-    private String author;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "provider", variableName = "providerName")
-    private String provider;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "description", variableName = "itemDescription")
+    @Property(prefix = Prefix.DC, field = DC_Fields.DESCRIPTION, variableName = "description")
     private String description;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "timestamp", variableName = "timestampValue")
+    @Property(prefix = Prefix.DC, field = DC_Fields.CREATED, variableName = "timestamp")
     private long timestamp;
-    @Property(prefix = Prefix.RR, field = RR_Fields.empty, variable = "class", variableName = "classType")
+    @Property(prefix = Prefix.RR, field = RR_Fields.CLASS_NAME, variableName = "class")
     private String className;
 
     @Override
@@ -47,22 +49,6 @@ public class MediaItem implements Entity {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -85,5 +71,17 @@ public class MediaItem implements Entity {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    @Override
+    public String toString() {
+        return "MediaItem{" +
+                "url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", timestamp=" + timestamp +
+                ", className='" + className + '\'' +
+                ", extraProperties ='" + extraProperties + '\'' +
+                '}';
     }
 }

@@ -2,16 +2,16 @@ package ro.infoiasi.sparql.insertionPoints.filter;
 
 public class FilterChain implements Filter{
 
-    private final FilterChain filterChain;
-    private final SingleFilter filter;
+    private final Filter filterChain;
+    private final Filter filter;
 
-    public FilterChain(SingleFilter thisFilter, FilterChain chain) {
+    public FilterChain(Filter thisFilter, Filter chain) {
         this.filter = thisFilter;
         this.filterChain = chain;
     }
 
     @Override
-    public String construct() {
+    public String construct() throws Exception {
         return filter.construct() + ".\r\n" + filterChain.construct();
     }
 

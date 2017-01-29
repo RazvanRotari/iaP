@@ -67,6 +67,9 @@ definitions:
   AudioItem:
     type: object
     properties:
+      id:
+        type: integer
+        description: An unique identifier
       URI:
         type: string  
       provider:
@@ -110,6 +113,9 @@ definitions:
   NewsItem:
     type: object
     properties:
+      id:
+        type: integer
+        description: An unique identifier
       provenance:
         type: string
         description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
@@ -138,6 +144,9 @@ definitions:
   ImageItem:
     type: object
     properties:
+      id:
+        type: integer
+        description: An unique identifier
       external_id:
         type: string
         description: The ID for the image

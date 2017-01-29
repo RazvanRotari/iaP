@@ -3,14 +3,18 @@ package ro.infoiasi.sparql.dao;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.shared.NotFoundException;
 import ro.infoiasi.dao.entity.User;
 import static ro.infoiasi.dao.entity.metamodel.UserMetaModel.*;
-import ro.infoiasi.sparql.insertionPoints.subqueries.AggregateFunction;
+import ro.infoiasi.sparql.insertionPoints.subqueries.AggregatePropertyFunction;
 import ro.infoiasi.sparql.insertionPoints.subqueries.AggregateSubQuery;
 
-public class UserDAO extends GenericDAO<User> {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+public class UserDAO extends GenericDAO<User> {
     public UserDAO() {
         super(User.class);
     }
@@ -26,17 +30,25 @@ public class UserDAO extends GenericDAO<User> {
         return user;
     }
 
-    public long getNextId() {
+    public long getNextId() throws Exception {
         String mapping = "next";
-        String query = new AggregateSubQuery(clazz, AggregateFunction.MAX, ID, mapping).construct();
+        String query = new AggregateSubQuery(clazz, AggregatePropertyFunction.MAX, ID_VALUE, mapping).construct();
         if (DEBUG) {
-            System.out.println(query);
+            logger.debug(query);
         }
         ResultSet resultSet = QueryExecutionFactory.sparqlService(HTTP_ENDPOINT, query).execSelect();
         if (resultSet.hasNext()) {
             QuerySolution solution = resultSet.next();
-            return solution.get(mapping).asLiteral().getLong() + 1;
+            return getCurrentValue(mapping, solution) + 1;
         }
-        throw new NotFoundException("Could not query for next id");
+        throw new Exception("Could not query for next id");
+    }
+
+    private long getCurrentValue(String mapping, QuerySolution solution) {
+        Literal literal = solution.getLiteral(mapping);
+        if(literal == null) {
+            return 0;
+        }
+        return literal.getLong();
     }
 }
