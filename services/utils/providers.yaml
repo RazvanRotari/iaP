@@ -78,7 +78,7 @@ definitions:
         type: string
       categories:
         type: array
-        description: '[http://purl.org/media#,duration,media]The categories for this image'
+        description: The categories for this image
       description:
         type: string
       duration:
@@ -110,29 +110,25 @@ definitions:
   NewsItem:
     type: object
     properties:
-      provenance:
+      provider:
         type: string
-        description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
+        description: The base url for the provider
       author:
         type: string
-        description: '[http://purl.org/dc/elements/1.1/,provenance,dc]'
       title:
         type: string
-        description: '[http://purl.org/dc/elements/1.1/,title,dc]'
       categories:
         type: array
-        description: '[http://purl.org/media#,duration,media]The categories for this image'
+        description: The categories for this image
       description:
         type: string
-        description: '[http://purl.org/dc/elements/1.1/,description,dc]' 
       url:
         type: string
       image_url:
         type: string
-      timestamp:
+      published_at:
         type: string
         format: date
-        description: '[http://purl.org/dc/elements/1.1/,created,dc]'
   
   #https://api.imgur.com/models/gallery_image
   ImageItem:
@@ -143,16 +139,16 @@ definitions:
         description: The ID for the image
       title:
         type: string
-        description: '[http://purl.org/dc/elements/1.1/,title,dc]'
+        description: The title of the image.
       categories:
         type: array
-        description: '[http://purl.org/media#,duration,media]The categories for this image'
+        description: The categories for this image
       description:
         type: string
-        description: '[http://purl.org/dc/elements/1.1/,description,dc]' 
-      timestamp:
+        description: Description of the image.
+      datetime:
         type: integer
-        description: '[http://purl.org/dc/elements/1.1/,created,dc] Time inserted into the gallery, epoch time'
+        description: Time inserted into the gallery, epoch time
       mime_type:
         type: string
         description: Image MIME type.

@@ -15,9 +15,9 @@ def main():
     for item in data["channel"]["item"]:
         newsItem = model.NewsItem(item["guid"]["#text"])
         newsItem.title = item["title"]
-        newsItem.provider = "http://rss.nytimes.com"
+        newsItem.provenance = "http://rss.nytimes.com"
         newsItem.author = item["dc:creator"]
-        newsItem.published_at = item["pubDate"]
+        newsItem.timestamp = item["pubDate"]
         if "category" in item:
             print("\n\n\n")
             print(item["category"])
