@@ -13,7 +13,7 @@ import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.model.user.Credentials;
 import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
 import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.transformer.PropertyTransformer;
+import ro.infoiasi.sparql.insertionPoints.transformer.Transformer;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -41,7 +41,7 @@ public class UserLoginRote implements Route {
             halt(HttpStatus.SC_BAD_REQUEST, "No credentials found");
             return null;
         }
-        Equals stringEqualsPredicate = new Equals(User.class, UserMetaModel.USERNAME, PropertyTransformer.STR);
+        Equals stringEqualsPredicate = new Equals(User.class, UserMetaModel.USERNAME_VALUE, Transformer.STR);
         User user = userDAO.find(new SingleFilter(stringEqualsPredicate, credentials.getUsername()));
         if(user.getPassword().equals(credentials.getPassword())) {
             ApiKey apiKey = apiKeyDAO.findByUser(user);

@@ -13,6 +13,5 @@ import java.lang.annotation.Target;
 public @interface OneToOne {
     Prefix prefix();
     String field();
-    String variable();
     String variableName();
 }

@@ -7,8 +7,13 @@ public class Optional implements QueryInsertionPoint{
         this.insertionPoint = insertionPoint;
     }
 
+    public QueryInsertionPoint getInsertionPoint() {
+        return insertionPoint;
+    }
+
     public String construct() {
         return "optional { \r\n" +
         insertionPoint.construct() + "\r\n" + "}";
     }
+
 }

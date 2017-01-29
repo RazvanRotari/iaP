@@ -11,8 +11,6 @@ public class ProviderDAO extends GenericDAO<Provider>{
 
     public static final String CREATOR_NAME = "creatorName";
     public static final String PROVIDER_NAME = "providerName";
-    private static final List<String> mappedItems = new ArrayList<>(
-            Arrays.asList(CREATOR_NAME, PROVIDER_NAME));
 
     public ProviderDAO() {
         super(Provider.class);
@@ -24,10 +22,5 @@ public class ProviderDAO extends GenericDAO<Provider>{
         provider.setAuthor(solution.getLiteral(CREATOR_NAME).getString());
         provider.setProvider(solution.getLiteral(PROVIDER_NAME).getString());
         return provider;
-    }
-
-    @Override
-    public List<String> getMappedItems() {
-        return mappedItems;
     }
 }

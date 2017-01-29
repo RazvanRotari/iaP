@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import ro.infoiasi.model.categories.Category;
 
+import java.util.Date;
+
 public class SearchResult {
 
     @SerializedName("id")
@@ -225,5 +227,4 @@ public class SearchResult {
         SearchResult rhs = ((SearchResult) other);
         return new EqualsBuilder().append(id, rhs.id).append(category, rhs.category).append(title, rhs.title).append(language, rhs.language).append(description, rhs.description).append(url, rhs.url).append(date, rhs.date).append(externalURL, rhs.externalURL).append(authorRating, rhs.authorRating).append(mediaRating, rhs.mediaRating).isEquals();
     }
-
 }

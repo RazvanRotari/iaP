@@ -9,7 +9,7 @@ import ro.infoiasi.dao.entity.metamodel.UserMetaModel;
 import ro.infoiasi.sparql.dao.UserDAO;
 import ro.infoiasi.sparql.insertionPoints.filter.SingleFilter;
 import ro.infoiasi.sparql.insertionPoints.predicate.Equals;
-import ro.infoiasi.sparql.insertionPoints.transformer.PropertyTransformer;
+import ro.infoiasi.sparql.insertionPoints.transformer.Transformer;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -25,7 +25,7 @@ public class DeleteUserRoute implements Route {
     @Override
     public Object handle(Request request, Response response) throws Exception {
     	String username = request.params(":username");
-    	 Equals stringEqualsPredicate = new Equals(User.class, UserMetaModel.USERNAME, PropertyTransformer.STR);
+    	 Equals stringEqualsPredicate = new Equals(User.class, UserMetaModel.USERNAME, Transformer.STR);
          User user = userDAO.find(new SingleFilter(stringEqualsPredicate, username));
          if(user.getUserName().equals(username)) {
              userDAO.delete(user);

@@ -9,11 +9,11 @@ import static ro.infoiasi.Main.BASE_URL;
 
 public class Provider extends Entity {
 
-    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable = "id", variableName = "providerID")
+    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variableName = "providerID")
     private long id;
-    @Property(prefix = Prefix.DC, field = DC_Fields.CREATOR, variable = "creator", variableName = "creatorName")
+    @Property(prefix = Prefix.DC, field = DC_Fields.CREATOR, variableName = "creatorName")
     private String author;
-    @Property(prefix = Prefix.DC, field = DC_Fields.PUBLISHER, variable = "provider", variableName = "providerName")
+    @Property(prefix = Prefix.DC, field = DC_Fields.PUBLISHER, variableName = "providerName")
     private String provider;
 
     public Provider() {

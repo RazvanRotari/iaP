@@ -1,22 +1,20 @@
 package ro.infoiasi.sparql.dao;
 
+import org.apache.commons.lang3.time.DateUtils;
+import org.apache.jena.datatypes.DatatypeFormatException;
+import org.apache.jena.datatypes.RDFDatatype;
 import org.apache.jena.query.QuerySolution;
 import ro.infoiasi.dao.entity.MediaItem;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-public class MediaItemDAO extends GenericDAO<MediaItem>{
+import static ro.infoiasi.dao.entity.MediaItem.*;
 
-    public static final String CLASS_TYPE = "classType";
-    public static final String ITEM_DESCRIPTION = "itemDescription";
-    public static final String ITEM_TIMESTAMP = "itemTimestamp";
-    public static final String ITEM_TITLE = "itemTitle";
-    public static final String ITEM_URL = "itemUrl";
-    private static final List<String> mappedItems =
-            new ArrayList<>(Arrays.asList(CLASS_TYPE, ITEM_DESCRIPTION, ITEM_TIMESTAMP, ITEM_TITLE, ITEM_URL));
-
+public class MediaItemDAO extends GenericDAO<MediaItem> {
 
     public MediaItemDAO() {
         super(MediaItem.class);
@@ -26,15 +24,24 @@ public class MediaItemDAO extends GenericDAO<MediaItem>{
     protected MediaItem toEntity(QuerySolution solution) {
         MediaItem mediaItem = new MediaItem();
         mediaItem.setClassName(solution.getLiteral(CLASS_TYPE).toString());
-        mediaItem.setDescription(solution.getLiteral(ITEM_DESCRIPTION).toString());
-        mediaItem.setTimestamp(solution.getLiteral(ITEM_TIMESTAMP).getLong());
-        mediaItem.setTitle(solution.getLiteral(ITEM_TITLE).toString());
-        mediaItem.setUrl(solution.getLiteral(ITEM_URL).toString());
+        mediaItem.setDescription(solution.getLiteral(ITEM_DESCRIPTION).getString());
+        mediaItem.setTimestamp(toDate(solution));
+        mediaItem.setTitle(solution.getLiteral(ITEM_TITLE).getString());
+        mediaItem.setUrl(solution.getResource("resourceId").getURI());
         return mediaItem;
     }
 
-    @Override
-    public List<String> getMappedItems() {
-        return mappedItems;
+    private long toDate(QuerySolution solution) {
+        try {
+            return solution.getLiteral(ITEM_TIMESTAMP).getLong();
+        } catch (DatatypeFormatException ex) {
+            try {
+                Date date = DateUtils.parseDate(solution.getLiteral(ITEM_TIMESTAMP).getString());
+                return date.getTime();
+            } catch (ParseException e) {
+                return 0;
+            }
+        }
     }
+
 }

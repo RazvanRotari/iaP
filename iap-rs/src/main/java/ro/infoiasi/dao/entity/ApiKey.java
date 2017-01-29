@@ -9,11 +9,11 @@ import static ro.infoiasi.sparql.prefixes.Prefix.RR;
 import static ro.infoiasi.sparql.prefixes.Prefix.SKOS;
 
 public class ApiKey extends Entity {
-    @Property(prefix = RR, field = RR_Fields.KEY, variable = "apiKey", variableName = "keyValue")
+    @Property(prefix = RR, field = RR_Fields.KEY, variableName = "apiKey")
     private String key;
-    @OneToOne(prefix = SKOS, field = SKOS_Field.MEMBER, variable = "member", variableName = "memberId")
+    @OneToOne(prefix = SKOS, field = SKOS_Field.MEMBER, variableName = "member")
     private User user;
-    @Property(prefix = RR, field = RR_Fields.EXPIRES, variable = "expires", variableName = "expiresAt")
+    @Property(prefix = RR, field = RR_Fields.EXPIRES, variableName = "expires")
     private long expires;
 
     public ApiKey() {

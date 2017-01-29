@@ -12,7 +12,9 @@ import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
 import ro.infoiasi.dao.DAO;
 import ro.infoiasi.dao.entity.Entity;
-import ro.infoiasi.sparql.insertionPoints.QueryInsertionPoint;
+import ro.infoiasi.sparql.insertionPoints.*;
+import ro.infoiasi.sparql.insertionPoints.Optional;
+import ro.infoiasi.sparql.insertionPoints.subqueries.SubQuery;
 import ro.infoiasi.sparql.prefixes.Prefix;
 import ro.infoiasi.sparql.prefixes.annotations.OneToOne;
 import ro.infoiasi.sparql.prefixes.annotations.Property;
@@ -22,7 +24,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public abstract class GenericDAO<T extends Entity> implements DAO<T> {
-
+    private int NA = -1;
     public static final String HTTP_ENDPOINT = "http://razvanrotari.me:3030/default";
     protected static final boolean DEBUG = true;
 
@@ -49,7 +51,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
     }
 
     public T find(QueryInsertionPoint... queryInsertionPoints) throws Exception {
-        String findQuery = buildFindQuery(queryInsertionPoints);
+        String findQuery = buildFindQuery(NA, queryInsertionPoints);
         if (DEBUG) {
             System.out.println(findQuery);
         }
@@ -57,25 +59,35 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         if (resultSet.hasNext()) {
             QuerySolution solution = resultSet.next();
             T entity = toEntity(solution);
-            if (addExtraProperties(solution, entity)) return entity;
+            addExtraProperties(solution, entity);
+            return entity;
         }
         throw new NotFoundException("Cannot find entity of type" + clazz + " with field: " + Arrays.toString(queryInsertionPoints));
     }
 
-    private boolean addExtraProperties(QuerySolution solution, T entity) {
+    private T addExtraProperties(QuerySolution solution, T entity) {
         for (Iterator<String> it = solution.varNames(); it.hasNext(); ) {
             String varname = it.next();
             if (!getMappedItems().contains(varname)) {
-                entity.put(varname, solution.getLiteral(varname).getString());
+                if(solution.get(varname).isLiteral()) {
+                    entity.put(varname, solution.getLiteral(varname).getString());
+                } else {
+                    entity.put(varname, solution.getResource(varname).getURI());
+                }
+
             }
-            return true;
         }
-        return false;
+        return entity;
     }
 
     @Override
     public List<T> findAll(QueryInsertionPoint... queryInsertionPoints) throws Exception {
-        String findQuery = buildFindQuery(queryInsertionPoints);
+        return findAll(NA, queryInsertionPoints);
+    }
+
+    @Override
+    public List<T> findAll(int limit, QueryInsertionPoint... queryInsertionPoints) throws Exception {
+        String findQuery = buildFindQuery(limit, queryInsertionPoints);
         if (DEBUG) {
             System.out.println(findQuery);
         }
@@ -84,6 +96,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         while (resultSet.hasNext()) {
             QuerySolution solution = resultSet.next();
             T entity = toEntity(solution);
+            addExtraProperties(solution, entity);
             results.add(entity);
         }
         return results;
@@ -168,7 +181,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         for (Field field : fields) {
             if (field.isAnnotationPresent(Property.class)) {
                 Property prop = field.getAnnotation(Property.class);
-                String subject = prop.variable();
+                String subject = "resourceId";
                 String property = prop.prefix().prefix + ":" + prop.field();
                 String value = prop.variableName();
                 Triple<String, String, String> triple =
@@ -176,7 +189,7 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
                 result.add(triple);
             } else if(field.isAnnotationPresent(OneToOne.class)) {
                 OneToOne prop = field.getAnnotation(OneToOne.class);
-                String subject = prop.variable();
+                String subject = "resourceId";
                 String property = prop.prefix().prefix + ":" + prop.field();
                 String value = prop.variableName();
                 Triple<String, String, String> triple =
@@ -216,9 +229,19 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
         return stringBuilder.toString();
     }
 
-    protected String buildFindQuery(QueryInsertionPoint... queryInsertionPoints) throws Exception {
+    protected String buildFindQuery(int limit, QueryInsertionPoint... queryInsertionPoints) throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
         Set<String> prefixes = getPrefixes();
+        for(QueryInsertionPoint insertionPoint: queryInsertionPoints) {
+            if(insertionPoint instanceof Optional) {
+                insertionPoint = ((Optional) insertionPoint).getInsertionPoint();
+            }
+            if(insertionPoint instanceof SubQuery) {
+                SubQuery subQuery = (SubQuery) insertionPoint;
+                subQuery.excludePrefixes();
+                prefixes.addAll(subQuery.getPrefixes());
+            }
+        }
         for(String prefix: prefixes) {
             stringBuilder.append(prefix).append("\r\n");
         }
@@ -231,8 +254,24 @@ public abstract class GenericDAO<T extends Entity> implements DAO<T> {
             stringBuilder.append(queryInsertionPoint.construct()).append("\r\n");
         }
         stringBuilder.append("}");
+        if(limit != NA) {
+            stringBuilder.append(" limit ").append(limit);
+        }
         return stringBuilder.toString();
     }
 
-    public abstract List<String> getMappedItems();
+    public List<String> getMappedItems() {
+        List<String> result = new ArrayList<>();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(Property.class)) {
+                Property prop = field.getAnnotation(Property.class);
+                result.add(prop.variableName());
+            } else if(field.isAnnotationPresent(OneToOne.class)) {
+                OneToOne prop = field.getAnnotation(OneToOne.class);
+                result.add(prop.variableName());
+            }
+        }
+        return result;
+    }
 }

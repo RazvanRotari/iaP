@@ -9,13 +9,13 @@ import ro.infoiasi.sparql.prefixes.fields.SKOS_Field;
 
 public class ProviderRating extends Entity {
 
-    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable= "id", variableName = "uid")
+    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variableName = "uid")
     private long id;
-    @OneToOne(prefix = Prefix.SKOS, field = SKOS_Field.MEMBER, variable = "member", variableName = "memberId")
+    @OneToOne(prefix = Prefix.SKOS, field = SKOS_Field.MEMBER, variableName = "memberId")
     private User user;
-    @OneToOne(prefix = Prefix.DC, field = DC_Fields.PROVENANCE, variable = "provider", variableName = "providerId")
+    @OneToOne(prefix = Prefix.DC, field = DC_Fields.PROVENANCE, variableName = "providerId")
     private Provider provider;
-    @Property(prefix = Prefix.SKOS, field = SKOS_Field.NOTE, variable = "score", variableName = "providerScore")
+    @Property(prefix = Prefix.SKOS, field = SKOS_Field.NOTE, variableName = "providerScore")
     private double score;
 
     public ProviderRating() {

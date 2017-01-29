@@ -8,4 +8,5 @@ public class DC_Fields {
     public static final String PUBLISHER = "publisher";
     public static final String PROVENANCE = "provenance";
     public static final String TYPE = "type";
+    public static final String CREATED = "created";
 }

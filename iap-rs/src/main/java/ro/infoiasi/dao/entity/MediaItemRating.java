@@ -9,13 +9,13 @@ import ro.infoiasi.sparql.prefixes.fields.SKOS_Field;
 
 public class MediaItemRating extends Entity {
 
-    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable= "id", variableName = "uid")
+    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variableName = "ratingId")
     private long id;
-    @OneToOne(prefix = Prefix.RR, field = UserMetaModel.ID, variable = "user", variableName = "userId")
+    @OneToOne(prefix = Prefix.RR, field = UserMetaModel.ID, variableName = "userId")
     private User user;
-    @OneToOne(prefix = Prefix.RR, field = "id", variable = "mediaItem", variableName = "itemId")
+    @OneToOne(prefix = Prefix.RR, field = "id", variableName = "itemId")
     private MediaItem item;
-    @Property(prefix = Prefix.SKOS, field = SKOS_Field.NOTE, variable = "score", variableName = "itemScore")
+    @Property(prefix = Prefix.SKOS, field = SKOS_Field.NOTE, variableName = "score")
     private double score;
 
 

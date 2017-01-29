@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Entity {
-    private Map<String, String> extraProperties = new HashMap<>();
+    protected Map<String, String> extraProperties = new HashMap<>();
 
     public abstract String getUniqueIdentifier();
 

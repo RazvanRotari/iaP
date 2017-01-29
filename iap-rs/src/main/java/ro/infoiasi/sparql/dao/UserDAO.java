@@ -14,8 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserDAO extends GenericDAO<User> {
-    private static List<String> mappedItems = new ArrayList<>(
-            Arrays.asList(HASH_VALUE, EMAIL_VALUE, ID_VALUE, NAME_VALUE, USERNAME_VALUE));
     public UserDAO() {
         super(User.class);
     }
@@ -29,11 +27,6 @@ public class UserDAO extends GenericDAO<User> {
         user.setName(solution.getLiteral(NAME_VALUE).getString());
         user.setUserName(solution.getLiteral(USERNAME_VALUE).getString());
         return user;
-    }
-
-    @Override
-    public List<String> getMappedItems() {
-        return mappedItems;
     }
 
     public long getNextId() {

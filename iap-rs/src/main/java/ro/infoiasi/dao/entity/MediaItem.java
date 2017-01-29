@@ -10,17 +10,19 @@ import ro.infoiasi.sparql.prefixes.fields.RR_Fields;
 
 public class MediaItem extends Entity {
 
-    @Property(prefix = Prefix.RR, field = RR_Fields.ID, variable = "url", variableName = "uid")
-    private long id;
-    @Property(prefix = Prefix.RR, field = RR_Fields.URL, variable = "url", variableName = "itemUrl")
+    public static final String CLASS_TYPE = "class";
+    public static final String ITEM_DESCRIPTION = "description";
+    public static final String ITEM_TIMESTAMP = "timestamp";
+    public static final String ITEM_TITLE = "title";
+
     private String url;
-    @Property(prefix = Prefix.DC, field = DC_Fields.TITLE, variable = "title", variableName = "itemTitle")
+    @Property(prefix = Prefix.DC, field = DC_Fields.TITLE, variableName = "title")
     private String title;
-    @Property(prefix = Prefix.DC, field = DC_Fields.DESCRIPTION, variable = "description", variableName = "itemDescription")
+    @Property(prefix = Prefix.DC, field = DC_Fields.DESCRIPTION, variableName = "description")
     private String description;
-    @Property(prefix = Prefix.DC, field = DC_Fields.DATE, variable = "timestamp", variableName = "itemTimestamp")
+    @Property(prefix = Prefix.DC, field = DC_Fields.CREATED, variableName = "timestamp")
     private long timestamp;
-    @Property(prefix = Prefix.DC, field = DC_Fields.TYPE, variable = "class", variableName = "classType")
+    @Property(prefix = Prefix.RR, field = RR_Fields.CLASS_NAME, variableName = "class")
     private String className;
 
     @Override
@@ -69,5 +71,17 @@ public class MediaItem extends Entity {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    @Override
+    public String toString() {
+        return "MediaItem{" +
+                "url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", timestamp=" + timestamp +
+                ", className='" + className + '\'' +
+                ", extraProperties ='" + extraProperties + '\'' +
+                '}';
     }
 }

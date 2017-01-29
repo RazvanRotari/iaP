@@ -1,6 +1,7 @@
 package ro.infoiasi.routes.search;
 
 import com.google.gson.reflect.TypeToken;
+import ro.infoiasi.dao.entity.User;
 import ro.infoiasi.engine.SearchEngine;
 import ro.infoiasi.model.search.SearchQuery;
 import ro.infoiasi.routes.RequestBodyParser;
@@ -24,7 +25,7 @@ public class SearchRoute implements Route {
             halt(400, "Invalid request");
         }
         SearchEngine engine = new SearchEngine();
-        return engine.search(query);
+        return null;
     }
 
     private List<SearchQuery> getSearchQuery(Request request) {
