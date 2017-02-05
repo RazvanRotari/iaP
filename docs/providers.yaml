@@ -11,7 +11,7 @@ consumes:
 produces:
   - application/json
 definitions:
-  User:
+  Author:
     type: object
     description: Informations about the creator of an item.
     properties:
@@ -35,6 +35,10 @@ definitions:
       profile_image_url:
         type: string
         format: url
+      provenance:
+        type: string
+        format: url
+        description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
       popularity:
         $ref: "#/definitions/Popularity"
 
@@ -54,6 +58,22 @@ definitions:
       comment_count:
         type: number
         format: int
+  User:
+    type: object
+    description: 'Internal user'
+    properties:
+        name:
+            type: string
+            description: '[http://xmlns.com/foaf/spec/#,term_nick,foaf] The username'
+        password:
+            type: string
+            description: 'The sha256 of the password'
+        email:
+            type: string
+            description: "[http://xmlns.com/foaf/spec/#,term_mbox,foaf] Email addres"
+        categories:
+            type: array
+            description: '[http://purl.org/media#,duration,media]The categories for this image'
           
   AudioUrl:
     type: object
@@ -64,6 +84,11 @@ definitions:
       name:
         type: string
         description: The name of the quality i.e High, Low, Poor
+    Item:
+        type: object
+        properties:
+            name:
+                type: string
   AudioItem:
     type: object
     properties:
@@ -99,6 +124,13 @@ definitions:
       external_category_id:
         type: string
         description: If the provider does not use id's for categories use category name
+      creator:
+        $ref: "#/definitions/Author"
+        description: '[http://purl.org/dc/terms/,creator,dc] The creator of the content'
+      provenance:
+        type: string
+        format: url
+        description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
       tags:
         type: array
         items: 
@@ -108,7 +140,7 @@ definitions:
         items:
             $ref: "#/definitions/AudioUrl"
       creator:
-        $ref: "#/definitions/User"
+        $ref: "#/definitions/Author"
   #https://newsapi.org/
   NewsItem:
     type: object
@@ -118,10 +150,11 @@ definitions:
         description: An unique identifier
       provenance:
         type: string
+        format: url
         description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
-      author:
-        type: string
-        description: '[http://purl.org/dc/elements/1.1/,provenance,dc]'
+      creator:
+        $ref: "#/definitions/Author"
+        description: '[http://purl.org/dc/terms/,creator,dc] The creator of the content'
       title:
         type: string
         description: '[http://purl.org/dc/elements/1.1/,title,dc]'
@@ -207,11 +240,35 @@ definitions:
       section:
         type: string
         description: 'If the image has been categorized by our backend then this will contain the section the image belongs in. (funny, cats, adviceanimals, wtf, etc)'
-      creator:
-        $ref: "#/definitions/User"
+      provenance:
+        type: string
+        format: url
+        description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
       popularity:
         $ref: "#/definitions/Popularity"
 
+    ReputationItem:
+        type: object
+        description: The reputation score of an item
+        properties:
+            score:
+                type: integer
+                description: "[https://schema.org/,ratingValue,schema]The score offered by an #User"
+            user:
+                $ref: "#/definitions/User"
+            item:
+                $ref: "#/definitions/Item"
+    ReputationAuthor:
+        type: object
+        description: The reputation score of an Author
+        properties:
+            score:
+                type: integer
+                description: "[https://schema.org/,ratingValue,schema]The score offered by an #User"
+            user:
+                $ref: "#/definitions/User"
+            author:
+                $ref: "#/definitions/Author"
 paths:
     /media/audio:
         put:
