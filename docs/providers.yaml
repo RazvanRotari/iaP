@@ -15,7 +15,7 @@ definitions:
     type: object
     description: Informations about the creator of an item.
     properties:
-      username:
+      name:
         type: string
       real_name:
         type: string
@@ -124,7 +124,7 @@ definitions:
       external_category_id:
         type: string
         description: If the provider does not use id's for categories use category name
-      creator:
+      author:
         $ref: "#/definitions/Author"
         description: '[http://purl.org/dc/terms/,creator,dc] The creator of the content'
       provenance:
@@ -139,8 +139,6 @@ definitions:
         type: array
         items:
             $ref: "#/definitions/AudioUrl"
-      creator:
-        $ref: "#/definitions/Author"
   #https://newsapi.org/
   NewsItem:
     type: object
@@ -152,7 +150,7 @@ definitions:
         type: string
         format: url
         description: '[http://purl.org/dc/elements/1.1/,publisher,dc]The base url for the provider'
-      creator:
+      author:
         $ref: "#/definitions/Author"
         description: '[http://purl.org/dc/terms/,creator,dc] The creator of the content'
       title:
@@ -192,6 +190,9 @@ definitions:
       description:
         type: string
         description: '[http://purl.org/dc/elements/1.1/,description,dc]' 
+      author:
+        $ref: "#/definitions/Author"
+        description: '[http://purl.org/dc/terms/,creator,dc] The creator of the content'
       timestamp:
         type: integer
         description: '[http://purl.org/dc/elements/1.1/,created,dc] Time inserted into the gallery, epoch time'
