@@ -7,6 +7,27 @@
         }
     }
 
+    pages = {
+        search: ["searchbar", ],
+        tags: ["tagsbar"],
+        articles: ["searchbar", "articles"],
+        login: ["login"],
+        register: ["register"],
+
+    }
+
+    function selectPage(visibleSlides) {
+        for (var slide of document.getElementsByClassName("data-slide")) {
+            var arr = []
+            for (var cl of slide.getAttribute("class").split(" "))
+                if (cl != "hidden")
+                    arr.push(cl)
+            if (visibleSlides.indexOf(slide.getAttribute("data-slide-name")) < 0)
+                arr.push("hidden");
+            slide.setAttribute("class", arr.join(" "));
+        }
+    }
+
     function formPage(name, formNames) {
         this.name = name
         this.formNames = formNames
@@ -34,6 +55,17 @@
             alert(x)
         },
     };
+
+    selectPage(pages.search);
+
+    for (var ev of document.getElementsByClassName("data-link")) {
+        (function() {
+            var p = ev.getAttribute("data-link-name");
+            ev.addEventListener("click", function() {
+                selectPage(pages[p])
+            });
+        })();
+    }
 
     for (var ev of document.getElementsByClassName("data-login-button")) {
         (function() {
