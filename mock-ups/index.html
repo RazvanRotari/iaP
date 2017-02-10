@@ -2,15 +2,23 @@
   <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Mock</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Mock</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+		<link rel="stylesheet" href="css/my.css">
+		<script src="js/bootstrap-tagsinput.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     </head>
     <body>
-      <nav class="navbar navbar-inverse" style="border-radius: 0;">
+        <div class=""> <!-- class="hidden" -->
+            <a class="data-link" data-link-name="search" href="#">search</a> <a class="data-link" data-link-name="tags" href="#">tags</a> <a class="data-link" data-link-name="articles" href="#">articles</a> <a class="data-link" data-link-name="login" href="#">login</a> <a class="data-link" data-link-name="register" href="#">register</a> 
+        </div>
+        <!-- formerly <nav -->
+        <div data-slide-name="searchbar" class="hidden navbar navbar-inverse data-slide" style="border-radius: 0;">
           <div class="container-fluid">
               <div class="navbar-header">
                   <button type="button" class="navbar-toggle collapsed burger-button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
@@ -23,7 +31,7 @@
               <div class="collapse navbar-collapse" id="navbar-collapse">
                   <ul class="nav navbar-nav navbar-right">
                       <li>
-                        <a href="#">
+                        <a class="data-link" data-link-name="login" href="#">
                           <span class="glyphicon glyphicon-user"></span>
                           Login</a>
                       </li>
@@ -51,9 +59,260 @@
                   </form>
               </div>
           </div>
-      </nav>
-      <div class="container">
-          Landing page
+        </div> <!-- formerly </nav> -->
+        <div data-slide-name="tagsbar" class="hidden main container data-slide">
+        <p>Work in progress:</p>
+        <p>Pick some categories</p>
+        <input type="text" value="" data-role="tagsinput" />
+        <script>
+        var citynames = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          prefetch: {
+            url: 'assets/categories.json',
+            filter: function(list) {
+              return $.map(list, function(cityname) {
+                return { name: cityname }; });
+            }
+          }
+        });
+        citynames.initialize();
+
+        $('input').tagsinput({
+          typeaheadjs: {
+            name: 'citynames',
+            displayKey: 'name',
+            valueKey: 'name',
+            source: citynames.ttAdapter()
+          }
+        });
+        </script>
+      </div> 
+        <div data-slide-name="articles" class="hidden container data-slide">
+        <div class="data-article-card media card">
+  		      <a class="pull-left" href="#">
+    		        <img class="data-article-image media-object" data-article-image-attrname=src alt="foo" src="http://placehold.it/150x150">
+  		      </a>
+  		      <div class="media-body">
+    		        <h4 class="media-heading">Media element title</h4>
+                <p class="text-right">Published by: $author</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</p>
+                <ul class="list-inline list-unstyled">
+                  <li><span><i class="glyphicon glyphicon-calendar"></i> 20 Novenber 2016 </span></li>
+                  <li class="pull-right">
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="collapse" href="#content_1">
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>More...
+                    </button>
+                  </li>
+                  <li class="pull-right">
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Feedback
+                    </button>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Your feedback is appreciated</h4>
+                          </div>
+                          <div class="modal-body">
+                          <h4>Rate <a target="_blank" href="#">this document</a></h4>
+                            <div class="data-radios btn-group" data-radios-name=document data-toggle="buttons">
+                              <label class="btn btn-danger">
+                                <input type="radio" value=Awful name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Awful</span>
+                              </label>
+                              <label class="btn btn-warning">
+                                <input type="radio" value=Bad name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Bad</span>
+                              </label>
+                              <label class="btn btn-default active">
+                                <input type="radio" value=Neutral name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Neutral</span>
+                              </label>
+                              <label class="btn btn-primary">
+                                <input type="radio" value=Good name="options" id="option1" autocomplete="off">
+                                <span class="glyphicon">Good</span>
+                              </label>
+                              <label class="btn btn-success">
+                                <input type="radio" value=Great name="options" id="option2" autocomplete="off" chacked>
+                                <span class="glyphicon">Great</span>
+                              </label>
+                            </div>
+                            <h4>Rate the <a target="_blank" href="#">author</a></h4>
+                            <div class="data-radios btn-group" data-radios-name=author data-toggle="buttons">
+                              <label class="btn btn-danger">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Awful</span>
+                              </label>
+                              <label class="btn btn-warning">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Bad</span>
+                              </label>
+                              <label class="btn btn-default active">
+                                <input type="radio" name="options" id="option2" autocomplete="off">
+                                <span class="glyphicon">Neutral</span>
+                              </label>
+                              <label class="btn btn-primary">
+                                <input type="radio" name="options" id="option1" autocomplete="off">
+                                <span class="glyphicon">Good</span>
+                              </label>
+                              <label class="btn btn-success">
+                                <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                                <span class="glyphicon">Great</span>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div id="content_1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </div>
+                  <a href="#" class="btn btn-default btn-sm" data-toggle="collapse" href="#content_1">
+                    More by this author
+                  </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Begin navigation -->
+        <div class="text-center">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+        <div data-slide-name="login" class="hidden container data-slide">
+        <div class="row main">
+				<div class="main-login main-center data-login">
+          <div class="panel-title text-center">
+             <h3 class="title">Login</h3>
+          </div>
+					<form class="form-horizontal" method="post" action="#">
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+									<input type="text" class="form-control username data-username" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+									<input type="password" class="form-control data-password" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group "> 
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button data-login-button">Login</button>
+						</div>
+						<div class="login-register">
+				          <a class="data-link" data-link-name="register" href="#">Register</a>
+  	        </div>
+					</form>
+				</div>
+      </div>
+    </div>
+        <div data-slide-name="register" class="hidden container data-slide">
+        <div class="row main">
+        <div class="main-login main-center data-register">
+          <div class="panel-title text-center">
+             <h3 class="title">Register</h3>
+          </div>
+					<form class="form-horizontal" method="post" action="#">
+
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-italic" aria-hidden="true"></i></span>
+									<input type="text" class="form-control data-name" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+									<input type="text" class="form-control data-email" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+									<input type="text" class="form-control data-username" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+									<input type="password" class="form-control data-password" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+									<input type="password" class="form-control data-confirm-password" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button data-register-button">Register</button>
+						</div>
+						<div class="login-register">
+				        <a class="data-link" data-link-name="login" href="#">Login</a>
+            </div>
+					</form>
+				</div>
+      </div>
+        </div>
+        <script src="js/loginspa.js"></script>
     </body>
   </html>
