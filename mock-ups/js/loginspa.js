@@ -6,8 +6,29 @@
             throw Error("assert error");
         }
     }
-
-    pages = {
+    
+    function isTextElement(el) {
+        return el.nodeType==document.TEXT_NODE;
+    }
+    
+    function getAncestorByClassName(child,cl) { //inclusive
+        for(;child!=null;child=child.parentNode) { 
+            if((" "+child.className+" ").indexOf(" "+cl.trim()+" ")>=0) {
+                return child;
+            }
+        }
+        return child;
+    }
+    
+    function getTextChild(el){
+        for(var i of el.childNodes) {
+            if(isTextElement(i))
+                return i;
+        }
+        return null;
+    }
+    
+    var pages = {
         search: ["searchbar", ],
         tags: ["tagsbar"],
         articles: ["searchbar", "articles"],
@@ -33,10 +54,8 @@
         this.formNames = formNames
     }
     formPage.prototype = {
-        submit: function() {
-            var p = document.getElementsByClassName(this.name);
-            assert(p.length == 1)
-            p = p[0]
+        collectValues: function(ev) {
+            p = getAncestorByClassName(ev.target,this.name);
             r = {}
             for (var fname of this.formNames) {
                 el = p.getElementsByClassName(fname);
@@ -45,13 +64,35 @@
                 var v = el.value.trim()
                 if (!v) {
                     this.print("Please fill out " + el.name + " field.");
+                    //return;
+                }
+                else {
+                    r[fname] = v;
+                }
+            }
+            return r;
+        },
+        submit: function(ev) { 
+            var x = this.collectValues(ev);
+            for(var i of this.formNames) {
+                if(!x.hasOwnProperty(i)) { 
                     return;
                 }
-                r[fname] = v;
             }
-            alert(r);
+            alert(x);
         },
-        print: function(x) {
+        collectElements: function(ev) {
+            p = getAncestorByClassName(ev.target,this.name);
+            r = {}
+            for (var fname of this.formNames) {
+                el = p.getElementsByClassName(fname);
+                assert(el.length == 1)
+                el = el[0]
+                r[fname] = el;
+            }
+            return r;
+        },
+        print: function(x) { 
             alert(x)
         },
     };
@@ -62,27 +103,69 @@
         (function() {
             var p = ev.getAttribute("data-link-name");
             ev.addEventListener("click", function() {
-                selectPage(pages[p])
+                selectPage(pages[p]);
             });
         })();
     }
 
-    for (var ev of document.getElementsByClassName("data-login-button")) {
-        (function() {
-            var x = new formPage("data-login", ["data-username", "data-password", ]);
-            ev.addEventListener("click", function() {
-                x.submit();
+    (function() {
+        var x = new formPage("data-login", ["data-username", "data-password",]);
+        for (var ev of document.getElementsByClassName("data-login-button")) {
+            ev.addEventListener("click", function(ev) {
+                x.submit(ev);
             });
-        })();
-    }
+        }
+    })();
 
-    for (var ev of document.getElementsByClassName("data-register-button")) {
-        (function() {
-            var x = new formPage("data-register", ["data-name", "data-email", "data-username", "data-password", "data-confirm-password", ]);
-            ev.addEventListener("click", function() {
-                x.submit();
+    (function() {
+        var x = new formPage("data-register", ["data-name", "data-email", "data-username", "data-password", "data-confirm-password", ]);
+        for (var ev of document.getElementsByClassName("data-register-button")) {
+            ev.addEventListener("click", function(ev) {
+                x.submit(ev);
             });
-        })();
-    }
+        }
+    })();
+    
+    (function() {
+        var radioConst = {
+            radios:["data-document-awful","data-document-bad","data-document-neutral","data-document-good","data-document-great","data-author-awful","data-author-bad","data-author-neutral","data-author-good","data-author-great",],
+            reset:["data-document-reset","data-author-reset",],
+            other:[],
+            
+        };
+        var allForms = new formPage("data-article-card",radioConst.radios.concat(radioConst.other));
+        var radioForms = new formPage("data-article-card",radioConst.radios);
+        var resetForms = new formPage("data-article-card",radioConst.reset);
+        
+        function resetRadios(ev){
+            var e = resetForms.collectElements(ev);
+            for(var i in e){
+                    e[i].dispatchEvent(new Event("click",{bubbles:true}));
+            }
+        }
+        function closeCallback(ev) {
+            resetRadios(ev);
+        }
+        function saveCallback(ev) {
+                var e = allForms.collectElements(ev);
+                var r = {}
+                for(var i of radioConst.radios) {
+                    r[i] = e[i].checked;
+                    //alert(r[i]);
+                }
+                for(var i of radioConst.other) {
+                    r[i] = e[i].value;
+                }
+                resetRadios(ev);
+                alert(r);
+        }
+
+        for (var el of document.getElementsByClassName("data-radio-save")) {
+            el.addEventListener("click",saveCallback);
+        }
+        for (var el of document.getElementsByClassName("data-radio-close")) {
+            el.addEventListener("click",closeCallback);
+        }        
+    })();
 
 })();
